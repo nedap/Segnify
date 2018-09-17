@@ -9,7 +9,7 @@
 import UIKit
 
 /// A base class for subclasses of `UIView`, which offers helper methods for adding subviews and adding Auto Layout constraints to them.
-class BaseView: UIView {
+open class BaseView: UIView {
 
     // MARK: - Lifecycle
     
@@ -20,7 +20,7 @@ class BaseView: UIView {
         setupAutoLayoutConstraints()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setupSubviews()

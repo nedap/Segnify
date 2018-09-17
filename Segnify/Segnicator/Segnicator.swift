@@ -10,7 +10,7 @@ import UIKit
 
 /// An instance of `Segnicator` can be used to indicate the currently selected `Segment` instance.
 /// `Segnicator` itself represents a transparent view, where one or more subviews can be added to, in order to visually indicate the currently selected `Segment`.
-class Segnicator: UIView {
+open class Segnicator: UIView {
 
     // MARK: - Public variables
     

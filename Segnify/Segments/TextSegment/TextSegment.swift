@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `TextSegment` instance subclasses `Segment` and adds support for showing text labels.
-class TextSegment: Segment {
+open class TextSegment: Segment {
     
     // MARK: - Public variables
     
@@ -21,7 +21,7 @@ class TextSegment: Segment {
     }
     
     /// Sets the `TextSegmentConfiguration` to configure the segment's appearance.
-    override var configuration: SegmentConfiguration? {
+    override open var configuration: SegmentConfiguration? {
         didSet {
             if let configuration = configuration as? TextSegmentConfiguration {
                 // Apply the text segment configuration.

@@ -10,7 +10,7 @@ import UIKit
 
 /// A `Segment` instance represents a segmentation component, used by `Segnify`. It's responsible for showing any content.
 /// By subclassing `UIButton`, highlighting and selecting behaviour of the `Segment` is automatically taken care of.
-class Segment: UIButton {
+open class Segment: UIButton {
     
     // MARK: - Public variables
     
@@ -24,7 +24,7 @@ class Segment: UIButton {
     
     // MARK: - UIButton methods
     
-    override var isHighlighted: Bool {
+    override open var isHighlighted: Bool {
         didSet {
             if isHighlighted {
                 backgroundColor = configuration?.segmentBackgroundColor(for: .highlighted)
@@ -34,7 +34,7 @@ class Segment: UIButton {
         }
     }
     
-    override var isSelected: Bool {
+    override open var isSelected: Bool {
         didSet {
             if isSelected {
                 backgroundColor = configuration?.segmentBackgroundColor(for: .selected)

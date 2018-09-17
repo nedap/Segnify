@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `ImageSegment` instance subclasses `Segment` and adds support for showing images.
-class ImageSegment: Segment {
+open class ImageSegment: Segment {
     
     // MARK: - Public variables
     
@@ -21,7 +21,7 @@ class ImageSegment: Segment {
     }
     
     /// Sets the `ImageSegmentConfiguration` to configure the segment's appearance.
-    override var configuration: SegmentConfiguration? {
+    override open var configuration: SegmentConfiguration? {
         didSet {
             if let configuration = configuration as? ImageSegmentConfiguration {
                 // Apply the text segment configuration.

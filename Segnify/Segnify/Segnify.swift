@@ -10,8 +10,12 @@ import UIKit
 
 import SnapKit
 
+public protocol SegnifyDelegate {
+    func segnify(_ segnify: Segnify, didSelectSegment: Segment)
+}
+
 /// A `Segnify` instance represents a segmented component, based on UISegmentedControl, and features many customization options
-class Segnify: BaseView {
+open class Segnify: BaseView {
 
     // MARK: - Private variables
     
@@ -44,12 +48,16 @@ class Segnify: BaseView {
     /// The currently selected `Segment` instance.
     private var selectedSegment: Segment?
     
-    /// The width of every `Segment` instance. Defaults to 100.0.
+    /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 100.0
+    
+    // MARK: - Public variables
+    
+    public var delegate: SegnifyDelegate?
     
     // MARK: - View & constraints
     
-    override func setupSubviews() {
+    override public func setupSubviews() {
         // Scroll view.
         addSubview(scrollView)
         
@@ -60,7 +68,7 @@ class Segnify: BaseView {
         scrollView.addSubview(segnicator)
     }
     
-    override func setupAutoLayoutConstraints() {
+    override public func setupAutoLayoutConstraints() {
         // Scroll view.
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -80,9 +88,12 @@ class Segnify: BaseView {
             segnicatorLeadingSpaceToSuperviewConstraint = make.leading.equalToSuperview().constraint
         }
     }
-    
-    // MARK: - Populate
-    
+}
+
+// MARK: - Populate
+
+extension Segnify {
+
     public func populate(with segments: [Segment],
                          segnicatorConfiguration: SegnicatorConfiguration?,
                          segnifyConfiguration: SegnifyConfiguration?) {
@@ -96,13 +107,15 @@ class Segnify: BaseView {
         
         if let configuration = segnifyConfiguration {
             // Apply the segnify configuration.
-            scrollView.alwaysBounceHorizontal = configuration.isBouncingHorizontally ?? true
             backgroundColor = configuration.segnifyBackgroundColor
+            scrollView.alwaysBounceHorizontal = configuration.isBouncingHorizontally ?? true
+            if let minimumSegmentWidth = configuration.minimumSegmentWidth {
+                segmentWidth = minimumSegmentWidth
+            }
             
             if configuration.equallyFillHorizontalSpace == true {
-                // The segment width should be at least 100.0 (see the default value of `segmentWidth`).
-                // In the event of 3 or less segments, the width can be greater than 100.0, so the segments will equally fill the space available.
-                // In the event of 4 or more, the segments might not fit on the screen, so stick to the default width of 100.0.
+                // In the event of segments underflowing the space available, the width will increase so the segments will equally fill the space available.
+                // In the event of segments overflowing the space available, stick to the minimum width.
                 segmentWidth = max(segmentWidth, superview.bounds.maxX / CGFloat(segments.count))
             }
         }
@@ -111,6 +124,17 @@ class Segnify: BaseView {
         segnicator.snp.updateConstraints { make in
             make.width.equalTo(segmentWidth)
         }
+        
+        // Populate.
+        populate(with: segments)
+        
+        // Select the first button initially.
+        if let firstSegment = stackView.arrangedSubviews.first as? Segment {
+            select(firstSegment)
+        }
+        
+        // Scroll to the beginning.
+        scrollView.contentOffset = .zero
     }
     
     private func populate(with segments: [Segment]) {
@@ -130,10 +154,126 @@ class Segnify: BaseView {
             stackView.addArrangedSubview(segment)
         }
     }
-    
-    // MARK: - Segment selection
+}
+
+// MARK: - Segment selection
+
+extension Segnify {
     
     @objc private func didTouchUpInsideSegment(_ segment: Segment) {
+        // Selecting the already selected segment shouldn't have any effect.
+        if segment != selectedSegment {
+            // Process any pending layout updates.
+            layoutIfNeeded()
+            
+            // Select the actual segment.
+            select(segment)
+            
+            // Animate.
+            performAnimations()
+        }
+    }
+    
+    private func handleSegmentSelection(with segment: Segment) {
+        if let selectedSegment = selectedSegment {
+            // Deselect the previously selected segment.
+            selectedSegment.isSelected = false
+        }
         
+        // Set the new selected segment and make it actually selected.
+        selectedSegment = segment
+        selectedSegment!.isSelected = true
+    }
+    
+    private func select(_ segment: Segment) {
+        // The segment wants to be selected.
+        handleSegmentSelection(with: segment)
+
+        // Notify the delegate.
+        delegate?.segnify(self, didSelectSegment: selectedSegment!)
+    }
+}
+
+// MARK: - Scroll view animation
+
+extension Segnify {
+    
+    private func performAnimations() {
+        // We need a superview and a currently selected segment.
+        guard let superview = superview, let selectedSegment = selectedSegment else {
+            return
+        }
+        
+        let amountOfSegments = stackView.arrangedSubviews.count
+        if (superview.bounds.maxX / CGFloat(amountOfSegments)) < segmentWidth {
+            // The segments overflow the horizontal space available.
+            // Make sure the scroll view scrolls according to the currently selected segment.
+            
+            // Grab the index of the selected segment in the stack view.
+            let indexOfSelectedSegmentInStackView = stackView.arrangedSubviews.index(of: selectedSegment)!
+            let segmentHeight = selectedSegment.frame.height
+            
+            switch indexOfSelectedSegmentInStackView {
+            case 0:
+                // First segment: this segment and the next one should be visible.
+                if let nextSegment = getNextSegmentInStackViewWith(currentIndex: indexOfSelectedSegmentInStackView) {
+                    scrollView.scrollRectToVisible(CGRect(x: selectedSegment.frame.minX,
+                                                          y: 0.0,
+                                                          width: nextSegment.frame.maxX,
+                                                          height: segmentHeight),
+                                                   animated: true)
+                }
+            case (amountOfSegments - 1):
+                // Last segment: this segment and the previous one should be visible.
+                if let previousSegment = getPreviousSegmentInStackViewWith(currentIndex: indexOfSelectedSegmentInStackView) {
+                    scrollView.scrollRectToVisible(CGRect(x: previousSegment.frame.minX,
+                                                          y: 0.0,
+                                                          width: selectedSegment.frame.maxX,
+                                                          height: segmentHeight),
+                                                   animated: true)
+                }
+            default:
+                if (amountOfSegments % 2 != 0 && indexOfSelectedSegmentInStackView == (amountOfSegments - 1) / 2) {
+                    // There's an odd amount of segments in the stack view, and the currently selected segment is in the middle, so center the scroll view horizontally.
+                    scrollView.setContentOffset(CGPoint(x: stackView.frame.midX - scrollView.frame.midX, y: 0.0), animated: true)
+                }
+                else {
+                    // The currently selected segment is somewhere in the middle, so this segment, the previous one and the next one should be visible.
+                    if let previousSegment = getPreviousSegmentInStackViewWith(currentIndex: indexOfSelectedSegmentInStackView),
+                        let nextSegment = getNextSegmentInStackViewWith(currentIndex: indexOfSelectedSegmentInStackView) {
+                        scrollView.scrollRectToVisible(CGRect(x: previousSegment.frame.minX,
+                                                              y: 0.0,
+                                                              width: nextSegment.frame.maxX,
+                                                              height: segmentHeight),
+                                                       animated: true)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: Segment helpers
+
+extension Segnify {
+    
+    private func getNextSegmentInStackViewWith(currentIndex: Int) -> Segment? {
+        // Check if we're dealing with valid indices.
+        let nextIndex = currentIndex + 1
+        if nextIndex < stackView.arrangedSubviews.count {
+            return stackView.arrangedSubviews[nextIndex] as? Segment
+        }
+        
+        return nil
+    }
+    
+    private func getPreviousSegmentInStackViewWith(currentIndex: Int) -> Segment? {
+        // Check if we're dealing with valid indices.
+        let previousIndex = currentIndex - 1
+        if previousIndex >= 0 {
+            return stackView.arrangedSubviews[previousIndex] as? Segment
+        }
+        
+        return nil
     }
 }
