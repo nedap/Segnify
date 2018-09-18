@@ -37,11 +37,6 @@ open class Segnify: BaseView {
         return stackView
     }()
     
-    /// Adds a `Segnicator` instance to be able to visually indicate the currently selected `Segment` instance.
-    private lazy var segnicator: Segnicator = {
-        return Segnicator()
-    }()
-    
     /// Maintains the horizontal position of the `Segnicator` instance in relation to `scrollView`.
     private var segnicatorLeadingSpaceToSuperviewConstraint: Constraint?
     
@@ -55,6 +50,17 @@ open class Segnify: BaseView {
     
     public var delegate: SegnifyDelegate?
     
+    // MARK: - Lifecycle
+    
+    public convenience init(with segments: [Segment],
+                            segnicator: Segnicator?,
+                            segnifyConfiguration: SegnifyConfiguration?) {
+        self.init(frame: .zero)
+        populate(with: segments,
+                 segnicator: segnicator,
+                 segnifyConfiguration: segnifyConfiguration)
+    }
+    
     // MARK: - View & constraints
     
     override public func setupSubviews() {
@@ -63,9 +69,6 @@ open class Segnify: BaseView {
         
         // Stack view.
         scrollView.addSubview(stackView)
-     
-        // Segnicator.
-        scrollView.addSubview(segnicator)
     }
     
     override public func setupAutoLayoutConstraints() {
@@ -78,15 +81,6 @@ open class Segnify: BaseView {
         stackView.snp.makeConstraints { make in
             make.edges.size.equalToSuperview()
         }
-        
-        // Segnicator.
-        segnicator.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            // Set the width on 0.0 initially.
-            make.width.equalTo(0.0)
-            // Save the leading space to its superview. as we'll update it later on.
-            segnicatorLeadingSpaceToSuperviewConstraint = make.leading.equalToSuperview().constraint
-        }
     }
 }
 
@@ -95,15 +89,12 @@ open class Segnify: BaseView {
 extension Segnify {
 
     public func populate(with segments: [Segment],
-                         segnicatorConfiguration: SegnicatorConfiguration?,
+                         segnicator: Segnicator?,
                          segnifyConfiguration: SegnifyConfiguration?) {
         // We need a superview.
         guard let superview = superview else {
             return
         }
-        
-        // The `segnicator` instance is responsible for nil-checking the configuration.
-        segnicator.segnicatorConfiguration = segnicatorConfiguration
         
         if let configuration = segnifyConfiguration {
             // Apply the segnify configuration.
@@ -120,9 +111,15 @@ extension Segnify {
             }
         }
         
-        // Update the segnicator width, when necessary.
-        segnicator.snp.updateConstraints { make in
-            make.width.equalTo(segmentWidth)
+        if let segnicator = segnicator {
+            // Add the segnicator and give it some Auto Layout constraints.
+            scrollView.addSubview(segnicator)
+            segnicator.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview()
+                make.width.equalTo(segmentWidth)
+                // Save the leading space to its superview. as we'll update it later on.
+                segnicatorLeadingSpaceToSuperviewConstraint = make.leading.equalToSuperview().constraint
+            }
         }
         
         // Populate.

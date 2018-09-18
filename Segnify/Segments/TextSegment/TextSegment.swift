@@ -36,8 +36,9 @@ open class TextSegment: Segment {
     
     // MARK: - Lifecycle
     
-    convenience init() {
-        self.init()
+    public convenience init(with text: String?, configuration: SegmentConfiguration?) {
+        self.init(with: configuration)
+        self.text = text
         
         // Setup class specific settings.
         titleLabel?.lineBreakMode = .byWordWrapping
