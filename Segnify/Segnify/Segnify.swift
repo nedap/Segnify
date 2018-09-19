@@ -50,17 +50,6 @@ open class Segnify: BaseView {
     
     public var delegate: SegnifyDelegate?
     
-    // MARK: - Lifecycle
-    
-    public convenience init(with segments: [Segment],
-                            segnicator: Segnicator?,
-                            segnifyConfiguration: SegnifyConfiguration?) {
-        self.init(frame: .zero)
-        populate(with: segments,
-                 segnicator: segnicator,
-                 segnifyConfiguration: segnifyConfiguration)
-    }
-    
     // MARK: - View & constraints
     
     override public func setupSubviews() {

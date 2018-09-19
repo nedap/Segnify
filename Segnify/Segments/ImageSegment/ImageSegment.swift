@@ -30,4 +30,15 @@ open class ImageSegment: Segment {
             }
         }
     }
+    
+    // MARK: - Lifecycle
+    
+    public convenience init(with image: UIImage?, configuration: SegmentConfiguration?) {
+        self.init(type: .custom)
+        
+        defer {
+            self.configuration = configuration
+            self.image = image
+        }
+    }
 }

@@ -16,28 +16,6 @@ open class Segment: UIButton {
     
     public var configuration: SegmentConfiguration?
     
-    // MARK: - Lifecycle
-    
-    public convenience init(with configuration: SegmentConfiguration?) {
-        self.init(type: .custom)
-        self.configuration = configuration
-    }
-    
-    @available(*, unavailable, message: "Use init(with:) instead.")
-    private override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    @available(*, unavailable, message: "Use init(with:) instead.")
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    @available(*, unavailable, message: "Use init(with:) instead.")
-    public convenience init(type buttonType: UIButton.ButtonType) {
-        self.init(type: buttonType)
-    }
-    
     // MARK: - UIButton methods
     
     override open var isHighlighted: Bool {
