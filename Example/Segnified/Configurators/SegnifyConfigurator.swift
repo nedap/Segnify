@@ -12,11 +12,11 @@ import Segnify
 
 struct SegnifyConfigurator: SegnifyConfiguration {
     
-    var equallyFillHorizontalSpace: Bool? = true
+    var equallyFillHorizontalSpace: Bool? = false
     
     var isBouncingHorizontally: Bool? = true
     
-    var minimumSegmentWidth: CGFloat? = 100.0
+    var maximumSegmentWidth: CGFloat? = 200.0
     
     var segnifyBackgroundColor: UIColor? = .blue
 }

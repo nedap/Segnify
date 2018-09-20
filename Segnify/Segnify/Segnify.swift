@@ -37,14 +37,18 @@ open class Segnify: BaseView {
         return stackView
     }()
     
+    /// Keeps track of the width constraint of `stackView`, which will be equal to the width of `scrollView`.
+    /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
+    private var stackViewWidthConstraint: Constraint?
+    
     /// Maintains the horizontal position of the `Segnicator` instance in relation to `scrollView`.
     private var segnicatorLeadingSpaceToSuperviewConstraint: Constraint?
     
+    /// The width of every `Segment` instance.
+    private var segmentWidth: CGFloat = 200.0
+    
     /// The currently selected `Segment` instance.
     private var selectedSegment: Segment?
-    
-    /// The width of every `Segment` instance.
-    private var segmentWidth: CGFloat = 100.0
     
     // MARK: - Public variables
     
@@ -68,7 +72,10 @@ open class Segnify: BaseView {
         
         // Stack view.
         stackView.snp.makeConstraints { make in
-            make.edges.size.equalToSuperview()
+            make.edges.height.equalToSuperview()
+            // Set the width of the stack view temporarily to the width of the scroll view to keep Auto Layout happy.
+            // After adding one or more Segments, the constraint will be deactivated again.
+            self.stackViewWidthConstraint = make.width.equalToSuperview().constraint
         }
     }
 }
@@ -89,14 +96,14 @@ extension Segnify {
             // Apply the segnify configuration.
             backgroundColor = configuration.segnifyBackgroundColor
             scrollView.alwaysBounceHorizontal = configuration.isBouncingHorizontally ?? true
-            if let minimumSegmentWidth = configuration.minimumSegmentWidth {
-                segmentWidth = minimumSegmentWidth
+            if let maximumSegmentWidth = configuration.maximumSegmentWidth {
+                segmentWidth = maximumSegmentWidth
             }
             
             if configuration.equallyFillHorizontalSpace == true {
-                // In the event of segments underflowing the space available, the width will increase so the segments will equally fill the space available.
-                // In the event of segments overflowing the space available, stick to the minimum width.
-                segmentWidth = max(segmentWidth, superview.bounds.maxX / CGFloat(segments.count))
+                // In the event of segments overflowing the space available, the width, set by `maximumSegmentWidth`, will reduce, so the segments will equally fill the space available.
+                // In the event of segments underflowing the space available, the width sticks to the value of `maximumSegmentWidth`, so the segments will equally fill the space available.
+                segmentWidth = min(segmentWidth, superview.bounds.maxX / CGFloat(segments.count))
             }
         }
         
@@ -138,6 +145,12 @@ extension Segnify {
             }
             // Add it to the stack view.
             stackView.addArrangedSubview(segment)
+        }
+        
+        if stackView.arrangedSubviews.count > 0, let stackViewWidthConstraint = stackViewWidthConstraint {
+            // Deactivate the width contraint, which was only temporarily set.
+            stackViewWidthConstraint.deactivate()
+            self.stackViewWidthConstraint = nil
         }
     }
 }

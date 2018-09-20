@@ -12,9 +12,9 @@ import UIKit
 public protocol SegnifyConfiguration {
 
     /// Determines if the `Segment` instances, added to this `Segnify` instance, should equally fill the horizontal space available.
-    /// Will be used when the `Segment` instances won't fit (underflow) the available width.
+    /// Will be used when the `Segment` instances will overflow the available width.
     ///
-    /// When set to `false`, the width of every `Segment` instance is determined by `minimumSegmentWidth`, no matter if all `Segment` instances don't fill or fit (underflow) the available space.
+    /// When set to `false`, the width of every `Segment` instance is determined by `maximumSegmentWidth`, no matter if all `Segment` instances don't fit the available space.
     ///
     /// The default value is `true`.
     var equallyFillHorizontalSpace: Bool? { get set }
@@ -26,12 +26,12 @@ public protocol SegnifyConfiguration {
     /// The default value is `true`.
     var isBouncingHorizontally: Bool? { get set }
     
-    /// Determines the width all segments should at least have.
+    /// Determines the width all segments should have.
     ///
-    /// The actual width of the segments might increase, if `equallyFillHorizontalSpace` is set to `true` and the segments fit (underflow) the available width, based on the `minimumSegmentWidth` value.
+    /// The actual width of the segments might reduce, if `equallyFillHorizontalSpace` is set to `true` and the segments overflow the available width, based on the `maximumSegmentWidth` value.
     ///
-    /// The default value is 100.0.
-    var minimumSegmentWidth: CGFloat? { get set }
+    /// The default value is 200.0.
+    var maximumSegmentWidth: CGFloat? { get set }
     
     /// The background color of the main `Segnify` component.
     var segnifyBackgroundColor: UIColor? { get set }
