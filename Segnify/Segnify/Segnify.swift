@@ -45,7 +45,7 @@ open class Segnify: BaseView {
     private var segnicatorLeadingSpaceToSuperviewConstraint: Constraint?
     
     /// The width of every `Segment` instance.
-    private var segmentWidth: CGFloat = 200.0
+    private var segmentWidth: CGFloat = 150.0
     
     /// The currently selected `Segment` instance.
     private var selectedSegment: Segment?

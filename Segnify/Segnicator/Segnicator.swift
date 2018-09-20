@@ -33,7 +33,13 @@ open class Segnicator: UIView {
     
     public convenience init(with configuration: SegnicatorConfiguration?) {
         self.init()
-        self.configuration = configuration
+        
+        defer {
+            // Ignore any touches and events, so it's not blocking any touches or events meant for a segment.
+            isUserInteractionEnabled = false
+            // Set the configuration.
+            self.configuration = configuration
+        }
     }
     
     @available(*, unavailable, message: "Use init(with:) instead.")
