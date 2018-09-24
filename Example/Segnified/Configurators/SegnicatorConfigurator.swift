@@ -12,7 +12,18 @@ import Segnify
 
 class SegnicatorConfigurator: SegnicatorConfiguration {
     
-    var segnicatorSubviews: [UIView]?
+    var isUpdatingOffsetAtScrolling: Bool? = true
     
-    var subviewsConstraintsClosure: ConstraintsClosure?
+    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? = { segnicator in
+        // Create a white, horizontal indicator view.
+        let whiteIndicatorView = UIView()
+        whiteIndicatorView.backgroundColor = .white
+        
+        // Add it to the segnicator and give it the correct layout.
+        segnicator.addSubview(whiteIndicatorView)
+        whiteIndicatorView.snp.makeConstraints({ make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(2.0)
+        })
+    }
 }

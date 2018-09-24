@@ -18,13 +18,7 @@ open class Segnicator: UIView {
         didSet {
             if let configuration = configuration {
                 // Apply the segnicator configuration.
-                if let segnicatorSubviews = configuration.segnicatorSubviews {
-                    for subview in segnicatorSubviews {
-                        addSubview(subview)
-                    }
-                }
-                
-                configuration.subviewsConstraintsClosure?()
+                configuration.segnicatorSubviewsClosure?(self)
             }
         }
     }

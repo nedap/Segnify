@@ -10,12 +10,13 @@ import UIKit
 
 import SnapKit
 
+/// The method of the `SegnifyDelegate` protocol allows the delegate to react on selecting other `Segment` components.
 public protocol SegnifyDelegate {
-    func segnify(_ segnify: Segnify, didSelectSegment: Segment)
+    func segnify(_ segnify: Segnify, didSelect segment: Segment, with index: Int)
 }
 
-/// A `Segnify` instance represents a segmented component, based on UISegmentedControl, and features many customization options
-open class Segnify: BaseView {
+/// A `Segnify` instance represents a segmented component, based on UISegmentedControl, and features many customization options.
+open class Segnify: BaseView, UIScrollViewDelegate {
 
     // MARK: - Private variables
     
@@ -41,6 +42,9 @@ open class Segnify: BaseView {
     /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
     private var stackViewWidthConstraint: Constraint?
     
+    /// The `Segnicator` instance, which will always be on top of the currently selected `Segment` instance.
+    private var segnicator: Segnicator?
+    
     /// Maintains the horizontal position of the `Segnicator` instance in relation to `scrollView`.
     private var segnicatorLeadingSpaceToSuperviewConstraint: Constraint?
     
@@ -52,7 +56,18 @@ open class Segnify: BaseView {
     
     // MARK: - Public variables
     
+    /// The delegate object of the `SegnifyDelegate` protocol will be notified about changing the currently selected `Segment` instance.
     public var delegate: SegnifyDelegate?
+    
+    /// The scroll view which works together with, and mostly underneath, the `Segnify` instance.
+    ///
+    /// Selecting a `Segment` instance will likely result in a scrolling `contentScrollView`, to show the corresponding content.
+    /// Scrolling the `contentScrollView` will likely result in animating the `Segnicator` instance, selecting another `Segment` instance, or both.
+    public var contentScrollView: UIScrollView? {
+        didSet {
+            contentScrollView?.delegate = self
+        }
+    }
     
     // MARK: - View & constraints
     
@@ -108,6 +123,8 @@ extension Segnify {
         }
         
         if let segnicator = segnicator {
+            self.segnicator = segnicator
+            
             // Add the segnicator and give it some Auto Layout constraints.
             scrollView.addSubview(segnicator)
             segnicator.snp.makeConstraints { make in
@@ -169,7 +186,8 @@ extension Segnify {
             select(segment)
             
             // Animate.
-            performAnimations()
+            performScrollViewAnimations()
+            performSegnicatorAnimations()
         }
     }
     
@@ -189,17 +207,55 @@ extension Segnify {
         handleSegmentSelection(with: segment)
 
         // Notify the delegate.
-        delegate?.segnify(self, didSelectSegment: selectedSegment!)
+        delegate?.segnify(self, didSelect: selectedSegment!, with: stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!)
     }
 }
 
-// MARK: - Scroll view animation
+// MARK: - Scroll view delegate
 
 extension Segnify {
     
-    private func performAnimations() {
-        // We need a superview and a currently selected segment.
+    /// Updates the horizontal offset of the `Segnicator` instance in relation to the `Segnify` instance.
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if segnicator?.configuration?.isUpdatingOffsetAtScrolling ?? false {
+            // Only automatically update the segnicator offset when configured so.
+            segnicatorLeadingSpaceToSuperviewConstraint?.update(offset: scrollView.contentOffset.x * (segmentWidth / frame.width))
+        }
+    }
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        // Another segment might have to be selected.
+        selectSegment()
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            // Another segment might have to be selected.
+            selectSegment()
+        }
+    }
+    
+    private func selectSegment() {
+        // Get the current 'page' of the scroll view ...
+        let currentPage = max(0, Int(floor(contentScrollView!.contentOffset.x / frame.width)))
+        // ... grab the corresponding segment ...
+        let segment = stackView.arrangedSubviews[currentPage] as! Segment
+        // ... and select that one.
+        handleSegmentSelection(with: segment)
+        
+        // Animate.
+        performScrollViewAnimations()
+        performSegnicatorAnimations()
+    }
+}
+
+// MARK: - Animations
+
+extension Segnify {
+    
+    private func performScrollViewAnimations() {
         guard let superview = superview, let selectedSegment = selectedSegment else {
+            // We need a superview and a currently selected segment.
             return
         }
         
@@ -249,6 +305,31 @@ extension Segnify {
                 }
             }
         }
+    }
+    
+    private func performSegnicatorAnimations() {
+        if segnicator?.configuration?.isUpdatingOffsetAtScrolling ?? false {
+            // When `isUpdatingOffsetAtScrolling` is set to `true`, the segnicator will animate at scrolling events of the content scroll view.
+            return
+        }
+        
+        guard let selectedSegment = selectedSegment else {
+            // We need a currently selected segment.
+            return
+        }
+        
+        // Process any pending layout updates.
+        layoutIfNeeded()
+        
+        // Update the constraint.
+        segnicatorLeadingSpaceToSuperviewConstraint?.update(offset: selectedSegment.frame.minX)
+        
+        UIView.animate(withDuration: 0.25,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.layoutIfNeeded()
+        })
     }
 }
 

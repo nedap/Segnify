@@ -8,14 +8,19 @@
 
 import UIKit
 
-public typealias ConstraintsClosure = () -> Void
+public typealias SegnicatorSubviewsClosure = (Segnicator) -> ()
 
 /// Customize the `Segnicator` appearance by implementing this protocol.
 public protocol SegnicatorConfiguration {
     
-    /// Adds the specified subviews to the `Segnicator` instance.
-    var segnicatorSubviews: [UIView]? { get set }
+    /// Defines if the horizontal offset of the `Segnicator` instance in relation to the `Segnify` instance should be automatically updated, if a scrolling event of the content scroll view takes place.
+    ///
+    /// When the value is set to `true`, the offset will automatically follow any scrolling events of the content scroll view, defined by `Segnify`'s `contentScrollView` property.
+    /// When the value is set to `false`, the offset will only be updated at selecting another `Segment` instance.
+    ///
+    /// The default value is `false`.
+    var isUpdatingOffsetAtScrolling: Bool? { get set }
     
-    /// Configures the `segnicatorSubviews` using one or more Auto Layout constraints.
-    var subviewsConstraintsClosure: ConstraintsClosure? { get set }
+    /// Add one or more subviews to the `Segnicator` instance.
+    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? { get set }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 import Segnify
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, SegnifyDelegate {
     
     // MARK: - Private variables
     
@@ -64,6 +64,8 @@ extension MainViewController {
         // Segnify needs a superview in order to being populated correctly,
         // hence the order of adding it as subview and populating and configuring it afterwards.
         let segnifyConfigurator = SegnifyConfigurator()
+        segnify.contentScrollView = contentScrollView
+        segnify.delegate = self
         segnify.populate(with: segments,
                          segnicator: segnicator,
                          segnifyConfiguration: segnifyConfigurator)
@@ -120,5 +122,15 @@ extension MainViewController {
                 make.edges.equalToSuperview()
             }
         }
+    }
+}
+
+// MARK: - Segnify delegate
+
+extension MainViewController {
+    
+    func segnify(_ segnify: Segnify, didSelect segment: Segment, with index: Int) {
+        // Scroll the content scroll view to the corresponding 'page'.
+        contentScrollView.setContentOffset(CGPoint(x: (CGFloat(index) * contentScrollView.frame.width), y: 0.0), animated: true)
     }
 }
