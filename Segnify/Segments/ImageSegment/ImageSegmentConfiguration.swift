@@ -14,13 +14,13 @@ public protocol ImageSegmentConfiguration: SegmentConfiguration {
     /// Defines if the image of the `ImageSegment` instance should be adjusted for the different states.
     ///
     /// The default value is `false`.
-    func adjustsImage(for state: UIControlState) -> Bool?
+    func adjustsImage(for state: UIControl.State) -> Bool?
 }
 
 extension ImageSegmentConfiguration {
     
     // Make it optional.
-    func adjustsImage(for state: UIControlState) -> Bool? {
+    func adjustsImage(for state: UIControl.State) -> Bool? {
         return false
     }
 }

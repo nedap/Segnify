@@ -10,7 +10,7 @@ import UIKit
 
 import Segnify
 
-class SegnicatorConfigurator: SegnicatorConfiguration {
+struct SegnicatorConfigurator: SegnicatorConfiguration {
     
     var isUpdatingOffsetAtScrolling: Bool? = true
     

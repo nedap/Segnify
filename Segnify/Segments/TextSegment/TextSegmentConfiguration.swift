@@ -15,5 +15,5 @@ public protocol TextSegmentConfiguration: SegmentConfiguration {
     var font: UIFont? { get set }
     
     /// The text color of the `TextSegment` instance for the different states.
-    func textColor(for state: UIControlState) -> UIColor?
+    func textColor(for state: UIControl.State) -> UIColor?
 }
