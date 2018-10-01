@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
 
   s.source        = { :git => 'https://github.com/nedap/Segnify.git', :tag => s.version }
-  s.source_files  = 'Segnify/**/*'
+  s.source_files  = 'Segnify/**/*.{swift}'
   
   s.dependency 'SnapKit', '~> 4.0'
 end
