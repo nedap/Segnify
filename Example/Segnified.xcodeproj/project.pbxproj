@@ -11,22 +11,11 @@
 		2061B472214FF41300801048 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2061B471214FF41300801048 /* MainViewController.swift */; };
 		2061B477214FF41400801048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2061B476214FF41400801048 /* Assets.xcassets */; };
 		2061B47A214FF41400801048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2061B478214FF41400801048 /* LaunchScreen.storyboard */; };
-		2061B485214FF41400801048 /* SegnifiedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2061B484214FF41400801048 /* SegnifiedUITests.swift */; };
 		20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */; };
 		20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */; };
 		20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */; };
 		20E1CD3721514FCA00BE58F2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E1CD3621514FCA00BE58F2 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		2061B481214FF41400801048 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2061B464214FF41300801048 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2061B46B214FF41300801048;
-			remoteInfo = Segnified;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2061B46C214FF41300801048 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,9 +24,6 @@
 		2061B476214FF41400801048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2061B479214FF41400801048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2061B47B214FF41400801048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2061B480214FF41400801048 /* SegnifiedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegnifiedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2061B484214FF41400801048 /* SegnifiedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifiedUITests.swift; sourceTree = "<group>"; };
-		2061B486214FF41400801048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfigurator.swift; sourceTree = "<group>"; };
 		20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyConfigurator.swift; sourceTree = "<group>"; };
 		20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfigurator.swift; sourceTree = "<group>"; };
@@ -53,13 +39,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2061B47D214FF41400801048 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,7 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				2061B46E214FF41300801048 /* Segnified */,
-				2061B483214FF41400801048 /* SegnifiedUITests */,
 				2061B46D214FF41300801048 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				2061B46C214FF41300801048 /* Segnified.app */,
-				2061B480214FF41400801048 /* SegnifiedUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,15 +69,6 @@
 				20E1CD2C2151255500BE58F2 /* View Controllers */,
 			);
 			path = Segnified;
-			sourceTree = "<group>";
-		};
-		2061B483214FF41400801048 /* SegnifiedUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2061B484214FF41400801048 /* SegnifiedUITests.swift */,
-				2061B486214FF41400801048 /* Info.plist */,
-			);
-			path = SegnifiedUITests;
 			sourceTree = "<group>";
 		};
 		20E1CD2A2151247C00BE58F2 /* Supporting Files */ = {
@@ -167,24 +135,6 @@
 			productReference = 2061B46C214FF41300801048 /* Segnified.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2061B47F214FF41400801048 /* SegnifiedUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2061B48C214FF41400801048 /* Build configuration list for PBXNativeTarget "SegnifiedUITests" */;
-			buildPhases = (
-				2061B47C214FF41400801048 /* Sources */,
-				2061B47D214FF41400801048 /* Frameworks */,
-				2061B47E214FF41400801048 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2061B482214FF41400801048 /* PBXTargetDependency */,
-			);
-			name = SegnifiedUITests;
-			productName = SegnifiedUITests;
-			productReference = 2061B480214FF41400801048 /* SegnifiedUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,11 +148,6 @@
 					2061B46B214FF41300801048 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
-					};
-					2061B47F214FF41400801048 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
-						TestTargetID = 2061B46B214FF41300801048;
 					};
 				};
 			};
@@ -220,7 +165,6 @@
 			projectRoot = "";
 			targets = (
 				2061B46B214FF41300801048 /* Segnified */,
-				2061B47F214FF41400801048 /* SegnifiedUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,13 +176,6 @@
 			files = (
 				2061B47A214FF41400801048 /* LaunchScreen.storyboard in Resources */,
 				2061B477214FF41400801048 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2061B47E214FF41400801048 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,23 +217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2061B47C214FF41400801048 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2061B485214FF41400801048 /* SegnifiedUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2061B482214FF41400801048 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2061B46B214FF41300801048 /* Segnified */;
-			targetProxy = 2061B481214FF41400801048 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2061B478214FF41400801048 /* LaunchScreen.storyboard */ = {
@@ -468,46 +389,6 @@
 			};
 			name = Release;
 		};
-		2061B48D214FF41400801048 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SegnifiedUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = nl.barthopster.SegnifiedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Segnified;
-			};
-			name = Debug;
-		};
-		2061B48E214FF41400801048 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SegnifiedUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = nl.barthopster.SegnifiedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Segnified;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -525,15 +406,6 @@
 			buildConfigurations = (
 				2061B48A214FF41400801048 /* Debug */,
 				2061B48B214FF41400801048 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2061B48C214FF41400801048 /* Build configuration list for PBXNativeTarget "SegnifiedUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2061B48D214FF41400801048 /* Debug */,
-				2061B48E214FF41400801048 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
