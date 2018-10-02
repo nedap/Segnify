@@ -49,6 +49,12 @@ target '<Your Target Name>' do
 end
 ```
 
+Segnify has recently been added to the CocoaPods repositories. If the framework can't be found, please use:
+
+```ruby
+pod 'Segnify', :git => 'https://github.com/nedap/Segnify'
+```
+
 Then, run the following command:
 
 ```bash

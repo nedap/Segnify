@@ -1,0 +1,7 @@
+platform :ios, '9.3'
+
+target 'Segnified' do
+  use_frameworks!
+
+  pod 'Segnify', :git => 'https://github.com/nedap/Segnify'
+end
