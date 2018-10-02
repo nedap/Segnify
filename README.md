@@ -45,7 +45,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Segnify', '~> 1.0'
+    pod 'Segnify', '~> 1.0.0'
 end
 ```
 
@@ -75,7 +75,7 @@ $ brew install carthage
 To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nedap/Segnify" ~> 1.0
+github "nedap/Segnify" ~> 1.0.0
 ```
 
 Run `carthage update` to build the framework and drag the built `Segnify.framework` into your Xcode project.
