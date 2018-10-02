@@ -14,7 +14,6 @@
 		20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */; };
 		20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */; };
 		20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */; };
-		20E1CD3721514FCA00BE58F2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E1CD3621514FCA00BE58F2 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfigurator.swift; sourceTree = "<group>"; };
 		20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyConfigurator.swift; sourceTree = "<group>"; };
 		20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfigurator.swift; sourceTree = "<group>"; };
-		20E1CD3621514FCA00BE58F2 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E1CD3721514FCA00BE58F2 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +60,6 @@
 			children = (
 				2061B46F214FF41300801048 /* AppDelegate.swift */,
 				20E1CD2D21512F5C00BE58F2 /* Configurators */,
-				20E1CD3521514FAA00BE58F2 /* Frameworks */,
 				20E1CD2B2151253300BE58F2 /* Resources */,
 				20E1CD2A2151247C00BE58F2 /* Supporting Files */,
 				20E1CD2C2151255500BE58F2 /* View Controllers */,
@@ -106,14 +102,6 @@
 			path = Configurators;
 			sourceTree = "<group>";
 		};
-		20E1CD3521514FAA00BE58F2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				20E1CD3621514FCA00BE58F2 /* SnapKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,7 +112,6 @@
 				2061B468214FF41300801048 /* Sources */,
 				2061B469214FF41300801048 /* Frameworks */,
 				2061B46A214FF41300801048 /* Resources */,
-				20E1CD3821514FE500BE58F2 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -180,29 +167,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		20E1CD3821514FE500BE58F2 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-			);
-			name = Carthage;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2061B468214FF41300801048 /* Sources */ = {
@@ -351,10 +315,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Segnified/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,10 +334,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Segnified/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
