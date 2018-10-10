@@ -18,6 +18,7 @@ class MainViewController: UIViewController, SegnifyDelegate {
         let contentScrollView = UIScrollView()
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         return contentScrollView
     }()
     
@@ -46,11 +47,13 @@ extension MainViewController {
         view.addSubview(segnify)
         
         // 2. Give it some Auto Layout constraints.
-        segnify.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
-            make.height.equalTo(75.0)
-        }
+        segnify.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            segnify.heightAnchor.constraint(equalToConstant: 75.0)
+        ])
         
         // 3. Define Segments.
         let textSegmentConfigurator = TextSegmentConfigurator()
@@ -80,11 +83,12 @@ extension MainViewController {
         // Use contentScrollView to show the Segnify functionality.
         // Add it as a subview and give it some constraints.
         view.addSubview(contentScrollView)
-        contentScrollView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(self.segnify.snp.bottom)
-            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
-        }
+        NSLayoutConstraint.activate([
+            contentScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            contentScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            contentScrollView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
+            contentScrollView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+        ])
         
         // Create a new stack view ...
         let contentStackView = UIStackView()
@@ -92,35 +96,31 @@ extension MainViewController {
         contentStackView.axis = .horizontal
         contentStackView.distribution = .equalSpacing
         contentStackView.spacing = 0.0
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
         // ... add it to the scroll view ...
         contentScrollView.addSubview(contentStackView)
         // ... and give it the correct layout.
-        contentStackView.snp.makeConstraints { make in
-            make.edges.height.equalToSuperview()
-        }
+        NSLayoutConstraint.activate([
+            contentStackView.leadingAnchor.constraint(equalTo: contentScrollView.leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: contentScrollView.trailingAnchor),
+            contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
+            contentStackView.heightAnchor.constraint(equalTo: contentScrollView.heightAnchor)
+        ])
         
-        // Add some subviews to the stack view.
+        // Add some text labels to the stack view.
         for segmentTitle in segmentTitles {
-            // Initialize a view ...
-            let subview = UIView()
-            // ... add it to the stack view ...
-            contentStackView.addArrangedSubview(subview)
-            // ... and give it the correct layout.
-            subview.snp.makeConstraints { make in
-                make.width.equalTo(self.contentScrollView.snp.width)
-            }
-            
-            // Define a text label, in order to distinguish the various views.
             let textLabel = UILabel()
             textLabel.text = segmentTitle
             textLabel.textAlignment = .center
-            
+            textLabel.translatesAutoresizingMaskIntoConstraints = false
+
             // Add it to the view ...
-            subview.addSubview(textLabel)
+            contentStackView.addArrangedSubview(textLabel)
             // ... and give it the correct layout.
-            textLabel.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
+            NSLayoutConstraint.activate([
+                textLabel.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor)
+            ])
         }
     }
 }
