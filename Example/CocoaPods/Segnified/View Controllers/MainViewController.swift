@@ -18,7 +18,6 @@ class MainViewController: UIViewController, SegnifyDelegate {
         let contentScrollView = UIScrollView()
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsHorizontalScrollIndicator = false
-        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         return contentScrollView
     }()
     
@@ -47,13 +46,12 @@ extension MainViewController {
         view.addSubview(segnify)
         
         // 2. Give it some Auto Layout constraints.
-        segnify.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             segnify.heightAnchor.constraint(equalToConstant: 75.0)
-        ])
+            ], for: segnify)
         
         // 3. Define Segments.
         let textSegmentConfigurator = TextSegmentConfigurator()
@@ -88,7 +86,7 @@ extension MainViewController {
             contentScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             contentScrollView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
             contentScrollView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
-        ])
+            ], for: contentScrollView)
         
         // Create a new stack view ...
         let contentStackView = UIStackView()
@@ -96,7 +94,6 @@ extension MainViewController {
         contentStackView.axis = .horizontal
         contentStackView.distribution = .equalSpacing
         contentStackView.spacing = 0.0
-        contentStackView.translatesAutoresizingMaskIntoConstraints = false
         // ... add it to the scroll view ...
         contentScrollView.addSubview(contentStackView)
         // ... and give it the correct layout.
@@ -106,21 +103,20 @@ extension MainViewController {
             contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor),
             contentStackView.heightAnchor.constraint(equalTo: contentScrollView.heightAnchor)
-        ])
+            ], for: contentStackView)
         
         // Add some text labels to the stack view.
         for segmentTitle in segmentTitles {
             let textLabel = UILabel()
             textLabel.text = segmentTitle
             textLabel.textAlignment = .center
-            textLabel.translatesAutoresizingMaskIntoConstraints = false
 
             // Add it to the view ...
             contentStackView.addArrangedSubview(textLabel)
             // ... and give it the correct layout.
             NSLayoutConstraint.activate([
                 textLabel.widthAnchor.constraint(equalTo: contentScrollView.widthAnchor)
-            ])
+                ], for: textLabel)
         }
     }
 }

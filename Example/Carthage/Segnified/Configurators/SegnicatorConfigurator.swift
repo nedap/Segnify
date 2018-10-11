@@ -18,7 +18,6 @@ struct SegnicatorConfigurator: SegnicatorConfiguration {
         // Create a white, horizontal indicator view.
         let whiteIndicatorView = UIView()
         whiteIndicatorView.backgroundColor = .white
-        whiteIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         
         // Add it to the segnicator and give it the correct layout.
         segnicator.addSubview(whiteIndicatorView)
@@ -27,6 +26,6 @@ struct SegnicatorConfigurator: SegnicatorConfiguration {
             whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
             whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
             whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-        ])
+            ], for: whiteIndicatorView)
     }
 }
