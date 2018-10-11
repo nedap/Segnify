@@ -18,6 +18,7 @@
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
 		209F40B92148184000212277 /* TextSegmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentConfiguration.swift */; };
 		209F40BB2148185500212277 /* SegnicatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorConfiguration.swift */; };
+		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
 		20F4F17A214BD13F00D2E6D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F179214BD13F00D2E6D2 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
 		209F40B82148184000212277 /* TextSegmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfiguration.swift; sourceTree = "<group>"; };
 		209F40BA2148185500212277 /* SegnicatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfiguration.swift; sourceTree = "<group>"; };
+		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
 		20F4F179214BD13F00D2E6D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				20F4F17B214C077E00D2E6D2 /* BaseView */,
+				20DE97EA216F47FB0054467F /* Extensions */,
 				209F40BC2148EAA100212277 /* Segments */,
 				20F4F17C214C078700D2E6D2 /* Segnicator */,
 				20F4F17D214C07A400D2E6D2 /* Segnify */,
@@ -113,6 +116,14 @@
 				20430F7D21490CDA00C47CC6 /* SegmentConfiguration.swift */,
 			);
 			path = Segments;
+			sourceTree = "<group>";
+		};
+		20DE97EA216F47FB0054467F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		20F4F17B214C077E00D2E6D2 /* BaseView */ = {
@@ -220,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */,
 				20430F7E21490CDA00C47CC6 /* SegmentConfiguration.swift in Sources */,
 				20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */,
 				201FD1942147A7DC00CF374B /* SegnifyConfiguration.swift in Sources */,
