@@ -18,10 +18,6 @@ An elegant, performing and fancy segmented component in Swift.
 - [x] Size & positioning based on Auto Layout
 - [x] 100% code, 0% Storyboard / XIB
 
-## Dependencies
-
-Segnify makes use of the brilliant [SnapKit](https://snapkit.io) framework, a DSL to make Auto Layout easy on both iOS and OS X.
-
 ## Requirements
 
 - iOS 9.3+
@@ -45,14 +41,8 @@ platform :ios, '9.3'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Segnify', '~> 1.0.0'
+    pod 'Segnify', '~> 1.0.1'
 end
-```
-
-Segnify has recently been added to the CocoaPods repositories. If the framework can't be found, please use:
-
-```ruby
-pod 'Segnify', :git => 'https://github.com/nedap/Segnify'
 ```
 
 Then, run the following command:
@@ -75,7 +65,7 @@ $ brew install carthage
 To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nedap/Segnify" ~> 1.0.0
+github "nedap/Segnify" ~> 1.0.1
 ```
 
 Run `carthage update` to build the framework and drag the built `Segnify.framework` into your Xcode project.
@@ -88,15 +78,16 @@ Run `carthage update` to build the framework and drag the built `Segnify.framewo
 let segnify = Segnify()
 ```
 
-2) Add it to your view of choice, and make sure it looks good, i.e. by applying some Auto Layout constraints. In the code example below, this has been done using [SnapKit](https://snapkit.io).
+2) Add it to your view of choice, and make sure it looks good, i.e. by applying some Auto Layout constraints. In the example below, this has been achieved by using Segnify's `SegnifyLayoutConstraint` extension.
 
 ```swift
 view.addSubview(segnify)
-segnify.snp.makeConstraints { make in
-    make.leading.trailing.equalToSuperview()
-    make.top.equalTo(self.topLayoutGuide.snp.bottom)
-    make.height.equalTo(75.0)
-}
+NSLayoutConstraint.activate([
+            segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            segnify.heightAnchor.constraint(equalToConstant: 75.0)
+            ], for: segnify)
 ```
 
 3) Implement the `TextSegmentConfiguration` protocol for customizing textual segments, or the `ImageSegmentConfiguration` protocol for customizing image segments. In the example below, the `TextSegmentConfiguration` protocol has been implemented in the `TextSegmentConfigurator` struct.
@@ -138,7 +129,7 @@ let textSegmentConfigurator = TextSegmentConfigurator()
 let segments = segmentTitles.map({ TextSegment(with: $0, configuration: textSegmentConfigurator) })
 ```
 
-5) If a visual indicator for selected segments is desired, implement the `SegnicatorConfiguration` protocol. In the example below, this has been done in the `SegnicatorConfigurator` struct. Auto Layout constraints have been applied using [SnapKit](https://snapkit.io).
+5) If a visual indicator for selected segments is desired, implement the `SegnicatorConfiguration` protocol. In the example below, this has been done in the `SegnicatorConfigurator` struct. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension.
 
 By using the `SegnicatorSubviewsClosure` typealias, subviews and Auto Layout constraints can easily be added, as it takes a reference to a `Segnicator` instance as a parameter. See the example below.
 
@@ -158,10 +149,12 @@ struct SegnicatorConfigurator: SegnicatorConfiguration {
         
         // Add it to the segnicator and give it the correct layout.
         segnicator.addSubview(whiteIndicatorView)
-        whiteIndicatorView.snp.makeConstraints({ make in
-            make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(2.0)
-        })
+        NSLayoutConstraint.activate([
+            whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
+            whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
+            whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
+            whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
+            ], for: whiteIndicatorView)
     }
 }
 ```

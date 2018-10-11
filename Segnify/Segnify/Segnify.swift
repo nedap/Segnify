@@ -8,8 +8,6 @@
 
 import UIKit
 
-import SnapKit
-
 /// The method of the `SegnifyDelegate` protocol allows the delegate to react on selecting other `Segment` components.
 public protocol SegnifyDelegate {
     func segnify(_ segnify: Segnify, didSelect segment: Segment, with index: Int)
@@ -40,13 +38,13 @@ open class Segnify: BaseView, UIScrollViewDelegate {
     
     /// Keeps track of the width constraint of `stackView`, which will be equal to the width of `scrollView`.
     /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
-    private var stackViewWidthConstraint: Constraint?
+    private var stackViewWidthConstraint: NSLayoutConstraint?
     
     /// The `Segnicator` instance, which will always be on top of the currently selected `Segment` instance.
     private var segnicator: Segnicator?
     
     /// Maintains the horizontal position of the `Segnicator` instance in relation to `scrollView`.
-    private var segnicatorLeadingSpaceToSuperviewConstraint: Constraint?
+    private var segnicatorLeadingSpaceToSuperviewConstraint: NSLayoutConstraint?
     
     /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 150.0
@@ -81,16 +79,28 @@ open class Segnify: BaseView, UIScrollViewDelegate {
     
     override public func setupAutoLayoutConstraints() {
         // Scroll view.
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        if let superview = scrollView.superview {
+            NSLayoutConstraint.activate([
+                scrollView.topAnchor.constraint(equalTo: superview.topAnchor),
+                scrollView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+                scrollView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+                scrollView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+                ], for: scrollView)
         }
         
         // Stack view.
-        stackView.snp.makeConstraints { make in
-            make.edges.height.equalToSuperview()
+        if let superview = stackView.superview {
             // Set the width of the stack view temporarily to the width of the scroll view to keep Auto Layout happy.
             // After adding one or more Segments, the constraint will be deactivated again.
-            self.stackViewWidthConstraint = make.width.equalToSuperview().constraint
+            stackViewWidthConstraint = stackView.widthAnchor.constraint(equalTo: superview.widthAnchor)
+            NSLayoutConstraint.activate([
+                stackView.topAnchor.constraint(equalTo: superview.topAnchor),
+                stackView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+                stackView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+                stackView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
+                stackView.heightAnchor.constraint(equalTo: superview.heightAnchor),
+                stackViewWidthConstraint!
+                ], for: stackView)
         }
     }
 }
@@ -127,18 +137,20 @@ extension Segnify {
             
             // Add the segnicator and give it some Auto Layout constraints.
             scrollView.addSubview(segnicator)
-            segnicator.snp.makeConstraints { make in
-                make.top.bottom.equalToSuperview()
-                make.width.equalTo(segmentWidth)
-                // Save the leading space to its superview. as we'll update it later on.
-                segnicatorLeadingSpaceToSuperviewConstraint = make.leading.equalToSuperview().constraint
-            }
+            // Save the leading space to its superview. as we'll update it later on.
+            segnicatorLeadingSpaceToSuperviewConstraint = segnicator.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+            NSLayoutConstraint.activate([
+                segnicator.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                segnicator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                segnicator.widthAnchor.constraint(equalToConstant: segmentWidth),
+                segnicatorLeadingSpaceToSuperviewConstraint!
+                ], for: segnicator)
         }
         
         // Populate.
         populate(with: segments)
         
-        // Select the first button initially.
+        // Select the first button initially.8
         if let firstSegment = stackView.arrangedSubviews.first as? Segment {
             select(firstSegment)
         }
@@ -154,19 +166,19 @@ extension Segnify {
         }
         
         for segment in segments {
+            // Give it the right width.
+            NSLayoutConstraint.activate([
+                segment.widthAnchor.constraint(equalToConstant: segmentWidth)
+                ], for: segment)
             // Make the segment clickable by attaching a target to it.
             segment.addTarget(self, action: #selector(didTouchUpInsideSegment(_:)), for: .touchUpInside)
-            // Give it the right width.
-            segment.snp.makeConstraints { make in
-                make.width.equalTo(segmentWidth)
-            }
             // Add it to the stack view.
             stackView.addArrangedSubview(segment)
         }
         
         if stackView.arrangedSubviews.count > 0, let stackViewWidthConstraint = stackViewWidthConstraint {
             // Deactivate the width contraint, which was only temporarily set.
-            stackViewWidthConstraint.deactivate()
+            NSLayoutConstraint.deactivate([stackViewWidthConstraint])
             self.stackViewWidthConstraint = nil
         }
     }
@@ -219,7 +231,7 @@ extension Segnify {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if segnicator?.configuration?.isUpdatingOffsetAtScrolling ?? false {
             // Only automatically update the segnicator offset when configured so.
-            segnicatorLeadingSpaceToSuperviewConstraint?.update(offset: scrollView.contentOffset.x * (segmentWidth / frame.width))
+            segnicatorLeadingSpaceToSuperviewConstraint?.constant = scrollView.contentOffset.x * (segmentWidth / frame.width)
         }
     }
     
@@ -322,7 +334,7 @@ extension Segnify {
         layoutIfNeeded()
         
         // Update the constraint.
-        segnicatorLeadingSpaceToSuperviewConstraint?.update(offset: selectedSegment.frame.minX)
+        segnicatorLeadingSpaceToSuperviewConstraint?.constant = selectedSegment.frame.minX
         
         UIView.animate(withDuration: 0.25,
                        delay: 0.0,

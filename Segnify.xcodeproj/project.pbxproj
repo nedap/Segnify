@@ -18,6 +18,7 @@
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
 		209F40B92148184000212277 /* TextSegmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentConfiguration.swift */; };
 		209F40BB2148185500212277 /* SegnicatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorConfiguration.swift */; };
+		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
 		20F4F17A214BD13F00D2E6D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F179214BD13F00D2E6D2 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
 		209F40B82148184000212277 /* TextSegmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfiguration.swift; sourceTree = "<group>"; };
 		209F40BA2148185500212277 /* SegnicatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfiguration.swift; sourceTree = "<group>"; };
+		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
 		20F4F179214BD13F00D2E6D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				20F4F17B214C077E00D2E6D2 /* BaseView */,
+				20DE97EA216F47FB0054467F /* Extensions */,
 				209F40BC2148EAA100212277 /* Segments */,
 				20F4F17C214C078700D2E6D2 /* Segnicator */,
 				20F4F17D214C07A400D2E6D2 /* Segnify */,
@@ -113,6 +116,14 @@
 				20430F7D21490CDA00C47CC6 /* SegmentConfiguration.swift */,
 			);
 			path = Segments;
+			sourceTree = "<group>";
+		};
+		20DE97EA216F47FB0054467F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		20F4F17B214C077E00D2E6D2 /* BaseView */ = {
@@ -163,7 +174,6 @@
 				201FD1812147A48600CF374B /* Frameworks */,
 				201FD1822147A48600CF374B /* Headers */,
 				201FD1832147A48600CF374B /* Resources */,
-				209F40B42147AD1B00212277 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -216,30 +226,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		209F40B42147AD1B00212277 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		201FD1802147A48600CF374B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */,
 				20430F7E21490CDA00C47CC6 /* SegmentConfiguration.swift in Sources */,
 				20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */,
 				201FD1942147A7DC00CF374B /* SegnifyConfiguration.swift in Sources */,
@@ -390,10 +382,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/Segnify/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -421,10 +409,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/Segnify/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
