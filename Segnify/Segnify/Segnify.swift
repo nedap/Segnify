@@ -121,14 +121,12 @@ extension Segnify {
             // Apply the segnify configuration.
             backgroundColor = configuration.segnifyBackgroundColor
             scrollView.alwaysBounceHorizontal = configuration.isBouncingHorizontally ?? true
-            if let maximumSegmentWidth = configuration.maximumSegmentWidth {
-                segmentWidth = maximumSegmentWidth
+            if let segmentWidth = configuration.segmentWidth {
+                self.segmentWidth = segmentWidth
             }
             
             if configuration.equallyFillHorizontalSpace == true {
-                // In the event of segments overflowing the space available, the width, set by `maximumSegmentWidth`, will reduce, so the segments will equally fill the space available.
-                // In the event of segments underflowing the space available, the width sticks to the value of `maximumSegmentWidth`, so the segments will equally fill the space available.
-                segmentWidth = min(segmentWidth, superview.bounds.maxX / CGFloat(segments.count))
+                segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
             }
         }
         
