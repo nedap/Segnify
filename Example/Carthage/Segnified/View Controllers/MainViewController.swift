@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Segnified
 //
 //  Created by Bart Hopster on 17/09/2018.

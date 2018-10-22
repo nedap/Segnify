@@ -129,7 +129,11 @@ let textSegmentConfigurator = TextSegmentConfigurator()
 let segments = segmentTitles.map({ TextSegment(with: $0, configuration: textSegmentConfigurator) })
 ```
 
-5) If a visual indicator for selected segments is desired, implement the `SegnicatorConfiguration` protocol. In the example below, this has been done in the `SegnicatorConfigurator` struct. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension.
+5) If a visual indicator for selected segments is desired, you can use an instance of `Segnicator`. It represents a transparant view on top of the segments. If a content scroll view has been connected (see step 8 below for more details), the `Segnicator` view will scroll accordingly.
+
+By adding one or more subviews to the `Segnicator` instance, you can create and customize your visual indicator to your wishes.
+
+Start with implementing the `SegnicatorConfiguration` protocol. In the example below, this has been done in the `SegnicatorConfigurator` struct. A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension.
 
 By using the `SegnicatorSubviewsClosure` typealias, subviews and Auto Layout constraints can easily be added, as it takes a reference to a `Segnicator` instance as a parameter. See the example below.
 
