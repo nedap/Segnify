@@ -29,7 +29,7 @@ public protocol SegnifyConfiguration {
     ///
     /// The actual width of the segments might reduce, if `equallyFillHorizontalSpace` is set to `true` and the segments overflow the available width, based on the `segmentWidth` value.
     ///
-    /// The default value is 200.0.
+    /// The default value is 150.0.
     var segmentWidth: CGFloat? { get set }
     
     /// The background color of the main `Segnify` component.
