@@ -14,7 +14,7 @@ open class Segnicator: UIView {
 
     // MARK: - Public variables
     
-    public var configuration: SegnicatorConfiguration? {
+    open var configuration: SegnicatorProtocol? {
         didSet {
             if let configuration = configuration {
                 // Apply the segnicator configuration.
@@ -25,7 +25,7 @@ open class Segnicator: UIView {
     
     // MARK: - Lifecycle
     
-    public convenience init(with configuration: SegnicatorConfiguration?) {
+    public convenience init(with configuration: SegnicatorProtocol?) {
         self.init()
         
         defer {

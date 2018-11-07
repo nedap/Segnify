@@ -14,26 +14,26 @@ open class ImageSegment: Segment {
     // MARK: - Public variables
     
     /// Sets the title to use.
-    public var image: UIImage? {
+    open var image: UIImage? {
         didSet {
             setImage(image, for: .normal)
         }
     }
     
     /// Sets the `ImageSegmentConfiguration` to configure the segment's appearance.
-    override open var configuration: SegmentConfiguration? {
+    override open var configuration: SegmentProtocol? {
         didSet {
-            if let configuration = configuration as? ImageSegmentConfiguration {
+            if let configuration = configuration as? ImageSegmentProtocol {
                 // Apply the text segment configuration.
-                adjustsImageWhenDisabled = configuration.adjustsImage(for: .disabled) ?? true
-                adjustsImageWhenHighlighted = configuration.adjustsImage(for: .highlighted) ?? true
+                adjustsImageWhenDisabled = configuration.adjustsImage(for: .disabled)
+                adjustsImageWhenHighlighted = configuration.adjustsImage(for: .highlighted)
             }
         }
     }
     
     // MARK: - Lifecycle
     
-    public convenience init(with image: UIImage?, configuration: SegmentConfiguration?) {
+    public convenience init(with image: UIImage?, configuration: SegmentProtocol?) {
         self.init(type: .custom)
         
         defer {

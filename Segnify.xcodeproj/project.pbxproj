@@ -7,37 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20039ABA2192F653000674E1 /* PageViewControllerDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */; };
+		2017E345218C502C0051EC32 /* SegnifyDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */; };
 		201FD18A2147A48600CF374B /* Segnify.h in Headers */ = {isa = PBXBuildFile; fileRef = 201FD1882147A48600CF374B /* Segnify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201FD1922147A7B200CF374B /* Segnify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1912147A7B200CF374B /* Segnify.swift */; };
-		201FD1942147A7DC00CF374B /* SegnifyConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1932147A7DC00CF374B /* SegnifyConfiguration.swift */; };
+		201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1932147A7DC00CF374B /* SegnifyProtocol.swift */; };
 		201FD1962147A91800CF374B /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1952147A91800CF374B /* Segment.swift */; };
 		20430F7C21490ACE00C47CC6 /* TextSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F7B21490ACE00C47CC6 /* TextSegment.swift */; };
-		20430F7E21490CDA00C47CC6 /* SegmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F7D21490CDA00C47CC6 /* SegmentConfiguration.swift */; };
+		20430F7E21490CDA00C47CC6 /* SegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */; };
 		20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F81214A5A6200C47CC6 /* ImageSegment.swift */; };
-		20430F85214A92F100C47CC6 /* ImageSegmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F84214A92F100C47CC6 /* ImageSegmentConfiguration.swift */; };
+		20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */; };
+		208E49B521884EC80089F6B9 /* DefaultDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B421884EC80089F6B9 /* DefaultDelegates.swift */; };
+		208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */; };
+		209E3335218719170014115F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E3334218719170014115F /* PageViewController.swift */; };
+		209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E333E21874DA80014115F /* PageViewControllerProtocol.swift */; };
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
-		209F40B92148184000212277 /* TextSegmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentConfiguration.swift */; };
-		209F40BB2148185500212277 /* SegnicatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorConfiguration.swift */; };
+		209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentProtocol.swift */; };
+		209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorProtocol.swift */; };
 		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
-		20F4F17A214BD13F00D2E6D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F4F179214BD13F00D2E6D2 /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerDataSourceProtocol.swift; sourceTree = "<group>"; };
+		2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDataSourceProtocol.swift; sourceTree = "<group>"; };
 		201FD1852147A48600CF374B /* Segnify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Segnify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201FD1882147A48600CF374B /* Segnify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Segnify.h; sourceTree = "<group>"; };
 		201FD1892147A48600CF374B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201FD1912147A7B200CF374B /* Segnify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnify.swift; sourceTree = "<group>"; };
-		201FD1932147A7DC00CF374B /* SegnifyConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyConfiguration.swift; sourceTree = "<group>"; };
+		201FD1932147A7DC00CF374B /* SegnifyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyProtocol.swift; sourceTree = "<group>"; };
 		201FD1952147A91800CF374B /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		20430F7B21490ACE00C47CC6 /* TextSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegment.swift; sourceTree = "<group>"; };
-		20430F7D21490CDA00C47CC6 /* SegmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentConfiguration.swift; sourceTree = "<group>"; };
+		20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentProtocol.swift; sourceTree = "<group>"; };
 		20430F81214A5A6200C47CC6 /* ImageSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegment.swift; sourceTree = "<group>"; };
-		20430F84214A92F100C47CC6 /* ImageSegmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentConfiguration.swift; sourceTree = "<group>"; };
+		20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentProtocol.swift; sourceTree = "<group>"; };
+		208E49B421884EC80089F6B9 /* DefaultDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDelegates.swift; sourceTree = "<group>"; };
+		208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyEventsProtocol.swift; sourceTree = "<group>"; };
+		209E3334218719170014115F /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		209E333E21874DA80014115F /* PageViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerProtocol.swift; sourceTree = "<group>"; };
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
-		209F40B82148184000212277 /* TextSegmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfiguration.swift; sourceTree = "<group>"; };
-		209F40BA2148185500212277 /* SegnicatorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfiguration.swift; sourceTree = "<group>"; };
+		209F40B82148184000212277 /* TextSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentProtocol.swift; sourceTree = "<group>"; };
+		209F40BA2148185500212277 /* SegnicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorProtocol.swift; sourceTree = "<group>"; };
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
-		20F4F179214BD13F00D2E6D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,12 +80,11 @@
 		201FD1872147A48600CF374B /* Segnify */ = {
 			isa = PBXGroup;
 			children = (
-				20F4F17B214C077E00D2E6D2 /* BaseView */,
 				20DE97EA216F47FB0054467F /* Extensions */,
-				209F40BC2148EAA100212277 /* Segments */,
-				20F4F17C214C078700D2E6D2 /* Segnicator */,
-				20F4F17D214C07A400D2E6D2 /* Segnify */,
+				209E333D2187451F0014115F /* Protocols */,
 				201FD1902147A76B00CF374B /* Supporting Files */,
+				209E333A2187440B0014115F /* View Controllers */,
+				209E3338218743E50014115F /* Views */,
 			);
 			path = Segnify;
 			sourceTree = "<group>";
@@ -83,39 +92,55 @@
 		201FD1902147A76B00CF374B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				201FD1882147A48600CF374B /* Segnify.h */,
 				201FD1892147A48600CF374B /* Info.plist */,
+				201FD1882147A48600CF374B /* Segnify.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		208F7D3B214C07EF00411543 /* ImageSegment */ = {
+		209E3338218743E50014115F /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				20430F81214A5A6200C47CC6 /* ImageSegment.swift */,
-				20430F84214A92F100C47CC6 /* ImageSegmentConfiguration.swift */,
-			);
-			path = ImageSegment;
-			sourceTree = "<group>";
-		};
-		208F7D3C214C07F600411543 /* TextSegment */ = {
-			isa = PBXGroup;
-			children = (
-				20430F7B21490ACE00C47CC6 /* TextSegment.swift */,
-				209F40B82148184000212277 /* TextSegmentConfiguration.swift */,
-			);
-			path = TextSegment;
-			sourceTree = "<group>";
-		};
-		209F40BC2148EAA100212277 /* Segments */ = {
-			isa = PBXGroup;
-			children = (
-				208F7D3B214C07EF00411543 /* ImageSegment */,
-				208F7D3C214C07F600411543 /* TextSegment */,
 				201FD1952147A91800CF374B /* Segment.swift */,
-				20430F7D21490CDA00C47CC6 /* SegmentConfiguration.swift */,
+				209F40B5214801D500212277 /* Segnicator.swift */,
+				201FD1912147A7B200CF374B /* Segnify.swift */,
+				20430F7B21490ACE00C47CC6 /* TextSegment.swift */,
 			);
-			path = Segments;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		209E333A2187440B0014115F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				209E3334218719170014115F /* PageViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		209E333D2187451F0014115F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				209E3340218767640014115F /* Defaults */,
+				20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */,
+				20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */,
+				209E333E21874DA80014115F /* PageViewControllerProtocol.swift */,
+				20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */,
+				209F40BA2148185500212277 /* SegnicatorProtocol.swift */,
+				2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */,
+				208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */,
+				201FD1932147A7DC00CF374B /* SegnifyProtocol.swift */,
+				209F40B82148184000212277 /* TextSegmentProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		209E3340218767640014115F /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				208E49B421884EC80089F6B9 /* DefaultDelegates.swift */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 		20DE97EA216F47FB0054467F /* Extensions */ = {
@@ -124,32 +149,6 @@
 				20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		20F4F17B214C077E00D2E6D2 /* BaseView */ = {
-			isa = PBXGroup;
-			children = (
-				20F4F179214BD13F00D2E6D2 /* BaseView.swift */,
-			);
-			path = BaseView;
-			sourceTree = "<group>";
-		};
-		20F4F17C214C078700D2E6D2 /* Segnicator */ = {
-			isa = PBXGroup;
-			children = (
-				209F40B5214801D500212277 /* Segnicator.swift */,
-				209F40BA2148185500212277 /* SegnicatorConfiguration.swift */,
-			);
-			path = Segnicator;
-			sourceTree = "<group>";
-		};
-		20F4F17D214C07A400D2E6D2 /* Segnify */ = {
-			isa = PBXGroup;
-			children = (
-				201FD1912147A7B200CF374B /* Segnify.swift */,
-				201FD1932147A7DC00CF374B /* SegnifyConfiguration.swift */,
-			);
-			path = Segnify;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,16 +231,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */,
-				20430F7E21490CDA00C47CC6 /* SegmentConfiguration.swift in Sources */,
+				20430F7E21490CDA00C47CC6 /* SegmentProtocol.swift in Sources */,
+				208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */,
 				20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */,
-				201FD1942147A7DC00CF374B /* SegnifyConfiguration.swift in Sources */,
-				209F40BB2148185500212277 /* SegnicatorConfiguration.swift in Sources */,
+				208E49B521884EC80089F6B9 /* DefaultDelegates.swift in Sources */,
+				201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */,
+				209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */,
+				209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */,
+				20039ABA2192F653000674E1 /* PageViewControllerDataSourceProtocol.swift in Sources */,
 				201FD1962147A91800CF374B /* Segment.swift in Sources */,
 				20430F7C21490ACE00C47CC6 /* TextSegment.swift in Sources */,
-				20430F85214A92F100C47CC6 /* ImageSegmentConfiguration.swift in Sources */,
-				209F40B92148184000212277 /* TextSegmentConfiguration.swift in Sources */,
+				209E3335218719170014115F /* PageViewController.swift in Sources */,
+				2017E345218C502C0051EC32 /* SegnifyDataSourceProtocol.swift in Sources */,
+				20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */,
+				209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */,
 				209F40B6214801D500212277 /* Segnicator.swift in Sources */,
-				20F4F17A214BD13F00D2E6D2 /* BaseView.swift in Sources */,
 				201FD1922147A7B200CF374B /* Segnify.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,16 +14,16 @@ open class TextSegment: Segment {
     // MARK: - Public variables
     
     /// Sets the title to use.
-    public var text: String? {
+    open var text: String? {
         didSet {
             setTitle(text, for: .normal)
         }
     }
     
     /// Sets the `TextSegmentConfiguration` to configure the segment's appearance.
-    override open var configuration: SegmentConfiguration? {
+    override open var configuration: SegmentProtocol? {
         didSet {
-            if let configuration = configuration as? TextSegmentConfiguration {
+            if let configuration = configuration as? TextSegmentProtocol {
                 // Apply the text segment configuration.
                 titleLabel?.font = configuration.font
                 
@@ -36,7 +36,7 @@ open class TextSegment: Segment {
     
     // MARK: - Lifecycle
     
-    public convenience init(with text: String?, configuration: SegmentConfiguration?) {
+    public convenience init(with text: String?, configuration: SegmentProtocol?) {
         self.init(type: .custom)
         
         defer {

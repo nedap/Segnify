@@ -8,13 +8,8 @@
 
 import UIKit
 
-/// The method of the `SegnifyDelegate` protocol allows the delegate to react on selecting other `Segment` components.
-public protocol SegnifyDelegate {
-    func segnify(_ segnify: Segnify, didSelect segment: Segment, with index: Int)
-}
-
 /// A `Segnify` instance represents a segmented component, based on UISegmentedControl, and features many customization options.
-open class Segnify: BaseView, UIScrollViewDelegate {
+open class Segnify: UIView {
 
     // MARK: - Private variables
     
@@ -27,32 +22,16 @@ open class Segnify: BaseView, UIScrollViewDelegate {
     }()
     
     /// The width of every `Segment` instance.
-    private var segmentWidth: CGFloat = 150.0
+    private var segmentWidth: CGFloat = 0.0
     
     /// Maintains the width of all `Segment` instances. All `Segment` instances will have the same width configured, but need their own constraint.
     private var segmentWidthConstraints = [NSLayoutConstraint]()
-    
-    /// The `Segnicator` instance, which will always be on top of the currently selected `Segment` instance.
-    private var segnicator: Segnicator?
     
     /// Maintains the horizontal position of the `Segnicator` instance in relation to `scrollView`.
     private var segnicatorLeadingSpaceToSuperviewConstraint: NSLayoutConstraint?
     
     /// Maintains the width of the `Segnicator` instance.
     private var segnicatorWidthConstraint: NSLayoutConstraint?
-    
-    /// A `SegnifyConfiguration` implementing instance for configuring the `Segnify` instance.
-    private var segnifyConfiguration: SegnifyConfiguration? {
-        didSet {
-            if segnifyConfiguration?.equallyFillHorizontalSpace == true {
-                // If the segments should equally fill the horizontal space, we want to observe orientation changes.
-                // The width of every segment and the segnicator instance are calculated based on the total width of the screen.
-                // That width changes when the orientation of the screen changes, so in that case,
-                // the width of the segments and the segnicator should be recalculated.
-                observeOrientationChanges()
-            }
-        }
-    }
     
     /// The currently selected `Segment` instance.
     private var selectedSegment: Segment?
@@ -71,29 +50,75 @@ open class Segnify: BaseView, UIScrollViewDelegate {
     /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
     private var stackViewWidthConstraint: NSLayoutConstraint?
     
-    // MARK: - Public variables
+    // MARK: - Delegates
     
-    /// The delegate object of the `SegnifyDelegate` protocol will be notified about changing the currently selected `Segment` instance.
-    public var delegate: SegnifyDelegate?
-    
-    /// The scroll view which works together with, and mostly underneath, the `Segnify` instance.
-    ///
-    /// Selecting a `Segment` instance will likely result in a scrolling `contentScrollView`, to show the corresponding content.
-    /// Scrolling the `contentScrollView` will likely result in animating the `Segnicator` instance, selecting another `Segment` instance, or both.
-    public var contentScrollView: UIScrollView? {
+    /// The `SegnifyDataSourceProtocol` implementing delegate will define the titles for the `Segment` instances of `Segnify`.
+    public var dataSource: SegnifyDataSourceProtocol? {
         didSet {
-            contentScrollView?.delegate = self
+            if let dataSource = dataSource {
+                // A new data source has been set, so we might need to reconfigure the segment width.
+                if delegate?.equallyFillHorizontalSpace == true, let superview = superview {
+                    segmentWidth = superview.bounds.maxX / CGFloat(dataSource.segments.count)
+                }
+            }
+        }
+    }
+    
+    /// The `SegnifyProtocol` implementing delegate will configure some properties of the `Segnify` instance.
+    public var delegate: SegnifyProtocol? {
+        didSet {
+            if let delegate = delegate {
+                // Apply the segnify configuration.
+                backgroundColor = delegate.segnifyBackgroundColor
+                scrollView.alwaysBounceHorizontal = delegate.isBouncingHorizontally
+                
+                if delegate.equallyFillHorizontalSpace {
+                    // If the segments should equally fill the horizontal space, we want to observe orientation changes.
+                    // The width of every segment and the segnicator instance are calculated based on the total width of the screen.
+                    // That width changes when the orientation of the screen changes, so in that case,
+                    // the width of the segments and the segnicator should be recalculated.
+                    NotificationCenter.default.addObserver(self,
+                                                           selector: #selector(didChangeOrientation(_:)),
+                                                           name: UIDevice.orientationDidChangeNotification,
+                                                           object: nil)
+                    
+                    // Calculate the segment width.
+                    if let dataSource = dataSource, let superview = superview {
+                        segmentWidth = superview.bounds.maxX / CGFloat(dataSource.segments.count)
+                    }
+                }
+                else {
+                    segmentWidth = delegate.segmentWidth
+                }
+            }
+        }
+    }
+    
+    /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    public var eventsDelegate: SegnifyEventsProtocol?
+    
+    // MARK: - Segnicator
+    
+    /// The `Segnicator` instance, which will always be on top of the currently selected `Segment` instance.
+    public var segnicator: Segnicator? {
+        didSet {
+            if let segnicator = segnicator {
+                // Add the segnicator and give it some Auto Layout constraints.
+                scrollView.addSubview(segnicator)
+                // Save its width and the leading space to its superview. as we'll update it later on.
+                segnicatorLeadingSpaceToSuperviewConstraint = segnicator.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+                segnicatorWidthConstraint = segnicator.widthAnchor.constraint(equalToConstant: segmentWidth)
+                NSLayoutConstraint.activate([
+                    segnicator.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                    segnicator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                    segnicatorLeadingSpaceToSuperviewConstraint!,
+                    segnicatorWidthConstraint!
+                    ], for: segnicator)
+            }
         }
     }
     
     // MARK: - Orientation changes
-    
-    private func observeOrientationChanges() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didChangeOrientation(_:)),
-                                               name: UIDevice.orientationDidChangeNotification,
-                                               object: nil)
-    }
     
     @objc private func didChangeOrientation(_ notification: Notification) {
         if let superview = superview {
@@ -112,15 +137,44 @@ open class Segnify: BaseView, UIScrollViewDelegate {
             
             // Trigger a layout update.
             setNeedsLayout()
-            
-            // Notify the delegate again to make sure that the content scroll view, if any connected, is informed about the orientation change.
-            delegate?.segnify(self, didSelect: selectedSegment!, with: indexOfSegment)
         }
     }
     
-    // MARK: - View & constraints
+    // MARK: - Lifecycle
     
-    override public func setupSubviews() {
+    public convenience init(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
+                            delegate: SegnifyProtocol? = DefaultDelegates.shared,
+                            eventsDelegate: SegnifyEventsProtocol? = nil) {
+        self.init()
+        setup(dataSource: dataSource,
+              delegate: delegate,
+              eventsDelegate: eventsDelegate)
+    }
+    
+    private override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup(dataSource: SegnifyDataSourceProtocol? = nil,
+                           delegate: SegnifyProtocol? = nil,
+                           eventsDelegate: SegnifyEventsProtocol? = nil) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+        self.eventsDelegate = eventsDelegate
+        
+        setupSubviews()
+        setupAutoLayoutConstraints()
+    }
+    
+    // MARK: - Subviews & constraints
+    
+    private func setupSubviews() {
         // Scroll view.
         addSubview(scrollView)
         
@@ -128,7 +182,7 @@ open class Segnify: BaseView, UIScrollViewDelegate {
         scrollView.addSubview(stackView)
     }
     
-    override public func setupAutoLayoutConstraints() {
+    private func setupAutoLayoutConstraints() {
         // Scroll view.
         if let superview = scrollView.superview {
             NSLayoutConstraint.activate([
@@ -160,59 +214,12 @@ open class Segnify: BaseView, UIScrollViewDelegate {
 
 extension Segnify {
     
-    public func populate(with segments: [Segment],
-                         segnicator: Segnicator?,
-                         segnifyConfiguration: SegnifyConfiguration?) {
-        
-        // We need a superview.
-        guard let superview = superview else {
+    public func populate() {
+        // Make sure we got one or more segments to deal with.
+        guard let segments = dataSource?.segments else {
             return
         }
         
-        if let segnifyConfiguration = segnifyConfiguration {
-            self.segnifyConfiguration = segnifyConfiguration
-            
-            // Apply the segnify configuration.
-            backgroundColor = segnifyConfiguration.segnifyBackgroundColor
-            scrollView.alwaysBounceHorizontal = segnifyConfiguration.isBouncingHorizontally ?? true
-            if let segmentWidth = segnifyConfiguration.segmentWidth {
-                self.segmentWidth = segmentWidth
-            }
-            
-            if segnifyConfiguration.equallyFillHorizontalSpace == true {
-                segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
-            }
-        }
-        
-        if let segnicator = segnicator {
-            self.segnicator = segnicator
-            
-            // Add the segnicator and give it some Auto Layout constraints.
-            scrollView.addSubview(segnicator)
-            // Save its width and the leading space to its superview. as we'll update it later on.
-            segnicatorLeadingSpaceToSuperviewConstraint = segnicator.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
-            segnicatorWidthConstraint = segnicator.widthAnchor.constraint(equalToConstant: segmentWidth)
-            NSLayoutConstraint.activate([
-                segnicator.topAnchor.constraint(equalTo: scrollView.topAnchor),
-                segnicator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-                segnicatorLeadingSpaceToSuperviewConstraint!,
-                segnicatorWidthConstraint!
-                ], for: segnicator)
-        }
-        
-        // Populate.
-        populate(with: segments)
-        
-        // Select the first button initially.
-        if let firstSegment = stackView.arrangedSubviews.first as? Segment {
-            select(firstSegment)
-        }
-        
-        // Scroll to the beginning.
-        scrollView.contentOffset = .zero
-    }
-    
-    private func populate(with segments: [Segment]) {
         // Clean up first.
         for subview in stackView.arrangedSubviews {
             subview.removeFromSuperview()
@@ -236,6 +243,11 @@ extension Segnify {
             // Deactivate the width contraint, which was only temporarily set.
             NSLayoutConstraint.deactivate([stackViewWidthConstraint])
             self.stackViewWidthConstraint = nil
+        }
+        
+        // Select the first button initially.
+        if let firstSegment = stackView.arrangedSubviews.first as? Segment {
+            select(firstSegment)
         }
     }
 }
@@ -274,46 +286,10 @@ extension Segnify {
         // The segment wants to be selected.
         handleSegmentSelection(with: segment)
 
-        // Notify the delegate.
-        delegate?.segnify(self, didSelect: selectedSegment!, with: stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!)
-    }
-}
-
-// MARK: - Scroll view delegate
-
-extension Segnify {
-    
-    /// Updates the horizontal offset of the `Segnicator` instance in relation to the `Segnify` instance.
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if segnicator?.configuration?.isUpdatingOffsetAtScrolling ?? false {
-            // Only automatically update the segnicator offset when configured so.
-            segnicatorLeadingSpaceToSuperviewConstraint?.constant = scrollView.contentOffset.x * (segmentWidth / frame.width)
-        }
-    }
-    
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        // Another segment might have to be selected.
-        selectSegment()
-    }
-    
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            // Another segment might have to be selected.
-            selectSegment()
-        }
-    }
-    
-    private func selectSegment() {
-        // Get the current 'page' of the scroll view ...
-        let currentPage = max(0, Int(floor(contentScrollView!.contentOffset.x / frame.width)))
-        // ... grab the corresponding segment ...
-        let segment = stackView.arrangedSubviews[currentPage] as! Segment
-        // ... and select that one.
-        handleSegmentSelection(with: segment)
-        
-        // Animate.
-        performScrollViewAnimations()
-        performSegnicatorAnimations()
+        // Notify the events delegate.
+        eventsDelegate?.didSelect(segment: selectedSegment!,
+                                  of: self,
+                                  with: stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!)
     }
 }
 
