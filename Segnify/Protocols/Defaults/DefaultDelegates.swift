@@ -9,10 +9,29 @@
 import UIKit
 
 /// Provides default implementations for the several `Segnify` related protocols.
-public struct DefaultDelegates {
+public class DefaultDelegates {
+    
+    // MARK: - Public
     
     /// Shared instance for singleton usage.
     public static let shared = DefaultDelegates()
+    
+    // MARK: - Private
+    
+    /// Generate a new UIViewController instance with a random background color.
+    private func generateViewController() -> UIViewController {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = UIColor(white: .random(in: 0.0 ... 1.0), alpha: 1.0)
+        return viewController
+    }
+    
+    /// The collection of segments, used by the `Segnify` instance.
+    /// By keeping track of those, continuously generating new ones is being prevented.
+    private var randomSegments = [Segment]()
+    
+    /// The collection of view controllers, used by the page view controller.
+    /// By keeping track of those, continuously generating new ones is being prevented.
+    private var randomViewControllers = [UIViewController]()
 }
 
 // MARK: - ImageSegmentProtocol
@@ -64,7 +83,14 @@ extension DefaultDelegates: SegnicatorProtocol {
 extension DefaultDelegates: PageViewControllerDataSourceProtocol {
     
     public var viewControllers: [UIViewController] {
-        return [UIViewController(), UIViewController(), UIViewController()]
+        if randomViewControllers.isEmpty {
+            // Fill the collection of random view controllers.
+            randomViewControllers = [generateViewController(),
+                                     generateViewController(),
+                                     generateViewController()]
+        }
+        
+        return randomViewControllers
     }
 }
 
@@ -83,9 +109,14 @@ extension DefaultDelegates: PageViewControllerProtocol {
 extension DefaultDelegates: SegnifyDataSourceProtocol {
     
     public var segments: [Segment] {
-        return [TextSegment(with: "Segment 1", configuration: self),
-                TextSegment(with: "Segment 2", configuration: self),
-                TextSegment(with: "Segment 3", configuration: self)]
+        if randomSegments.isEmpty {
+            // Fill the collection of segments.
+            randomSegments = [TextSegment(with: "Segment 1", configuration: self),
+                              TextSegment(with: "Segment 2", configuration: self),
+                              TextSegment(with: "Segment 3", configuration: self)]
+        }
+        
+        return randomSegments
     }
 }
 

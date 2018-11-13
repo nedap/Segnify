@@ -53,16 +53,7 @@ open class Segnify: UIView {
     // MARK: - Delegates
     
     /// The `SegnifyDataSourceProtocol` implementing delegate will define the titles for the `Segment` instances of `Segnify`.
-    public var dataSource: SegnifyDataSourceProtocol? {
-        didSet {
-            if let dataSource = dataSource {
-                // A new data source has been set, so we might need to reconfigure the segment width.
-                if delegate?.equallyFillHorizontalSpace == true, let superview = superview {
-                    segmentWidth = superview.bounds.maxX / CGFloat(dataSource.segments.count)
-                }
-            }
-        }
-    }
+    public var dataSource: SegnifyDataSourceProtocol?
     
     /// The `SegnifyProtocol` implementing delegate will configure some properties of the `Segnify` instance.
     public var delegate: SegnifyProtocol? {
@@ -77,15 +68,10 @@ open class Segnify: UIView {
                     // The width of every segment and the segnicator instance are calculated based on the total width of the screen.
                     // That width changes when the orientation of the screen changes, so in that case,
                     // the width of the segments and the segnicator should be recalculated.
-                    NotificationCenter.default.addObserver(self,
-                                                           selector: #selector(didChangeOrientation(_:)),
-                                                           name: UIDevice.orientationDidChangeNotification,
-                                                           object: nil)
-                    
-                    // Calculate the segment width.
-                    if let dataSource = dataSource, let superview = superview {
-                        segmentWidth = superview.bounds.maxX / CGFloat(dataSource.segments.count)
-                    }
+//                    NotificationCenter.default.addObserver(self,
+//                                                           selector: #selector(didChangeOrientation(_:)),
+//                                                           name: UIDevice.orientationDidChangeNotification,
+//                                                           object: nil)
                 }
                 else {
                     segmentWidth = delegate.segmentWidth
@@ -142,16 +128,7 @@ open class Segnify: UIView {
     
     // MARK: - Lifecycle
     
-    public convenience init(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                            delegate: SegnifyProtocol? = DefaultDelegates.shared,
-                            eventsDelegate: SegnifyEventsProtocol? = nil) {
-        self.init()
-        setup(dataSource: dataSource,
-              delegate: delegate,
-              eventsDelegate: eventsDelegate)
-    }
-    
-    private override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -161,9 +138,21 @@ open class Segnify: UIView {
         setup()
     }
     
-    private func setup(dataSource: SegnifyDataSourceProtocol? = nil,
-                           delegate: SegnifyProtocol? = nil,
-                           eventsDelegate: SegnifyEventsProtocol? = nil) {
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        
+        // When this instance will be added to its superview ...
+        if let superview = newSuperview, delegate?.equallyFillHorizontalSpace == true, let segments = dataSource?.segments {
+            // ... configure the segment width.
+            segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
+        }
+    }
+    
+    // MARK - Setup
+    
+    public func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
+                      delegate: SegnifyProtocol? = DefaultDelegates.shared,
+                      eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.eventsDelegate = eventsDelegate
@@ -219,7 +208,6 @@ extension Segnify {
         guard let segments = dataSource?.segments else {
             return
         }
-        
         // Clean up first.
         for subview in stackView.arrangedSubviews {
             subview.removeFromSuperview()

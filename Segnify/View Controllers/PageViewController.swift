@@ -9,20 +9,21 @@
 import UIKit
 
 /// The `PageViewController` controls and maintains both `Segnify` and `PageViewController` instances.
-class PageViewController: UIViewController {
+open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
     /// A `UIPageViewController` instance will shown the main content, below the `Segnify` instance.
     private lazy var pageViewController: UIPageViewController = {
-        let pageViewController = UIPageViewController()
+        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
         return pageViewController
     }()
     
     /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
     private lazy var segnify: Segnify = {
-        return Segnify(eventsDelegate: self)
+        let segnify = Segnify()
+        return segnify
     }()
     
     /// Maintains the height of the `Segnify` instance.
@@ -33,9 +34,9 @@ class PageViewController: UIViewController {
     /// The `PageViewControllerDataSourceProtocol` implementing delegate will define the view controllers for the main content.
     public var dataSource: PageViewControllerDataSourceProtocol? {
         didSet {
-            if pageViewController.viewControllers?.isEmpty == false {
+            if dataSource?.viewControllers.isEmpty == false {
                 // Reset the view controllers of the page view controller.
-                pageViewController.setViewControllers(dataSource?.viewControllers,
+                pageViewController.setViewControllers([dataSource!.viewControllers.first!],
                                                       direction: .forward,
                                                       animated: true)
             }
@@ -45,9 +46,9 @@ class PageViewController: UIViewController {
     /// The delegate object of `SegnifiedPageViewControllerProtocol` offers customization possibilities for this `SegnifiedPageViewController`.
     public var delegate: PageViewControllerProtocol? {
         didSet {
-            if let delegate = delegate, let segnifyHeightConstraint = segnifyHeightConstraint {
+            if let delegate = delegate {
                 // Update the height constraint ...
-                segnifyHeightConstraint.constant = delegate.segnifyHeight
+                segnifyHeightConstraint?.constant = delegate.segnifyHeight
                 // ... and trigger a layout update.
                 view.setNeedsLayout()
             }
@@ -56,31 +57,27 @@ class PageViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    public convenience init(dataSource: PageViewControllerDataSourceProtocol? = DefaultDelegates.shared,
-                            delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
-        self.init()
-        setup(delegate: delegate)
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
     
-    private func setup(dataSource: PageViewControllerDataSourceProtocol? = nil,
-                       delegate: PageViewControllerProtocol? = nil) {
+    // MARK: - Setup
+    
+    public func setup(dataSource: PageViewControllerDataSourceProtocol? = DefaultDelegates.shared,
+                      delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
         self.dataSource = dataSource
         self.delegate = delegate
     }
     
     // MARK: - View lifecycle
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         // Load up the Segnify instance.
@@ -95,6 +92,9 @@ class PageViewController: UIViewController {
             segnifyHeightConstraint!
             ], for: segnify)
         
+        // Populate.
+        segnify.populate()
+        
         // Add the page view controller.
         addChild(pageViewController)
         let pageView = pageViewController.view
@@ -108,24 +108,19 @@ class PageViewController: UIViewController {
             pageView!.topAnchor.constraint(equalTo: segnify.bottomAnchor),
             pageView!.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
             ], for: pageView!)
-        
-        // Set the page view controllers's view controllers.
-        pageViewController.setViewControllers(dataSource?.viewControllers,
-                                              direction: .forward,
-                                              animated: true)
     }
 }
 
 extension PageViewController: SegnifyEventsProtocol {
     
-    func didSelect(segment: Segment, of segnify: Segnify, with index: Int) {
+    public func didSelect(segment: Segment, of segnify: Segnify, with index: Int) {
         
     }
 }
 
 extension PageViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         // We need view controllers.
         guard let viewControllers = dataSource?.viewControllers else {
             return nil
@@ -144,7 +139,7 @@ extension PageViewController: UIPageViewControllerDataSource {
         return viewControllers[previousIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         // We need view controllers.
         guard let viewControllers = dataSource?.viewControllers else {
             return nil
