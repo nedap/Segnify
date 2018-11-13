@@ -12,5 +12,5 @@ import UIKit
 public protocol SegnifyEventsProtocol {
 
     /// Inform the delegate about `Segment` selection changes.
-    func didSelect(segment: Segment, of segnify: Segnify, with index: Int)
+    func didSelect(segment: Segment, of segnify: Segnify, previousIndex: Int?, currentIndex: Int)
 }

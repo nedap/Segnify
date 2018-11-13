@@ -23,6 +23,7 @@ open class PageViewController: UIViewController {
     /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
     private lazy var segnify: Segnify = {
         let segnify = Segnify()
+        segnify.eventsDelegate = self
         return segnify
     }()
     
@@ -113,8 +114,23 @@ open class PageViewController: UIViewController {
 
 extension PageViewController: SegnifyEventsProtocol {
     
-    public func didSelect(segment: Segment, of segnify: Segnify, with index: Int) {
+    public func didSelect(segment: Segment, of segnify: Segnify, previousIndex: Int?, currentIndex: Int) {
+        if previousIndex == nil {
+            // `previousIndex` is nil on initial selection. No need to continue in this case.
+            return
+        }
         
+        // We need view controllers.
+        guard let viewControllers = dataSource?.viewControllers else {
+            return
+        }
+        
+        // Define the navigation direction, depending on the indices.
+        let navigationDirection: UIPageViewController.NavigationDirection = (currentIndex > previousIndex!) ? .forward : .reverse
+        // Programmatically set the view controllers in order to scroll.
+        pageViewController.setViewControllers([viewControllers[currentIndex]],
+                                              direction: navigationDirection,
+                                              animated: true)
     }
 }
 

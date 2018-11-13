@@ -271,13 +271,27 @@ extension Segnify {
     }
     
     private func select(_ segment: Segment) {
+        var previousIndex: Int?
+        var currentIndex: Int
+        
+        // Grab the currently selected segment, which will be the previously selected one
+        // after `handleSegmentSelection` is being called.
+        // Will be `nil` at initial selection.
+        if let previouslySelectedSegment = selectedSegment {
+            previousIndex = stackView.arrangedSubviews.firstIndex(of: previouslySelectedSegment)!
+        }
+        
         // The segment wants to be selected.
         handleSegmentSelection(with: segment)
 
+        // Set the current index.
+        currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!
+        
         // Notify the events delegate.
         eventsDelegate?.didSelect(segment: selectedSegment!,
                                   of: self,
-                                  with: stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!)
+                                  previousIndex: previousIndex,
+                                  currentIndex: currentIndex)
     }
 }
 
