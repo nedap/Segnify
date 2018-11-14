@@ -244,12 +244,30 @@ extension Segnify {
 
 extension Segnify {
     
+    /// Segment switching will take place, when the user scrolls the page view controller itself.
+    /// The corresponding segment should be selected, without touching the page view controller.
+    public func switchSegment(_ index: Int) {
+        // We need some segments.
+        guard let segments = dataSource?.segments else {
+            return
+        }
+        
+        // Grab the to be selected segment.
+        let segmentToSelect = segments[index]
+        
+        // Selecting the already selected segment shouldn't have any effect.
+        if segmentToSelect != selectedSegment {
+            handleSegmentSelection(with: segmentToSelect)
+            
+            // Animate.
+            performScrollViewAnimations()
+            performSegnicatorAnimations()
+        }
+    }
+    
     @objc private func didTouchUpInsideSegment(_ segment: Segment) {
         // Selecting the already selected segment shouldn't have any effect.
         if segment != selectedSegment {
-            // Process any pending layout updates.
-            layoutIfNeeded()
-            
             // Select the actual segment.
             select(segment)
             
@@ -259,17 +277,17 @@ extension Segnify {
         }
     }
     
+    /// Takes care of the deselected and selected states of all `Segment` instances.
     private func handleSegmentSelection(with segment: Segment) {
-        if let selectedSegment = selectedSegment {
-            // Deselect the previously selected segment.
-            selectedSegment.isSelected = false
-        }
+        // Deselect the previously selected segment.
+        selectedSegment?.isSelected = false
         
         // Set the new selected segment and make it actually selected.
         selectedSegment = segment
         selectedSegment!.isSelected = true
     }
     
+    /// Selects the chosen `Segment` instance and notifies the `SegnifyEventsProtocol` implementing delegate.
     private func select(_ segment: Segment) {
         var previousIndex: Int?
         var currentIndex: Int

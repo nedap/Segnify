@@ -17,6 +17,7 @@ open class PageViewController: UIViewController {
     private lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
+        pageViewController.delegate = self
         return pageViewController
     }()
     
@@ -172,5 +173,26 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         
         return viewControllers[nextIndex]
+    }
+}
+
+extension PageViewController: UIPageViewControllerDelegate {
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   didFinishAnimating finished: Bool,
+                                   previousViewControllers: [UIViewController],
+                                   transitionCompleted completed: Bool) {
+        // We need view controllers.
+        guard let viewControllers = dataSource?.viewControllers else {
+            return
+        }
+        
+        // Grab the current view controller.
+        guard let currentViewController = pageViewController.viewControllers?.first else {
+            return
+        }
+        
+        // Switch segment.
+        segnify.switchSegment(viewControllers.firstIndex(of: currentViewController)!)
     }
 }
