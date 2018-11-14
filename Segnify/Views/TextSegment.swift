@@ -36,7 +36,7 @@ open class TextSegment: Segment {
     
     // MARK: - Lifecycle
     
-    public convenience init(with text: String?, configuration: SegmentProtocol?) {
+    public convenience init(text: String?, configuration: SegmentProtocol?) {
         self.init(type: .custom)
         
         defer {

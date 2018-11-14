@@ -33,7 +33,7 @@ open class ImageSegment: Segment {
     
     // MARK: - Lifecycle
     
-    public convenience init(with image: UIImage?, configuration: SegmentProtocol?) {
+    public convenience init(image: UIImage?, configuration: SegmentProtocol?) {
         self.init(type: .custom)
         
         defer {

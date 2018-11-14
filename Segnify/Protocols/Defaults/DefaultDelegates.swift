@@ -52,32 +52,6 @@ extension DefaultDelegates: ImageSegmentProtocol {
     }
 }
 
-// MARK: - SegnicatorProtocol
-
-extension DefaultDelegates: SegnicatorProtocol {
-    
-    public var isUpdatingOffsetAtScrolling: Bool {
-        return true
-    }
-    
-    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? {
-        return { segnicator in
-            // Create a white, horizontal indicator view.
-            let whiteIndicatorView = UIView()
-            whiteIndicatorView.backgroundColor = .white
-            
-            // Add it to the segnicator and give it the correct layout.
-            segnicator.addSubview(whiteIndicatorView)
-            NSLayoutConstraint.activate([
-                whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
-                whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
-                whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
-                whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-                ], for: whiteIndicatorView)
-        }
-    }
-}
-
 // MARK: - PageViewControllerDataSourceProtocol
 
 extension DefaultDelegates: PageViewControllerDataSourceProtocol {
@@ -104,6 +78,28 @@ extension DefaultDelegates: PageViewControllerProtocol {
     }
 }
 
+// MARK: - SegnicatorProtocol
+
+extension DefaultDelegates: SegnicatorProtocol {
+    
+    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? {
+        return { segnicator in
+            // Create a white, horizontal indicator view.
+            let whiteIndicatorView = UIView()
+            whiteIndicatorView.backgroundColor = .white
+            
+            // Add it to the segnicator and give it the correct layout.
+            segnicator.addSubview(whiteIndicatorView)
+            NSLayoutConstraint.activate([
+                whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
+                whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
+                whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
+                whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
+                ], for: whiteIndicatorView)
+        }
+    }
+}
+
 // MARK: - SegnifyDataSourceProtocol
 
 extension DefaultDelegates: SegnifyDataSourceProtocol {
@@ -111,9 +107,9 @@ extension DefaultDelegates: SegnifyDataSourceProtocol {
     public var segments: [Segment] {
         if randomSegments.isEmpty {
             // Fill the collection of segments.
-            randomSegments = [TextSegment(with: "Segment 1", configuration: self),
-                              TextSegment(with: "Segment 2", configuration: self),
-                              TextSegment(with: "Segment 3", configuration: self)]
+            randomSegments = [TextSegment(text: "Segment 1", configuration: self),
+                              TextSegment(text: "Segment 2", configuration: self),
+                              TextSegment(text: "Segment 3", configuration: self)]
         }
         
         return randomSegments

@@ -371,11 +371,6 @@ extension Segnify {
     }
     
     private func performSegnicatorAnimations() {
-        if segnicator?.configuration?.isUpdatingOffsetAtScrolling ?? false {
-            // When `isUpdatingOffsetAtScrolling` is set to `true`, the segnicator will animate at scrolling events of the content scroll view.
-            return
-        }
-        
         guard let selectedSegment = selectedSegment else {
             // We need a currently selected segment.
             return

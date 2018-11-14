@@ -25,7 +25,7 @@ open class Segnicator: UIView {
     
     // MARK: - Lifecycle
     
-    public convenience init(with configuration: SegnicatorProtocol?) {
+    public convenience init(configuration: SegnicatorProtocol?) {
         self.init()
         
         defer {
