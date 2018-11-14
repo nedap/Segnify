@@ -11,21 +11,19 @@
 		2061B472214FF41300801048 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2061B471214FF41300801048 /* MainViewController.swift */; };
 		2061B477214FF41400801048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2061B476214FF41400801048 /* Assets.xcassets */; };
 		2061B47A214FF41400801048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2061B478214FF41400801048 /* LaunchScreen.storyboard */; };
-		20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */; };
-		20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */; };
-		20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */; };
+		66FF3F3814D0B8A2C710381D /* Pods_Segnified.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122B0E7915CB9FE444D2C069 /* Pods_Segnified.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		122B0E7915CB9FE444D2C069 /* Pods_Segnified.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segnified.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2061B46C214FF41300801048 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2061B46F214FF41300801048 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2061B471214FF41300801048 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2061B476214FF41400801048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2061B479214FF41400801048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2061B47B214FF41400801048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfigurator.swift; sourceTree = "<group>"; };
-		20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyConfigurator.swift; sourceTree = "<group>"; };
-		20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfigurator.swift; sourceTree = "<group>"; };
+		A54A505FEFE898D6A3D1465E /* Pods-Segnified.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segnified.release.xcconfig"; path = "Pods/Target Support Files/Pods-Segnified/Pods-Segnified.release.xcconfig"; sourceTree = "<group>"; };
+		E684618E075B6CAFCB768D7B /* Pods-Segnified.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segnified.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segnified/Pods-Segnified.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66FF3F3814D0B8A2C710381D /* Pods_Segnified.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +43,8 @@
 			children = (
 				2061B46E214FF41300801048 /* Segnified */,
 				2061B46D214FF41300801048 /* Products */,
+				A0528F811DE5A17D771EAB8C /* Pods */,
+				E38FF94D271CDA4C21953A17 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				2061B46F214FF41300801048 /* AppDelegate.swift */,
-				20E1CD2D21512F5C00BE58F2 /* Configurators */,
 				20E1CD2B2151253300BE58F2 /* Resources */,
 				20E1CD2A2151247C00BE58F2 /* Supporting Files */,
 				20E1CD2C2151255500BE58F2 /* View Controllers */,
@@ -92,14 +92,21 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		20E1CD2D21512F5C00BE58F2 /* Configurators */ = {
+		A0528F811DE5A17D771EAB8C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */,
-				20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */,
-				20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */,
+				E684618E075B6CAFCB768D7B /* Pods-Segnified.debug.xcconfig */,
+				A54A505FEFE898D6A3D1465E /* Pods-Segnified.release.xcconfig */,
 			);
-			path = Configurators;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E38FF94D271CDA4C21953A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				122B0E7915CB9FE444D2C069 /* Pods_Segnified.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2061B489214FF41400801048 /* Build configuration list for PBXNativeTarget "Segnified" */;
 			buildPhases = (
+				7445641996F6EBC6289F7386 /* [CP] Check Pods Manifest.lock */,
 				2061B468214FF41300801048 /* Sources */,
 				2061B469214FF41300801048 /* Frameworks */,
 				2061B46A214FF41300801048 /* Resources */,
+				821A28E45490277507034C0E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,16 +177,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7445641996F6EBC6289F7386 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Segnified-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		821A28E45490277507034C0E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Segnified/Pods-Segnified-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Segnify/Segnify.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segnify.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segnified/Pods-Segnified-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2061B468214FF41300801048 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */,
-				20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */,
 				2061B472214FF41300801048 /* MainViewController.swift in Sources */,
 				2061B470214FF41300801048 /* AppDelegate.swift in Sources */,
-				20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +356,7 @@
 		};
 		2061B48A214FF41400801048 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E684618E075B6CAFCB768D7B /* Pods-Segnified.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -330,6 +376,7 @@
 		};
 		2061B48B214FF41400801048 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A54A505FEFE898D6A3D1465E /* Pods-Segnified.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;

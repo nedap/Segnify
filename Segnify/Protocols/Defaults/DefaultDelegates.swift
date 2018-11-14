@@ -68,8 +68,7 @@ extension DefaultDelegates: PageViewControllerDataSourceProtocol {
     }
 }
 
-
-// MARK: - SegnifiedPageViewControllerProtocol
+// MARK: - PageViewControllerProtocol
 
 extension DefaultDelegates: PageViewControllerProtocol {
     
