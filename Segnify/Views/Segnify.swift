@@ -63,17 +63,7 @@ open class Segnify: UIView {
                 backgroundColor = delegate.segnifyBackgroundColor
                 scrollView.alwaysBounceHorizontal = delegate.isBouncingHorizontally
                 
-                if delegate.equallyFillHorizontalSpace {
-                    // If the segments should equally fill the horizontal space, we want to observe orientation changes.
-                    // The width of every segment and the segnicator instance are calculated based on the total width of the screen.
-                    // That width changes when the orientation of the screen changes, so in that case,
-                    // the width of the segments and the segnicator should be recalculated.
-//                    NotificationCenter.default.addObserver(self,
-//                                                           selector: #selector(didChangeOrientation(_:)),
-//                                                           name: UIDevice.orientationDidChangeNotification,
-//                                                           object: nil)
-                }
-                else {
+                if !delegate.equallyFillHorizontalSpace {
                     segmentWidth = delegate.segmentWidth
                 }
             }
@@ -104,28 +94,6 @@ open class Segnify: UIView {
         }
     }
     
-    // MARK: - Orientation changes
-    
-    @objc private func didChangeOrientation(_ notification: Notification) {
-        if let superview = superview {
-            // Screen orientation has been changed, so recalculate the width of the segments and the segnicator.
-            segmentWidth = superview.bounds.maxX / CGFloat(stackView.arrangedSubviews.count)
-            
-            // Update the constraints for the width of the segments accordingly ...
-            for segmentWidthConstraint in segmentWidthConstraints {
-                segmentWidthConstraint.constant = segmentWidth
-            }
-            // ... just like the constraint for the segnicator width ...
-            segnicatorWidthConstraint?.constant = segmentWidth
-            // ... and the one for the segnicator position.
-            let indexOfSegment = stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!
-            segnicatorLeadingSpaceToSuperviewConstraint?.constant = CGFloat(indexOfSegment) * segmentWidth
-            
-            // Trigger a layout update.
-            setNeedsLayout()
-        }
-    }
-    
     // MARK: - Lifecycle
     
     public override init(frame: CGRect) {
@@ -141,14 +109,38 @@ open class Segnify: UIView {
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
-        // When this instance will be added to its superview ...
-        if let superview = newSuperview, delegate?.equallyFillHorizontalSpace == true, let segments = dataSource?.segments {
-            // ... configure the segment width.
-            segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
-        }
+        // When this instance will be added to its superview, configure the segment width.
+        calculateSegmentWidth(newSuperview)
     }
     
-    // MARK - Setup
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Screen orientation might have been changed, so recalculate the width of the segments and the segnicator.
+        calculateSegmentWidth(superview)
+        
+        // Update the constraints for the width of the segments accordingly.
+        for segmentWidthConstraint in segmentWidthConstraints {
+            segmentWidthConstraint.constant = segmentWidth
+        }
+        
+        // Update the constraint for the segnicator width.
+        segnicatorWidthConstraint?.constant = segmentWidth
+        
+        // We need segments.
+        guard let segments = dataSource?.segments else {
+            return
+        }
+        
+        // Update the constraint for the segnicator position.
+        let indexOfSegment = segments.firstIndex(of: selectedSegment!)!
+        segnicatorLeadingSpaceToSuperviewConstraint?.constant = CGFloat(indexOfSegment) * segmentWidth
+        
+        // Trigger a layout update.
+        setNeedsLayout()
+    }
+    
+    // MARK: - Setup
     
     public func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
                       delegate: SegnifyProtocol? = DefaultDelegates.shared,
@@ -159,6 +151,13 @@ open class Segnify: UIView {
         
         setupSubviews()
         setupAutoLayoutConstraints()
+    }
+    
+    private func calculateSegmentWidth(_ superview: UIView?) {
+        // (Re)calculate the segment width.
+        if let superview = superview, delegate?.equallyFillHorizontalSpace == true, let segments = dataSource?.segments {
+            segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
+        }
     }
     
     // MARK: - Subviews & constraints
