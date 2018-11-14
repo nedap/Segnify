@@ -14,7 +14,7 @@ open class PageViewController: UIViewController {
     // MARK: - Private variables
     
     /// A `UIPageViewController` instance will shown the main content, below the `Segnify` instance.
-    private lazy var pageViewController: UIPageViewController = {
+    public lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
         pageViewController.delegate = self
@@ -22,16 +22,17 @@ open class PageViewController: UIViewController {
     }()
     
     /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
-    private lazy var segnify: Segnify = {
+    public lazy var segnify: Segnify = {
         let segnify = Segnify()
         segnify.eventsDelegate = self
+        segnify.segnicator = Segnicator(configuration: DefaultDelegates.shared)
         return segnify
     }()
     
     /// Maintains the height of the `Segnify` instance.
     private var segnifyHeightConstraint: NSLayoutConstraint?
     
-    // MARK: - Delegates
+    // MARK: - Public variables
     
     /// The `PageViewControllerDataSourceProtocol` implementing delegate will define the view controllers for the main content.
     public var dataSource: PageViewControllerDataSourceProtocol? {
