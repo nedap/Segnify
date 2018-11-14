@@ -7,6 +7,8 @@
 
 An elegant, performing and fancy segmented component in Swift.
 
+![](SegnifyDemo.gif)
+
 ## Features
 
 - [x] Textual segments: `TextSegment`
