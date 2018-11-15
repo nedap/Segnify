@@ -11,9 +11,6 @@
 		2061B472214FF41300801048 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2061B471214FF41300801048 /* MainViewController.swift */; };
 		2061B477214FF41400801048 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2061B476214FF41400801048 /* Assets.xcassets */; };
 		2061B47A214FF41400801048 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2061B478214FF41400801048 /* LaunchScreen.storyboard */; };
-		20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */; };
-		20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */; };
-		20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +20,6 @@
 		2061B476214FF41400801048 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2061B479214FF41400801048 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2061B47B214FF41400801048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentConfigurator.swift; sourceTree = "<group>"; };
-		20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyConfigurator.swift; sourceTree = "<group>"; };
-		20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				2061B46F214FF41300801048 /* AppDelegate.swift */,
-				20E1CD2D21512F5C00BE58F2 /* Configurators */,
 				20E1CD3521514FAA00BE58F2 /* Frameworks */,
 				20E1CD2B2151253300BE58F2 /* Resources */,
 				20E1CD2A2151247C00BE58F2 /* Supporting Files */,
@@ -91,16 +84,6 @@
 				2061B471214FF41300801048 /* MainViewController.swift */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		20E1CD2D21512F5C00BE58F2 /* Configurators */ = {
-			isa = PBXGroup;
-			children = (
-				20E1CD3221514A1500BE58F2 /* SegnicatorConfigurator.swift */,
-				20E1CD30215141DD00BE58F2 /* SegnifyConfigurator.swift */,
-				20E1CD2E21513A3C00BE58F2 /* TextSegmentConfigurator.swift */,
-			);
-			path = Configurators;
 			sourceTree = "<group>";
 		};
 		20E1CD3521514FAA00BE58F2 /* Frameworks */ = {
@@ -205,11 +188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E1CD3321514A1500BE58F2 /* SegnicatorConfigurator.swift in Sources */,
-				20E1CD31215141DD00BE58F2 /* SegnifyConfigurator.swift in Sources */,
 				2061B472214FF41300801048 /* MainViewController.swift in Sources */,
 				2061B470214FF41300801048 /* AppDelegate.swift in Sources */,
-				20E1CD2F21513A3C00BE58F2 /* TextSegmentConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
