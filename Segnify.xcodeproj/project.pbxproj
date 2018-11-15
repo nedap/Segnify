@@ -25,6 +25,8 @@
 		209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentProtocol.swift */; };
 		209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorProtocol.swift */; };
 		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
+		23069C5E219D7AED00BA517D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5C219D7AEC00BA517D /* README.md */; };
+		23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5D219D7AEC00BA517D /* CHANGELOG.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		209F40B82148184000212277 /* TextSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentProtocol.swift; sourceTree = "<group>"; };
 		209F40BA2148185500212277 /* SegnicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorProtocol.swift; sourceTree = "<group>"; };
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
+		23069C5C219D7AEC00BA517D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		23069C5D219D7AEC00BA517D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 		201FD17B2147A48600CF374B = {
 			isa = PBXGroup;
 			children = (
+				23069C5D219D7AEC00BA517D /* CHANGELOG.md */,
+				23069C5C219D7AEC00BA517D /* README.md */,
 				201FD1872147A48600CF374B /* Segnify */,
 				201FD1862147A48600CF374B /* Products */,
 			);
@@ -220,6 +226,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23069C5E219D7AED00BA517D /* README.md in Resources */,
+				23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
