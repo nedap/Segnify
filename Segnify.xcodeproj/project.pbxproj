@@ -24,6 +24,10 @@
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
 		209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentProtocol.swift */; };
 		209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorProtocol.swift */; };
+		20DBC37321A6ABCF0068A7B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */; };
+		20DBC37921A6AC1D0068A7B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */; };
+		20DBC37B21A6AC3D0068A7B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */; };
+		20DBC37D21A6AC670068A7B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37C21A6AC670068A7B1 /* Assets.xcassets */; };
 		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
 		23069C5E219D7AED00BA517D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5C219D7AEC00BA517D /* README.md */; };
 		23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5D219D7AEC00BA517D /* CHANGELOG.md */; };
@@ -49,6 +53,12 @@
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
 		209F40B82148184000212277 /* TextSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentProtocol.swift; sourceTree = "<group>"; };
 		209F40BA2148185500212277 /* SegnicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorProtocol.swift; sourceTree = "<group>"; };
+		20DBC36021A6A8510068A7B1 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Example/CocoaPods/Segnified/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		20DBC37721A6AC170068A7B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Example/CocoaPods/Segnified/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
+		20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Example/CocoaPods/Segnified/View Controllers/MainViewController.swift"; sourceTree = SOURCE_ROOT; };
+		20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20DBC37C21A6AC670068A7B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
 		23069C5C219D7AEC00BA517D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		23069C5D219D7AEC00BA517D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -56,6 +66,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		201FD1812147A48600CF374B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20DBC35D21A6A8510068A7B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,6 +88,7 @@
 				23069C5D219D7AEC00BA517D /* CHANGELOG.md */,
 				23069C5C219D7AEC00BA517D /* README.md */,
 				201FD1872147A48600CF374B /* Segnify */,
+				20DBC36121A6A8510068A7B1 /* Segnified */,
 				201FD1862147A48600CF374B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				201FD1852147A48600CF374B /* Segnify.framework */,
+				20DBC36021A6A8510068A7B1 /* Segnified.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +168,42 @@
 			path = Defaults;
 			sourceTree = "<group>";
 		};
+		20DBC36121A6A8510068A7B1 /* Segnified */ = {
+			isa = PBXGroup;
+			children = (
+				20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */,
+				20DBC37421A6ABDE0068A7B1 /* Resources */,
+				20DBC37521A6ABEA0068A7B1 /* Supporting Files */,
+				20DBC37621A6ABF30068A7B1 /* View Controllers */,
+			);
+			path = Segnified;
+			sourceTree = "<group>";
+		};
+		20DBC37421A6ABDE0068A7B1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20DBC37C21A6AC670068A7B1 /* Assets.xcassets */,
+				20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20DBC37521A6ABEA0068A7B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20DBC37721A6AC170068A7B1 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20DBC37621A6ABF30068A7B1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		20DE97EA216F47FB0054467F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,18 +244,40 @@
 			productReference = 201FD1852147A48600CF374B /* Segnify.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		20DBC35F21A6A8510068A7B1 /* Segnified */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20DBC36F21A6A8530068A7B1 /* Build configuration list for PBXNativeTarget "Segnified" */;
+			buildPhases = (
+				20DBC35C21A6A8510068A7B1 /* Sources */,
+				20DBC35D21A6A8510068A7B1 /* Frameworks */,
+				20DBC35E21A6A8510068A7B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Segnified;
+			productName = Segnified;
+			productReference = 20DBC36021A6A8510068A7B1 /* Segnified.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		201FD17C2147A48600CF374B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Bart Hopster";
 				TargetAttributes = {
 					201FD1842147A48600CF374B = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+					};
+					20DBC35F21A6A8510068A7B1 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -210,6 +287,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 201FD17B2147A48600CF374B;
 			productRefGroup = 201FD1862147A48600CF374B /* Products */;
@@ -217,6 +295,7 @@
 			projectRoot = "";
 			targets = (
 				201FD1842147A48600CF374B /* Segnify */,
+				20DBC35F21A6A8510068A7B1 /* Segnified */,
 			);
 		};
 /* End PBXProject section */
@@ -228,6 +307,15 @@
 			files = (
 				23069C5E219D7AED00BA517D /* README.md in Resources */,
 				23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20DBC35E21A6A8510068A7B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20DBC37D21A6AC670068A7B1 /* Assets.xcassets in Resources */,
+				20DBC37B21A6AC3D0068A7B1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +343,15 @@
 				209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */,
 				209F40B6214801D500212277 /* Segnicator.swift in Sources */,
 				201FD1922147A7B200CF374B /* Segnify.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20DBC35C21A6A8510068A7B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20DBC37321A6ABCF0068A7B1 /* AppDelegate.swift in Sources */,
+				20DBC37921A6AC1D0068A7B1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +498,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nl.barthopster.Segnify;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -428,10 +525,56 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nl.barthopster.Segnify;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		20DBC37021A6A8530068A7B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3RDHVJ3898;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/CocoaPods/Segnified/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Nedap Wildcard Profile";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20DBC37121A6A8530068A7B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 3RDHVJ3898;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/CocoaPods/Segnified/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Nedap Wildcard Profile";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -453,6 +596,15 @@
 			buildConfigurations = (
 				201FD18E2147A48600CF374B /* Debug */,
 				201FD18F2147A48600CF374B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20DBC36F21A6A8530068A7B1 /* Build configuration list for PBXNativeTarget "Segnified" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20DBC37021A6A8530068A7B1 /* Debug */,
+				20DBC37121A6A8530068A7B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
