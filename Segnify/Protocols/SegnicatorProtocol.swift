@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A closure with a reference to a `Segnicator` instance, in order to add one or more subviews to that `Segnicator` instance.
 public typealias SegnicatorSubviewsClosure = (Segnicator) -> ()
 
 /// Customize the `Segnicator` appearance by implementing this protocol.

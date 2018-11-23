@@ -13,6 +13,11 @@ open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
+    /// Maintains the height of the `Segnify` instance.
+    private var segnifyHeightConstraint: NSLayoutConstraint?
+    
+    // MARK: - Public variables
+    
     /// A `UIPageViewController` instance will shown the main content, below the `Segnify` instance.
     public lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -29,24 +34,23 @@ open class PageViewController: UIViewController {
         return segnify
     }()
     
-    /// Maintains the height of the `Segnify` instance.
-    private var segnifyHeightConstraint: NSLayoutConstraint?
-    
-    // MARK: - Public variables
-    
-    /// The `PageViewControllerDataSourceProtocol` implementing delegate will define the view controllers for the main content.
-    public var dataSource: PageViewControllerDataSourceProtocol? {
+    /// The delegate object of `SegnifyDataSourceProtocol` specifies the content for the `Segnify` instance and this `PageViewController` instance.
+    public var dataSource: SegnifyDataSourceProtocol? {
         didSet {
-            if dataSource?.viewControllers.isEmpty == false {
+            // Populate.
+            segnify.dataSource = dataSource
+            segnify.populate()
+            
+            if dataSource?.contentElements.isEmpty == false {
                 // Reset the view controllers of the page view controller.
-                pageViewController.setViewControllers([dataSource!.viewControllers.first!],
+                pageViewController.setViewControllers([dataSource!.contentElements.first!.viewController],
                                                       direction: .forward,
                                                       animated: true)
             }
         }
     }
     
-    /// The delegate object of `SegnifiedPageViewControllerProtocol` offers customization possibilities for this `SegnifiedPageViewController`.
+    /// The delegate object of `PageViewControllerProtocol` offers customization possibilities for this `PageViewController` instance.
     public var delegate: PageViewControllerProtocol? {
         didSet {
             if let delegate = delegate {
@@ -72,8 +76,8 @@ open class PageViewController: UIViewController {
     
     // MARK: - Setup
     
-    public func setup(dataSource: PageViewControllerDataSourceProtocol? = DefaultDelegates.shared,
-                      delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
+                       delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
         self.dataSource = dataSource
         self.delegate = delegate
     }
@@ -95,9 +99,6 @@ open class PageViewController: UIViewController {
             segnifyHeightConstraint!
             ], for: segnify)
         
-        // Populate.
-        segnify.populate()
-        
         // Add the page view controller.
         addChild(pageViewController)
         let pageView = pageViewController.view
@@ -114,6 +115,8 @@ open class PageViewController: UIViewController {
     }
 }
 
+// MARK: - SegnifyEventsProtocol
+
 extension PageViewController: SegnifyEventsProtocol {
     
     public func didSelect(segment: Segment, of segnify: Segnify, previousIndex: Int?, currentIndex: Int) {
@@ -122,30 +125,35 @@ extension PageViewController: SegnifyEventsProtocol {
             return
         }
         
-        // We need view controllers.
-        guard let viewControllers = dataSource?.viewControllers else {
+        // We need content elements.
+        guard let contentElements = dataSource?.contentElements else {
             return
         }
         
         // Define the navigation direction, depending on the indices.
         let navigationDirection: UIPageViewController.NavigationDirection = (currentIndex > previousIndex!) ? .forward : .reverse
         // Programmatically set the view controllers in order to scroll.
-        pageViewController.setViewControllers([viewControllers[currentIndex]],
+        pageViewController.setViewControllers([contentElements[currentIndex].viewController],
                                               direction: navigationDirection,
                                               animated: true)
     }
 }
 
+// MARK: - UIPageViewControllerDataSource
+
 extension PageViewController: UIPageViewControllerDataSource {
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        // We need view controllers.
-        guard let viewControllers = dataSource?.viewControllers else {
+        // We need content elements.
+        guard let contentElements = dataSource?.contentElements else {
             return nil
         }
         
-        // We can safely assume that the current view controller is in the data source's array.
-        let currentIndex = viewControllers.firstIndex(of: viewController)!
+        // Check if we can get a valid index.
+        guard let currentIndex = firstIndexOf(viewController) else {
+            return nil
+        }
+        
         // One stap back.
         let previousIndex = currentIndex - 1
         
@@ -154,28 +162,33 @@ extension PageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        return viewControllers[previousIndex]
+        return contentElements[previousIndex].viewController
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        // We need view controllers.
-        guard let viewControllers = dataSource?.viewControllers else {
+        // We need content elements.
+        guard let contentElements = dataSource?.contentElements else {
             return nil
         }
         
-        // We can safely assume that the current view controller is in the data source's array.
-        let currentIndex = viewControllers.firstIndex(of: viewController)!
+        // Check if we can get a valid index.
+        guard let currentIndex = firstIndexOf(viewController) else {
+            return nil
+        }
+        
         // One stap forward.
         let nextIndex = currentIndex + 1
         
         // Sanity check.
-        guard nextIndex < viewControllers.count else {
+        guard nextIndex < contentElements.count else {
             return nil
         }
         
-        return viewControllers[nextIndex]
+        return contentElements[nextIndex].viewController
     }
 }
+
+// MARK: - UIPageViewControllerDelegate
 
 extension PageViewController: UIPageViewControllerDelegate {
     
@@ -183,17 +196,28 @@ extension PageViewController: UIPageViewControllerDelegate {
                                    didFinishAnimating finished: Bool,
                                    previousViewControllers: [UIViewController],
                                    transitionCompleted completed: Bool) {
-        // We need view controllers.
-        guard let viewControllers = dataSource?.viewControllers else {
-            return
-        }
-        
         // Grab the current view controller.
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return
         }
         
-        // Switch segment.
-        segnify.switchSegment(viewControllers.firstIndex(of: currentViewController)!)
+        if let indexOfCurrentViewController = firstIndexOf(currentViewController) {
+            // Switch segment.
+            segnify.switchSegment(indexOfCurrentViewController)
+        }
+    }
+}
+
+// MARK: - Page view controller helper
+
+extension PageViewController {
+    
+    private func firstIndexOf(_ viewController: UIViewController) -> Int? {
+        // We need content elements.
+        guard let contentElements = dataSource?.contentElements else {
+            return nil
+        }
+        
+        return contentElements.firstIndex {($0.viewController == viewController)}
     }
 }

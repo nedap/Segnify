@@ -25,13 +25,8 @@ public class DefaultDelegates {
         return viewController
     }
     
-    /// The collection of segments, used by the `Segnify` instance.
-    /// By keeping track of those, continuously generating new ones is being prevented.
-    private var randomSegments = [Segment]()
-    
-    /// The collection of view controllers, used by the page view controller.
-    /// By keeping track of those, continuously generating new ones is being prevented.
-    private var randomViewControllers = [UIViewController]()
+    /// The collection of segment-viewcontroller-tuples, used by the `Segnify` instance.
+    private var content = [SegnifyContentElement]()
 }
 
 // MARK: - ImageSegmentProtocol
@@ -42,6 +37,10 @@ extension DefaultDelegates: ImageSegmentProtocol {
         return false
     }
     
+    public var imageViewInsets: UIEdgeInsets {
+        return .zero
+    }
+    
     public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
@@ -49,22 +48,6 @@ extension DefaultDelegates: ImageSegmentProtocol {
         default:
             return .clear
         }
-    }
-}
-
-// MARK: - PageViewControllerDataSourceProtocol
-
-extension DefaultDelegates: PageViewControllerDataSourceProtocol {
-    
-    public var viewControllers: [UIViewController] {
-        if randomViewControllers.isEmpty {
-            // Fill the collection of random view controllers.
-            randomViewControllers = [generateViewController(),
-                                     generateViewController(),
-                                     generateViewController()]
-        }
-        
-        return randomViewControllers
     }
 }
 
@@ -103,15 +86,15 @@ extension DefaultDelegates: SegnicatorProtocol {
 
 extension DefaultDelegates: SegnifyDataSourceProtocol {
     
-    public var segments: [Segment] {
-        if randomSegments.isEmpty {
-            // Fill the collection of segments.
-            randomSegments = [TextSegment(text: "Segment 1", configuration: self),
-                              TextSegment(text: "Segment 2", configuration: self),
-                              TextSegment(text: "Segment 3", configuration: self)]
+    public var contentElements: [SegnifyContentElement] {
+        if content.isEmpty {
+            // Fill the collection of content tuples.
+            content = [(segment: TextSegment(text: "Segment 1", configuration: self), viewController: generateViewController()),
+                       (segment: TextSegment(text: "Segment 2", configuration: self), viewController: generateViewController()),
+                       (segment: TextSegment(text: "Segment 3", configuration: self), viewController: generateViewController())]
         }
         
-        return randomSegments
+        return content
     }
 }
 
@@ -132,7 +115,7 @@ extension DefaultDelegates: SegnifyProtocol {
     }
     
     public var segnifyBackgroundColor: UIColor {
-        return UIColor(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+        return .init(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     }
 }
 
@@ -141,7 +124,7 @@ extension DefaultDelegates: SegnifyProtocol {
 extension DefaultDelegates: TextSegmentProtocol {
     
     public var font: UIFont {
-        return UIFont.systemFont(ofSize: 17.0)
+        return .systemFont(ofSize: 17.0)
     }
     
     public func textColor(for state: UIControl.State) -> UIColor {

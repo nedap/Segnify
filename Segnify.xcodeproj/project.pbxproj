@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20039ABA2192F653000674E1 /* PageViewControllerDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */; };
 		2017E345218C502C0051EC32 /* SegnifyDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */; };
 		201FD18A2147A48600CF374B /* Segnify.h in Headers */ = {isa = PBXBuildFile; fileRef = 201FD1882147A48600CF374B /* Segnify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201FD1922147A7B200CF374B /* Segnify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1912147A7B200CF374B /* Segnify.swift */; };
@@ -24,17 +23,22 @@
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
 		209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B82148184000212277 /* TextSegmentProtocol.swift */; };
 		209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40BA2148185500212277 /* SegnicatorProtocol.swift */; };
+		20CD2A6D21A80D8800E40C76 /* PageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD2A6C21A80D8800E40C76 /* PageViewControllerDelegate.swift */; };
+		20CD2A6F21A80DF600E40C76 /* SegnicatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD2A6E21A80DF600E40C76 /* SegnicatorDelegate.swift */; };
+		20CD2A7321A813C400E40C76 /* SegnifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD2A7221A813C400E40C76 /* SegnifyDelegate.swift */; };
 		20DBC37321A6ABCF0068A7B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */; };
 		20DBC37921A6AC1D0068A7B1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */; };
 		20DBC37B21A6AC3D0068A7B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */; };
 		20DBC37D21A6AC670068A7B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37C21A6AC670068A7B1 /* Assets.xcassets */; };
+		20DBC37F21A6BD720068A7B1 /* LabeledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */; };
+		20DBC38421A6F9E40068A7B1 /* ImageSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC38321A6F9E40068A7B1 /* ImageSegmentDelegate.swift */; };
+		20DBC38621A6FB300068A7B1 /* TextSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC38521A6FB300068A7B1 /* TextSegmentDelegate.swift */; };
 		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
 		23069C5E219D7AED00BA517D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5C219D7AEC00BA517D /* README.md */; };
 		23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5D219D7AEC00BA517D /* CHANGELOG.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerDataSourceProtocol.swift; sourceTree = "<group>"; };
 		2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDataSourceProtocol.swift; sourceTree = "<group>"; };
 		201FD1852147A48600CF374B /* Segnify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Segnify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201FD1882147A48600CF374B /* Segnify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Segnify.h; sourceTree = "<group>"; };
@@ -53,12 +57,18 @@
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
 		209F40B82148184000212277 /* TextSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentProtocol.swift; sourceTree = "<group>"; };
 		209F40BA2148185500212277 /* SegnicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorProtocol.swift; sourceTree = "<group>"; };
+		20CD2A6C21A80D8800E40C76 /* PageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		20CD2A6E21A80DF600E40C76 /* SegnicatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorDelegate.swift; sourceTree = "<group>"; };
+		20CD2A7221A813C400E40C76 /* SegnifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDelegate.swift; sourceTree = "<group>"; };
 		20DBC36021A6A8510068A7B1 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Example/CocoaPods/Segnified/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		20DBC37721A6AC170068A7B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Example/CocoaPods/Segnified/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Example/CocoaPods/Segnified/View Controllers/MainViewController.swift"; sourceTree = SOURCE_ROOT; };
 		20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20DBC37C21A6AC670068A7B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewController.swift; sourceTree = "<group>"; };
+		20DBC38321A6F9E40068A7B1 /* ImageSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentDelegate.swift; sourceTree = "<group>"; };
+		20DBC38521A6FB300068A7B1 /* TextSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentDelegate.swift; sourceTree = "<group>"; };
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
 		23069C5C219D7AEC00BA517D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		23069C5D219D7AEC00BA517D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -148,7 +158,6 @@
 			children = (
 				209E3340218767640014115F /* Defaults */,
 				20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */,
-				20039AB92192F653000674E1 /* PageViewControllerDataSourceProtocol.swift */,
 				209E333E21874DA80014115F /* PageViewControllerProtocol.swift */,
 				20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */,
 				209F40BA2148185500212277 /* SegnicatorProtocol.swift */,
@@ -172,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				20DBC37221A6ABCF0068A7B1 /* AppDelegate.swift */,
+				20DBC38021A6F55A0068A7B1 /* Delegates */,
 				20DBC37421A6ABDE0068A7B1 /* Resources */,
 				20DBC37521A6ABEA0068A7B1 /* Supporting Files */,
 				20DBC37621A6ABF30068A7B1 /* View Controllers */,
@@ -199,9 +209,22 @@
 		20DBC37621A6ABF30068A7B1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */,
 				20DBC37821A6AC1D0068A7B1 /* MainViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		20DBC38021A6F55A0068A7B1 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				20DBC38321A6F9E40068A7B1 /* ImageSegmentDelegate.swift */,
+				20CD2A6C21A80D8800E40C76 /* PageViewControllerDelegate.swift */,
+				20CD2A6E21A80DF600E40C76 /* SegnicatorDelegate.swift */,
+				20CD2A7221A813C400E40C76 /* SegnifyDelegate.swift */,
+				20DBC38521A6FB300068A7B1 /* TextSegmentDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		20DE97EA216F47FB0054467F /* Extensions */ = {
@@ -334,7 +357,6 @@
 				201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */,
 				209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */,
 				209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */,
-				20039ABA2192F653000674E1 /* PageViewControllerDataSourceProtocol.swift in Sources */,
 				201FD1962147A91800CF374B /* Segment.swift in Sources */,
 				20430F7C21490ACE00C47CC6 /* TextSegment.swift in Sources */,
 				209E3335218719170014115F /* PageViewController.swift in Sources */,
@@ -350,7 +372,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CD2A7321A813C400E40C76 /* SegnifyDelegate.swift in Sources */,
 				20DBC37321A6ABCF0068A7B1 /* AppDelegate.swift in Sources */,
+				20DBC38621A6FB300068A7B1 /* TextSegmentDelegate.swift in Sources */,
+				20CD2A6D21A80D8800E40C76 /* PageViewControllerDelegate.swift in Sources */,
+				20DBC37F21A6BD720068A7B1 /* LabeledViewController.swift in Sources */,
+				20DBC38421A6F9E40068A7B1 /* ImageSegmentDelegate.swift in Sources */,
+				20CD2A6F21A80DF600E40C76 /* SegnicatorDelegate.swift in Sources */,
 				20DBC37921A6AC1D0068A7B1 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

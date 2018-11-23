@@ -24,9 +24,10 @@ open class ImageSegment: Segment {
     override open var configuration: SegmentProtocol? {
         didSet {
             if let configuration = configuration as? ImageSegmentProtocol {
-                // Apply the text segment configuration.
+                // Apply the image segment configuration.
                 adjustsImageWhenDisabled = configuration.adjustsImage(for: .disabled)
                 adjustsImageWhenHighlighted = configuration.adjustsImage(for: .highlighted)
+                imageEdgeInsets = configuration.imageViewInsets
             }
         }
     }
@@ -35,6 +36,8 @@ open class ImageSegment: Segment {
     
     public convenience init(image: UIImage?, configuration: SegmentProtocol?) {
         self.init(type: .custom)
+        
+        imageView?.contentMode = .scaleAspectFit
         
         defer {
             self.configuration = configuration

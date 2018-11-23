@@ -127,14 +127,15 @@ open class Segnify: UIView {
         // Update the constraint for the segnicator width.
         segnicatorWidthConstraint?.constant = segmentWidth
         
-        // We need segments.
-        guard let segments = dataSource?.segments else {
+        // We need content elements.
+        guard let contentElements = dataSource?.contentElements else {
             return
         }
         
         // Update the constraint for the segnicator position.
-        let indexOfSegment = segments.firstIndex(of: selectedSegment!)!
-        segnicatorLeadingSpaceToSuperviewConstraint?.constant = CGFloat(indexOfSegment) * segmentWidth
+        if let indexOfSegment = (contentElements.firstIndex {($0.segment == selectedSegment!)}) {
+            segnicatorLeadingSpaceToSuperviewConstraint?.constant = CGFloat(indexOfSegment) * segmentWidth
+        }
         
         // Trigger a layout update.
         setNeedsLayout()
@@ -142,9 +143,9 @@ open class Segnify: UIView {
     
     // MARK: - Setup
     
-    public func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                      delegate: SegnifyProtocol? = DefaultDelegates.shared,
-                      eventsDelegate: SegnifyEventsProtocol? = nil) {
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
+                       delegate: SegnifyProtocol? = DefaultDelegates.shared,
+                       eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.eventsDelegate = eventsDelegate
@@ -155,8 +156,8 @@ open class Segnify: UIView {
     
     private func calculateSegmentWidth(_ superview: UIView?) {
         // (Re)calculate the segment width.
-        if let superview = superview, delegate?.equallyFillHorizontalSpace == true, let segments = dataSource?.segments {
-            segmentWidth = superview.bounds.maxX / CGFloat(segments.count)
+        if let superview = superview, delegate?.equallyFillHorizontalSpace == true, let contentElements = dataSource?.contentElements {
+            segmentWidth = superview.bounds.maxX / CGFloat(contentElements.count)
         }
     }
     
@@ -203,20 +204,26 @@ open class Segnify: UIView {
 extension Segnify {
     
     public func populate() {
-        // Make sure we got one or more segments to deal with.
-        guard let segments = dataSource?.segments else {
+        // Make sure we got one or more content elements to deal with.
+        guard let contentElements = dataSource?.contentElements else {
             return
         }
+        
         // Clean up first.
         for subview in stackView.arrangedSubviews {
             subview.removeFromSuperview()
         }
+        
+        // Reset any previously selected segment.
+        selectedSegment = nil
+        
         // Get rid of any existing, obsolete Auto Layout constraint.
         NSLayoutConstraint.deactivate(segmentWidthConstraints)
         segmentWidthConstraints.removeAll()
         
-        for segment in segments {
+        for contentElement in contentElements {
             // Give it the right width.
+            let segment = contentElement.segment
             let segmentWidthConstraint = segment.widthAnchor.constraint(equalToConstant: segmentWidth)
             segmentWidthConstraints.append(segmentWidthConstraint)
             NSLayoutConstraint.activate([segmentWidthConstraint], for: segment)
@@ -246,13 +253,13 @@ extension Segnify {
     /// Segment switching will take place, when the user scrolls the page view controller itself.
     /// The corresponding segment should be selected, without touching the page view controller.
     public func switchSegment(_ index: Int) {
-        // We need some segments.
-        guard let segments = dataSource?.segments else {
+        // We need some content elements.
+        guard let contentElements = dataSource?.contentElements else {
             return
         }
         
         // Grab the to be selected segment.
-        let segmentToSelect = segments[index]
+        let segmentToSelect = contentElements[index].segment
         
         // Selecting the already selected segment shouldn't have any effect.
         if segmentToSelect != selectedSegment {

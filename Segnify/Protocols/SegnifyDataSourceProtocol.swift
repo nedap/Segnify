@@ -8,10 +8,13 @@
 
 import UIKit
 
-/// Define the data model objects for your `Segnify` instance.
+/// A content element for a `Segnify` instance represents a tuple, containing a `Segment` instance and a corresponding `UIViewController` instance.
+public typealias SegnifyContentElement = (segment: Segment, viewController: UIViewController)
+
+/// Define the data source objects for your `Segnify` instance.
 public protocol SegnifyDataSourceProtocol {
     
-    /// The segments to be shown.
+    /// The `SegnifyContentElement` instances to be shown.
     /// This array shouldn't be empty in order to have a functional `Segnify` instance.
-    var segments: [Segment] { get }
+    var contentElements: [SegnifyContentElement] { get }
 }
