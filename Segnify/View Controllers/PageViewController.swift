@@ -106,18 +106,19 @@ open class PageViewController: UIViewController {
             ], for: segnify)
         
         // Add the page view controller.
-        addChild(pageViewController)
-        let pageView = pageViewController.view
-        view.addSubview(pageView!)
-        pageViewController.didMove(toParent: self)
-        
-        // Give it some Auto Layout constraints.
-        NSLayoutConstraint.activate([
-            pageView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pageView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            pageView!.topAnchor.constraint(equalTo: segnify.bottomAnchor),
-            pageView!.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
-            ], for: pageView!)
+        if let pageView = pageViewController.view {
+            addChild(pageViewController)
+            view.addSubview(pageView)
+            pageViewController.didMove(toParent: self)
+            
+            // Give it some Auto Layout constraints.
+            NSLayoutConstraint.activate([
+                pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                pageView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
+                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+                ], for: pageView)
+        }
     }
 }
 
