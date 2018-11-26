@@ -55,6 +55,10 @@ extension DefaultDelegates: ImageSegmentProtocol {
 
 extension DefaultDelegates: PageViewControllerProtocol {
     
+    public var backgroundColor: UIColor {
+        return .black
+    }
+    
     public var segnifyHeight: CGFloat {
         return 75.0
     }

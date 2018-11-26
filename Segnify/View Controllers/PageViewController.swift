@@ -54,6 +54,9 @@ open class PageViewController: UIViewController {
     public var delegate: PageViewControllerProtocol? {
         didSet {
             if let delegate = delegate {
+                // Set the background color.
+                view.backgroundColor = delegate.backgroundColor
+                
                 // Update the height constraint ...
                 segnifyHeightConstraint?.constant = delegate.segnifyHeight
                 // ... and trigger a layout update.

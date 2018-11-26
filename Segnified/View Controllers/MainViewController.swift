@@ -24,11 +24,22 @@ public class MainViewController: PageViewController {
     
     private lazy var textSegmentDelegate = TextSegmentDelegate()
     
-    // MARK: - View lifecycle
+    // MARK: - Lifecycle
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        // Customize.
         dataSource = self
         delegate = pageViewControllerDelegate
         

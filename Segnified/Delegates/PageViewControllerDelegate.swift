@@ -13,5 +13,7 @@ struct PageViewControllerDelegate: PageViewControllerProtocol {
     
     // MARK: - Delegate
     
+    var backgroundColor: UIColor = .white
+    
     var segnifyHeight: CGFloat = 100.0
 }
