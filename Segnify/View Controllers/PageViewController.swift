@@ -87,6 +87,9 @@ open class PageViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
+        // Adjusting the scroll view insets will result in a weird UI on iOS 10 and earlier.
+        automaticallyAdjustsScrollViewInsets = false
+        
         // Load up the Segnify instance.
         view.addSubview(segnify)
         
