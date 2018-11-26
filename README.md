@@ -106,6 +106,8 @@ public class MainViewController: PageViewController {
     
     // MARK: - Private delegates
     
+    private var content = [SegnifyContentElement]()
+    
     private lazy var imageSegmentDelegate = ImageSegmentDelegate()
     
     private lazy var pageViewControllerDelegate = PageViewControllerDelegate()
@@ -116,11 +118,22 @@ public class MainViewController: PageViewController {
     
     private lazy var textSegmentDelegate = TextSegmentDelegate()
     
-    // MARK: - View lifecycle
+    // MARK: - Lifecycle
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        // Customize.
         dataSource = self
         delegate = pageViewControllerDelegate
         
@@ -134,18 +147,22 @@ public class MainViewController: PageViewController {
 extension MainViewController: SegnifyDataSourceProtocol {
     
     public var contentElements: [SegnifyContentElement] {
-        return [
-            (segment: ImageSegment(image: UIImage(named: "demo_number_1_icon"), configuration: imageSegmentDelegate),
-             viewController: LabeledViewController(text: "Hey you! This is number 1.")),
-            (segment: TextSegment(text: "Number 2", configuration: textSegmentDelegate),
-             viewController: LabeledViewController(text: "This is number 2 indeed.")),
-            (segment: ImageSegment(image: UIImage(named: "demo_number_3_icon"), configuration: imageSegmentDelegate),
-             viewController: LabeledViewController(text: "Ola! Si si, 3 it is.")),
-            (segment: TextSegment(text: "Numéro 4", configuration: textSegmentDelegate),
-             viewController: LabeledViewController(text: "Oh man, number 4 already.")),
-            (segment: TextSegment(text: "5 💁🏼‍♂️", configuration: textSegmentDelegate),
-             viewController: LabeledViewController(text: "Number 5 is being shown."))
-        ]
+        if content.isEmpty {
+            content = [
+                (segment: ImageSegment(image: UIImage(named: "demo_number_1_icon"), configuration: imageSegmentDelegate),
+                 viewController: LabeledViewController(text: "Hey you! This is number 1.")),
+                (segment: TextSegment(text: "Number 2", configuration: textSegmentDelegate),
+                 viewController: LabeledViewController(text: "This is number 2 indeed.")),
+                (segment: ImageSegment(image: UIImage(named: "demo_number_3_icon"), configuration: imageSegmentDelegate),
+                 viewController: LabeledViewController(text: "Ola! Si si, 3 it is.")),
+                (segment: TextSegment(text: "Numéro 4", configuration: textSegmentDelegate),
+                 viewController: LabeledViewController(text: "Oh man, number 4 already.")),
+                (segment: TextSegment(text: "5 💁🏼‍♂️", configuration: textSegmentDelegate),
+                 viewController: LabeledViewController(text: "Number 5 is being shown."))
+            ]
+        }
+        
+        return content
     }
 }
 ```
@@ -188,6 +205,10 @@ Implement `PageViewControllerProtocol` for visually customizing the `PageViewCon
 
 ```swift
 extension DefaultDelegates: PageViewControllerProtocol {
+    
+    public var backgroundColor: UIColor {
+        return .black
+    }
     
     public var segnifyHeight: CGFloat {
         return 75.0
