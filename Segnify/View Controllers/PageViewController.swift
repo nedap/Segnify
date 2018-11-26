@@ -45,7 +45,7 @@ open class PageViewController: UIViewController {
                 // Reset the view controllers of the page view controller.
                 pageViewController.setViewControllers([dataSource!.contentElements.first!.viewController],
                                                       direction: .forward,
-                                                      animated: true)
+                                                      animated: false)
             }
         }
     }
