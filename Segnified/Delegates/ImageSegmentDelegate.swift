@@ -22,11 +22,6 @@ struct ImageSegmentDelegate: ImageSegmentProtocol {
     }
     
     func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        switch state {
-        case .highlighted, .selected:
-            return .orange
-        default:
-            return .init(red: 1.0, green: 1.0, blue: 127.0/255.0, alpha: 1.0)
-        }
+        return .orange
     }
 }
