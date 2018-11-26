@@ -61,7 +61,6 @@
 		20CD2A6E21A80DF600E40C76 /* SegnicatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnicatorDelegate.swift; sourceTree = "<group>"; };
 		20CD2A7221A813C400E40C76 /* SegnifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDelegate.swift; sourceTree = "<group>"; };
 		20DBC36021A6A8510068A7B1 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		20DBC37721A6AC170068A7B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Example/CocoaPods/Segnified/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20DBC37C21A6AC670068A7B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
 		20E9E89621ABFD7600F5A230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20E9E89821ABFDB300F5A230 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		20E9E89A21AC254000F5A230 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23069C5C219D7AEC00BA517D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		23069C5D219D7AEC00BA517D /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,7 +201,7 @@
 		20DBC37521A6ABEA0068A7B1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				20DBC37721A6AC170068A7B1 /* Info.plist */,
+				20E9E89A21AC254000F5A230 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -568,7 +568,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3RDHVJ3898;
-				INFOPLIST_FILE = "$(SRCROOT)/Example/CocoaPods/Segnified/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Segnified/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -592,7 +592,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3RDHVJ3898;
-				INFOPLIST_FILE = "$(SRCROOT)/Example/CocoaPods/Segnified/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Segnified/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
