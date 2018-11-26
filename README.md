@@ -42,7 +42,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Segnify', '~> 1.1.0'
+    pod 'Segnify'
 end
 ```
 
@@ -93,7 +93,66 @@ public class MainViewController: PageViewController {}
 
 By purely subclassing it and not changing anything, or by initializing a new `PageViewController` instance and adding it as a child view controller, default implementations will be chosen and three `TextSegment` instances will be added, together with three randomly generated `UIViewController` instances.
 
-### Customized
+### Customized example
+
+Next to the `Segnify` framework target, there is a `Segnified` app target in the project file. By running the `Segnified` scheme, an example application will be run which represents a showcase of all customization possibilities of `Segnify`.
+
+The `MainViewController` of the example app looks like this:
+
+``` swift
+import Segnify
+
+public class MainViewController: PageViewController {
+    
+    // MARK: - Private delegates
+    
+    private lazy var imageSegmentDelegate = ImageSegmentDelegate()
+    
+    private lazy var pageViewControllerDelegate = PageViewControllerDelegate()
+    
+    private lazy var segnicatorDelegate = SegnicatorDelegate()
+    
+    private lazy var segnifyDelegate = SegnifyDelegate()
+    
+    private lazy var textSegmentDelegate = TextSegmentDelegate()
+    
+    // MARK: - View lifecycle
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dataSource = self
+        delegate = pageViewControllerDelegate
+        
+        segnify.delegate = segnifyDelegate
+        segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
+    }
+}
+
+// MARK: - SegnifyDataSourceProtocol
+
+extension MainViewController: SegnifyDataSourceProtocol {
+    
+    public var contentElements: [SegnifyContentElement] {
+        return [
+            (segment: ImageSegment(image: UIImage(named: "demo_number_1_icon"), configuration: imageSegmentDelegate),
+             viewController: LabeledViewController(text: "Hey you! This is number 1.")),
+            (segment: TextSegment(text: "Number 2", configuration: textSegmentDelegate),
+             viewController: LabeledViewController(text: "This is number 2 indeed.")),
+            (segment: ImageSegment(image: UIImage(named: "demo_number_3_icon"), configuration: imageSegmentDelegate),
+             viewController: LabeledViewController(text: "Ola! Si si, 3 it is.")),
+            (segment: TextSegment(text: "Numéro 4", configuration: textSegmentDelegate),
+             viewController: LabeledViewController(text: "Oh man, number 4 already.")),
+            (segment: TextSegment(text: "5 💁🏼‍♂️", configuration: textSegmentDelegate),
+             viewController: LabeledViewController(text: "Number 5 is being shown."))
+        ]
+    }
+}
+```
+
+Take a look at the [Segnified](https://github.com/nedap/Segnify/blob/master/Segnified) folder for all the details.
+
+### Protocols
 
 For customization purposes, which you'd likely need, implement one or more of the following protocols.
 
