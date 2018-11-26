@@ -27,6 +27,7 @@ open class ImageSegment: Segment {
                 // Apply the image segment configuration.
                 adjustsImageWhenDisabled = configuration.adjustsImage(for: .disabled)
                 adjustsImageWhenHighlighted = configuration.adjustsImage(for: .highlighted)
+                backgroundColor = configuration.segmentBackgroundColor(for: .normal)
                 imageEdgeInsets = configuration.imageViewInsets
             }
         }
