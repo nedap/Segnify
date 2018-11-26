@@ -44,7 +44,7 @@ extension DefaultDelegates: ImageSegmentProtocol {
     public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
-            return UIColor(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
+            return .init(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
         default:
             return .clear
         }
