@@ -158,7 +158,7 @@ For customization purposes, which you'd likely need, implement one or more of th
 
 #### ImageSegmentProtocol
 
-Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 ```swift
 extension DefaultDelegates: ImageSegmentProtocol {
@@ -167,10 +167,14 @@ extension DefaultDelegates: ImageSegmentProtocol {
         return false
     }
     
+    public var imageViewInsets: UIEdgeInsets {
+        return .zero
+    }
+    
     public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
-            return UIColor(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
+            return .init(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
         default:
             return .clear
         }
@@ -178,29 +182,9 @@ extension DefaultDelegates: ImageSegmentProtocol {
 }
 ```
 
-#### PageViewControllerDataSourceProtocol
-
-Implement `PageViewControllerDataSourceProtocol` for defining the data source of the `UIPageViewController` instance. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
-
-```swift
-extension DefaultDelegates: PageViewControllerDataSourceProtocol {
-    
-    public var viewControllers: [UIViewController] {
-        if randomViewControllers.isEmpty {
-            // Fill the collection of random view controllers.
-            randomViewControllers = [generateViewController(),
-                                     generateViewController(),
-                                     generateViewController()]
-        }
-        
-        return randomViewControllers
-    }
-}
-```
-
 #### PageViewControllerProtocol
 
-Implement `PageViewControllerProtocol` for visually customizing the `PageViewController` instance. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `PageViewControllerProtocol` for visually customizing the `PageViewController` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 ```swift
 extension DefaultDelegates: PageViewControllerProtocol {
@@ -213,7 +197,7 @@ extension DefaultDelegates: PageViewControllerProtocol {
 
 #### SegnicatorProtocol
 
-Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instance. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension. By using the `SegnicatorSubviewsClosure` typealias, subviews and Auto Layout constraints can easily be added, as it takes a reference to a `Segnicator` instance as a parameter.
 
@@ -241,27 +225,29 @@ extension DefaultDelegates: SegnicatorProtocol {
 
 #### SegnifyDataSourceProtocol
 
-Implement `SegnifyDataSourceProtocol` for defining the data source of the `Segnify` instance. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `SegnifyDataSourceProtocol` for defining the data source of the `Segnify` instance and the `UIPageViewController` instance. One or more `SegnifyContentElement` elements should be used, which is a tuple, representing a `Segment` instance and a `UIViewController` instance.
+
+ In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 ```swift
 extension DefaultDelegates: SegnifyDataSourceProtocol {
     
-    public var segments: [Segment] {
-        if randomSegments.isEmpty {
-            // Fill the collection of segments.
-            randomSegments = [TextSegment(text: "Segment 1", configuration: self),
-                              TextSegment(text: "Segment 2", configuration: self),
-                              TextSegment(text: "Segment 3", configuration: self)]
+    public var contentElements: [SegnifyContentElement] {
+        if content.isEmpty {
+            // Fill the collection of content tuples.
+            content = [(segment: TextSegment(text: "Segment 1", configuration: self), viewController: generateViewController()),
+                       (segment: TextSegment(text: "Segment 2", configuration: self), viewController: generateViewController()),
+                       (segment: TextSegment(text: "Segment 3", configuration: self), viewController: generateViewController())]
         }
         
-        return randomSegments
+        return content
     }
 }
 ```
 
 #### SegnifyProtocol
 
-Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 ```swift
 extension DefaultDelegates: SegnifyProtocol {
@@ -279,20 +265,20 @@ extension DefaultDelegates: SegnifyProtocol {
     }
     
     public var segnifyBackgroundColor: UIColor {
-        return UIColor(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+        return .init(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     }
 }
 ```
 
 #### TextSegment
 
-Implement `TextSegmentProtocol` for customizing textual segments. In the example below, the default implemention in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `TextSegmentProtocol` for customizing textual segments. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
 
 ```swift
 extension DefaultDelegates: TextSegmentProtocol {
     
     public var font: UIFont {
-        return UIFont.systemFont(ofSize: 17.0)
+        return .systemFont(ofSize: 17.0)
     }
     
     public func textColor(for state: UIControl.State) -> UIColor {
@@ -309,7 +295,7 @@ Note that `segmentBackgroundColor(for:)` is already implemented for `ImageSegmen
 
 ## License
 
-Copyright © 2018 N.V. Nederlandsche Apparatenfabriek (Nedap). All rights reserved.
+Copyright © 2018 Nederlandsche Apparatenfabriek (Nedap) N.V.. All rights reserved.
 
 See the [LICENSE](LICENSE) file for more info.
 
