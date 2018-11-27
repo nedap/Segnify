@@ -26,6 +26,7 @@
 		20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F81214A5A6200C47CC6 /* ImageSegment.swift */; };
 		20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */; };
 		208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */; };
+		209DD35121ADFBF800862F17 /* Segnify.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 201FD1852147A48600CF374B /* Segnify.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		209E3335218719170014115F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E3334218719170014115F /* PageViewController.swift */; };
 		209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E333E21874DA80014115F /* PageViewControllerProtocol.swift */; };
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
@@ -45,6 +46,19 @@
 		23069C5E219D7AED00BA517D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5C219D7AEC00BA517D /* README.md */; };
 		23069C5F219D7AED00BA517D /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 23069C5D219D7AEC00BA517D /* CHANGELOG.md */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		209DD35021ADFBEB00862F17 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				209DD35121ADFBF800862F17 /* Segnify.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDataSourceProtocol.swift; sourceTree = "<group>"; };
@@ -305,6 +319,7 @@
 				20DBC35C21A6A8510068A7B1 /* Sources */,
 				20DBC35D21A6A8510068A7B1 /* Frameworks */,
 				20DBC35E21A6A8510068A7B1 /* Resources */,
+				209DD35021ADFBEB00862F17 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -564,7 +579,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo.segnify;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -591,7 +606,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nedap.healthcare.demo.segnify;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
