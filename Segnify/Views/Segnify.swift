@@ -13,14 +13,6 @@ open class Segnify: UIView {
 
     // MARK: - Private variables
     
-    /// The top level scroll view, which makes Segnify horizontally scroll.
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-    
     /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 0.0
     
@@ -33,11 +25,25 @@ open class Segnify: UIView {
     /// Maintains the width of the `Segnicator` instance.
     private var segnicatorWidthConstraint: NSLayoutConstraint?
     
+    /// Keeps track of the width constraint of `stackView`, which will be equal to the width of `scrollView`.
+    /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
+    private var stackViewWidthConstraint: NSLayoutConstraint?
+    
+    // MARK: - Public variables
+    
+    /// The top level scroll view, which makes Segnify horizontally scroll.
+    public private(set) lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
     /// The currently selected `Segment` instance.
-    private var selectedSegment: Segment?
+    public private(set) var selectedSegment: Segment?
     
     /// Holds all `Segment` instances.
-    private lazy var stackView: UIStackView = {
+    public private(set) lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .fill
         stackView.axis = .horizontal
@@ -45,10 +51,6 @@ open class Segnify: UIView {
         stackView.spacing = 0.0
         return stackView
     }()
-    
-    /// Keeps track of the width constraint of `stackView`, which will be equal to the width of `scrollView`.
-    /// It's only there for the benefit of Auto Layout: after adding one or more `Segment` instances, the constraint will be deactivated.
-    private var stackViewWidthConstraint: NSLayoutConstraint?
     
     // MARK: - Delegates
     
