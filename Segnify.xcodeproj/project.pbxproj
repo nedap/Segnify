@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2017E345218C502C0051EC32 /* SegnifyDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */; };
+		201F51F821AD995200BF930B /* Segnify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201FD1852147A48600CF374B /* Segnify.framework */; };
 		201FD18A2147A48600CF374B /* Segnify.h in Headers */ = {isa = PBXBuildFile; fileRef = 201FD1882147A48600CF374B /* Segnify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201FD1922147A7B200CF374B /* Segnify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1912147A7B200CF374B /* Segnify.swift */; };
 		201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1932147A7DC00CF374B /* SegnifyProtocol.swift */; };
@@ -86,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				201F51F821AD995200BF930B /* Segnify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
