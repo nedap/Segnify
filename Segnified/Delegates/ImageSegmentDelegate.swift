@@ -22,6 +22,8 @@ struct ImageSegmentDelegate: ImageSegmentProtocol {
     }
     
     func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        return .orange
+        return .nedapOrange
     }
+    
+    var tintColor: UIColor? = .nedapDarkBlue
 }

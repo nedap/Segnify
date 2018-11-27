@@ -16,4 +16,7 @@ public protocol ImageSegmentProtocol: SegmentProtocol {
     
     /// The edge insets to be applied to the image view of the `ImageSegment` instance.
     var imageViewEdgeInsets: UIEdgeInsets? { get }
+    
+    /// Defines the tint color of the `ImageSegment` instance.
+    var tintColor: UIColor? { get }
 }

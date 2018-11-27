@@ -32,6 +32,9 @@ open class ImageSegment: Segment {
                 if let imageViewEdgeInsets = configuration.imageViewEdgeInsets {
                     imageEdgeInsets = imageViewEdgeInsets
                 }
+                if let tintColor = configuration.tintColor {
+                    self.tintColor = tintColor
+                }
             }
         }
     }

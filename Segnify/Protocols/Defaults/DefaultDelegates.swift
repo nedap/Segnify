@@ -49,6 +49,10 @@ extension DefaultDelegates: ImageSegmentProtocol {
             return .clear
         }
     }
+    
+    public var tintColor: UIColor? {
+        return nil
+    }
 }
 
 // MARK: - PageViewControllerProtocol

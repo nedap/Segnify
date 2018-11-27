@@ -16,10 +16,10 @@ struct TextSegmentDelegate: TextSegmentProtocol {
     var font: UIFont = .systemFont(ofSize: 17.0)
     
     func textColor(for state: UIControl.State) -> UIColor {
-        return .white
+        return .nedapDarkBlue
     }
     
     func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        return .orange
+        return .nedapOrange
     }
 }
