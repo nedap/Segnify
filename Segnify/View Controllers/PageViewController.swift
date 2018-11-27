@@ -178,12 +178,15 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step back.
         let previousIndex = currentIndex - 1
         
-        // Sanity check.
-        guard previousIndex >= 0 else {
-            return nil
+        if previousIndex >= 0 {
+            // Just return the previous view controller.
+            return contentElements[previousIndex].viewController
         }
-        
-        return contentElements[previousIndex].viewController
+        else {
+            // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
+            // Show the last page.
+            return contentElements.last!.viewController
+        }
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -200,12 +203,16 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step forward.
         let nextIndex = currentIndex + 1
         
-        // Sanity check.
-        guard nextIndex < contentElements.count else {
-            return nil
+        if nextIndex < contentElements.count {
+            // Just return the next view controller.
+            return contentElements[nextIndex].viewController
         }
-        
-        return contentElements[nextIndex].viewController
+        else {
+            // When `nextIndex` exceeds the number of available view controllers,
+            // the user wants to scroll forwards from the last page.
+            // Show the first page.
+            return contentElements.first!.viewController
+        }
     }
 }
 
