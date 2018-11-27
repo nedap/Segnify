@@ -1,5 +1,5 @@
 //
-//  LabeledViewController.swift
+//  PageViewContentViewController.swift
 //  Segnified
 //
 //  Created by Bart Hopster on 22/11/2018.
@@ -8,7 +8,7 @@
 
 import Segnify
 
-class LabeledViewController: UIViewController {
+class PageViewContentViewController: UIViewController {
     
     // MARK: - Private variables
     

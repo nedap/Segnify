@@ -30,7 +30,7 @@
 		20CD2A7321A813C400E40C76 /* SegnifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CD2A7221A813C400E40C76 /* SegnifyDelegate.swift */; };
 		20DBC37B21A6AC3D0068A7B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */; };
 		20DBC37D21A6AC670068A7B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DBC37C21A6AC670068A7B1 /* Assets.xcassets */; };
-		20DBC37F21A6BD720068A7B1 /* LabeledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */; };
+		20DBC37F21A6BD720068A7B1 /* PageViewContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC37E21A6BD720068A7B1 /* PageViewContentViewController.swift */; };
 		20DBC38421A6F9E40068A7B1 /* ImageSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC38321A6F9E40068A7B1 /* ImageSegmentDelegate.swift */; };
 		20DBC38621A6FB300068A7B1 /* TextSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBC38521A6FB300068A7B1 /* TextSegmentDelegate.swift */; };
 		20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */; };
@@ -66,7 +66,7 @@
 		20DBC36021A6A8510068A7B1 /* Segnified.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segnified.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DBC37A21A6AC3D0068A7B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20DBC37C21A6AC670068A7B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledViewController.swift; sourceTree = "<group>"; };
+		20DBC37E21A6BD720068A7B1 /* PageViewContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewContentViewController.swift; sourceTree = "<group>"; };
 		20DBC38321A6F9E40068A7B1 /* ImageSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentDelegate.swift; sourceTree = "<group>"; };
 		20DBC38521A6FB300068A7B1 /* TextSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSegmentDelegate.swift; sourceTree = "<group>"; };
 		20DE97EB216F48190054467F /* SegnifyLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		20DBC37621A6ABF30068A7B1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				20DBC37E21A6BD720068A7B1 /* LabeledViewController.swift */,
 				20E9E89821ABFDB300F5A230 /* MainViewController.swift */,
+				20DBC37E21A6BD720068A7B1 /* PageViewContentViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -390,7 +390,7 @@
 				20CD2A7321A813C400E40C76 /* SegnifyDelegate.swift in Sources */,
 				20DBC38621A6FB300068A7B1 /* TextSegmentDelegate.swift in Sources */,
 				20CD2A6D21A80D8800E40C76 /* PageViewControllerDelegate.swift in Sources */,
-				20DBC37F21A6BD720068A7B1 /* LabeledViewController.swift in Sources */,
+				20DBC37F21A6BD720068A7B1 /* PageViewContentViewController.swift in Sources */,
 				20DBC38421A6F9E40068A7B1 /* ImageSegmentDelegate.swift in Sources */,
 				20CD2A6F21A80DF600E40C76 /* SegnicatorDelegate.swift in Sources */,
 				20E9E89921ABFDB300F5A230 /* MainViewController.swift in Sources */,
