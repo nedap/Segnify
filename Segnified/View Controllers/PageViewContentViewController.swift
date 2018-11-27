@@ -17,6 +17,7 @@ class PageViewContentViewController: UIViewController {
         textLabel.font = .systemFont(ofSize: 24.0)
         textLabel.numberOfLines = 0
         textLabel.textAlignment = .center
+        textLabel.textColor = .nedapDarkBlue
         return textLabel
     }()
     
