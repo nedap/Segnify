@@ -161,7 +161,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        // One stap back.
+        // One step back.
         let previousIndex = currentIndex - 1
         
         // Sanity check.
