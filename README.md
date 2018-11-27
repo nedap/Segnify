@@ -134,11 +134,17 @@ public class MainViewController: PageViewController {
     
     private func setup() {
         // Customize.
-        dataSource = self
-        delegate = pageViewControllerDelegate
-        
-        segnify.delegate = segnifyDelegate
-        segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
+        do {
+            try setDataSource(self)
+            
+            delegate = pageViewControllerDelegate
+            segnify.delegate = segnifyDelegate
+            segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
+        }
+        catch {
+            // Fail.
+            print("Failed to set the data source. Make sure it isn't nil.")
+        }
     }
 }
 
@@ -150,15 +156,15 @@ extension MainViewController: SegnifyDataSourceProtocol {
         if content.isEmpty {
             content = [
                 (segment: ImageSegment(image: UIImage(named: "demo_number_1_icon"), configuration: imageSegmentDelegate),
-                 viewController: LabeledViewController(text: "Hey you! This is number 1.")),
+                 viewController: PageViewContentViewController(text: "Hey you! This is number 1.")),
                 (segment: TextSegment(text: "Number 2", configuration: textSegmentDelegate),
-                 viewController: LabeledViewController(text: "This is number 2 indeed.")),
+                 viewController: PageViewContentViewController(text: "This is number 2 indeed.")),
                 (segment: ImageSegment(image: UIImage(named: "demo_number_3_icon"), configuration: imageSegmentDelegate),
-                 viewController: LabeledViewController(text: "Ola! Si si, 3 it is.")),
+                 viewController: PageViewContentViewController(text: "Ola! Si si, 3 it is.")),
                 (segment: TextSegment(text: "Numéro 4", configuration: textSegmentDelegate),
-                 viewController: LabeledViewController(text: "Oh man, number 4 already.")),
+                 viewController: PageViewContentViewController(text: "Oh man, number 4 already.")),
                 (segment: TextSegment(text: "5 💁🏼‍♂️", configuration: textSegmentDelegate),
-                 viewController: LabeledViewController(text: "Number 5 is being shown."))
+                 viewController: PageViewContentViewController(text: "Number 5 is being shown."))
             ]
         }
         
@@ -184,8 +190,8 @@ extension DefaultDelegates: ImageSegmentProtocol {
         return false
     }
     
-    public var imageViewInsets: UIEdgeInsets {
-        return .zero
+    public var imageViewEdgeInsets: UIEdgeInsets? {
+        return nil
     }
     
     public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
