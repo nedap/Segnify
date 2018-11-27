@@ -35,20 +35,7 @@ open class PageViewController: UIViewController {
     }()
     
     /// The delegate object of `SegnifyDataSourceProtocol` specifies the content for the `Segnify` instance and this `PageViewController` instance.
-    public var dataSource: SegnifyDataSourceProtocol? {
-        didSet {
-            // Populate.
-            segnify.dataSource = dataSource
-            segnify.populate()
-            
-            if dataSource?.contentElements.isEmpty == false {
-                // Reset the view controllers of the page view controller.
-                pageViewController.setViewControllers([dataSource!.contentElements.first!.viewController],
-                                                      direction: .forward,
-                                                      animated: false)
-            }
-        }
-    }
+    public private(set) var dataSource: SegnifyDataSourceProtocol?
     
     /// The delegate object of `PageViewControllerProtocol` offers customization possibilities for this `PageViewController` instance.
     public var delegate: PageViewControllerProtocol? {
@@ -83,6 +70,25 @@ open class PageViewController: UIViewController {
                        delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
         self.dataSource = dataSource
         self.delegate = delegate
+    }
+    
+    /// Sets the data source for the `Segnify` instance and `UIPageViewController` instance.
+    public func setDataSource(_ dataSource: SegnifyDataSourceProtocol?) throws {
+        if dataSource == nil {
+            // Let the user know we're dealing with an invalid data source.
+            throw SegnifyError.invalidDataSource
+        }
+        
+        // Populate.
+        segnify.dataSource = dataSource
+        segnify.populate()
+        
+        if dataSource!.contentElements.isEmpty == false {
+            // Reset the view controllers of the page view controller.
+            pageViewController.setViewControllers([dataSource!.contentElements.first!.viewController],
+                                                  direction: .forward,
+                                                  animated: false)
+        }
     }
     
     // MARK: - View lifecycle

@@ -40,11 +40,17 @@ public class MainViewController: PageViewController {
     
     private func setup() {
         // Customize.
-        dataSource = self
-        delegate = pageViewControllerDelegate
-        
-        segnify.delegate = segnifyDelegate
-        segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
+        do {
+            try setDataSource(self)
+            
+            delegate = pageViewControllerDelegate
+            segnify.delegate = segnifyDelegate
+            segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
+        }
+        catch {
+            // Fail.
+            print("Failed to set the data source. Make sure it isn't nil.")
+        }
     }
 }
 
