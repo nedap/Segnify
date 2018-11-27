@@ -37,10 +37,6 @@ extension DefaultDelegates: ImageSegmentProtocol {
         return false
     }
     
-    public var imageViewEdgeInsets: UIEdgeInsets? {
-        return nil
-    }
-    
     public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:

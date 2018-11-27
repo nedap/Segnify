@@ -15,8 +15,17 @@ public protocol ImageSegmentProtocol: SegmentProtocol {
     func isAdjustingImage(for state: UIControl.State) -> Bool
     
     /// The edge insets to be applied to the image view of the `ImageSegment` instance.
-    var imageViewEdgeInsets: UIEdgeInsets? { get }
+    var imageViewEdgeInsets: UIEdgeInsets { get }
     
     /// Defines the tint color of the `ImageSegment` instance.
     var tintColor: UIColor? { get }
 }
+
+extension ImageSegmentProtocol {
+
+	/// Make `imageViewEdgeInsets` implementation by the conforming object optional by providing a default value
+	public var imageViewEdgeInsets: UIEdgeInsets {
+		return .zero
+	}
+}
+

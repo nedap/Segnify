@@ -28,10 +28,8 @@ open class ImageSegment: Segment {
                 adjustsImageWhenDisabled = configuration.isAdjustingImage(for: .disabled)
                 adjustsImageWhenHighlighted = configuration.isAdjustingImage(for: .highlighted)
                 backgroundColor = configuration.segmentBackgroundColor(for: .normal)
-                
-                if let imageViewEdgeInsets = configuration.imageViewEdgeInsets {
-                    imageEdgeInsets = imageViewEdgeInsets
-                }
+                imageEdgeInsets = configuration.imageViewEdgeInsets
+				
                 if let tintColor = configuration.tintColor {
                     self.tintColor = tintColor
                 }
