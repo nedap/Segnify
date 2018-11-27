@@ -68,8 +68,14 @@ open class PageViewController: UIViewController {
     
     private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
                        delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
-        self.dataSource = dataSource
-        self.delegate = delegate
+        do {
+            try setDataSource(dataSource)
+            self.delegate = delegate
+        }
+        catch {
+            // Fail.
+            print("Failed to set the data source. Make sure it isn't nil.")
+        }
     }
     
     /// Sets the data source for the `Segnify` instance and `UIPageViewController` instance.
@@ -78,6 +84,8 @@ open class PageViewController: UIViewController {
             // Let the user know we're dealing with an invalid data source.
             throw SegnifyError.invalidDataSource
         }
+        
+        self.dataSource = dataSource
         
         // Populate.
         segnify.dataSource = dataSource
