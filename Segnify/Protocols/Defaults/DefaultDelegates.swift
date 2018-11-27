@@ -114,6 +114,10 @@ extension DefaultDelegates: SegnifyProtocol {
         return true
     }
     
+    public var isScrollingInfinitely: Bool {
+        return false
+    }
+    
     public var segmentWidth: CGFloat {
         return 150.0
     }

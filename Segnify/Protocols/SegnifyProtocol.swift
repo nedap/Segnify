@@ -21,6 +21,12 @@ public protocol SegnifyProtocol {
     /// When set to `false`, the width of every `Segment` instance is determined by `segmentWidth`, no matter if all `Segment` instances don't fit the available space.
     var isEquallyFillingHorizontalSpace: Bool { get }
     
+    /// Determines if the `Segnify` instance should continue scrolling when the first or last page has been reached.
+    ///
+    /// When the users scrolls forward from the last page, the first page becomes visible.
+    /// When the users scrolls backwards from the first page, the last page becomes visible.
+    var isScrollingInfinitely: Bool { get }
+    
     /// Determines the width all segments should have.
     ///
     /// The actual width of the segments might reduce, if `isEquallyFillingHorizontalSpace` is set to `true`

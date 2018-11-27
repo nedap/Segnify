@@ -17,6 +17,8 @@ struct SegnifyDelegate: SegnifyProtocol {
 
     var isBouncingHorizontally: Bool = true
     
+    var isScrollingInfinitely: Bool = true
+    
     var segmentWidth: CGFloat = 175.0
     
     var segnifyBackgroundColor: UIColor = .init(white: 0.2, alpha: 1.0)
