@@ -20,11 +20,6 @@ struct TextSegmentDelegate: TextSegmentProtocol {
     }
     
     func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        switch state {
-        case .highlighted, .selected:
-            return .init(red: 0.0, green: 0.0, blue: 153.0/255.0, alpha: 1.0)
-        default:
-            return .blue
-        }
+        return .orange
     }
 }

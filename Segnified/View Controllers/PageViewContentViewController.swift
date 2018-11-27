@@ -34,7 +34,7 @@ class PageViewContentViewController: UIViewController {
         super.viewDidLoad()
 
         // Background color.
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         // Text label.
         view.addSubview(textLabel)

@@ -21,5 +21,5 @@ struct SegnifyDelegate: SegnifyProtocol {
     
     var segmentWidth: CGFloat = 175.0
     
-    var segnifyBackgroundColor: UIColor = .init(white: 0.2, alpha: 1.0)
+    var segnifyBackgroundColor: UIColor = .white
 }
