@@ -50,4 +50,14 @@ open class TextSegment: Segment {
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
     }
+    
+    @available(*, unavailable, message: "Use init(text:configuration:) instead.")
+    private override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    @available(*, unavailable, message: "Use init(text:configuration:) instead.")
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

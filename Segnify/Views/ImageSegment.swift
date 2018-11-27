@@ -45,4 +45,14 @@ open class ImageSegment: Segment {
             self.image = image
         }
     }
+    
+    @available(*, unavailable, message: "Use init(image:configuration:) instead.")
+    private override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    @available(*, unavailable, message: "Use init(image:configuration:) instead.")
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }
