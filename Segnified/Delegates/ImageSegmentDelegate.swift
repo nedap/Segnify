@@ -17,7 +17,7 @@ struct ImageSegmentDelegate: ImageSegmentProtocol {
         return false
     }
     
-    var imageViewInsets: UIEdgeInsets {
+    var imageViewEdgeInsets: UIEdgeInsets? {
         return .init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     }
     
