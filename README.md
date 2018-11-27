@@ -7,7 +7,7 @@
 
 An elegant, performing and fancy segmented component in Swift.
 
-![](SegnifyDemo.gif)
+![Screenshot of the Segnified demo app](Segnified-1.png) ![Screenshot of the Segnified demo app](Segnified-2.png)
 
 ## Features
 
