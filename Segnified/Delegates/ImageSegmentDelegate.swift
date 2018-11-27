@@ -13,7 +13,7 @@ struct ImageSegmentDelegate: ImageSegmentProtocol {
     
     // MARK: - Delegate
     
-    func adjustsImage(for state: UIControl.State) -> Bool {
+    func isAdjustingImage(for state: UIControl.State) -> Bool {
         return false
     }
     

@@ -13,7 +13,7 @@ struct SegnifyDelegate: SegnifyProtocol {
     
     // MARK: - Delegate
     
-    var equallyFillHorizontalSpace: Bool = false
+    var isEquallyFillingHorizontalSpace: Bool = false
 
     var isBouncingHorizontally: Bool = true
     

@@ -33,7 +33,7 @@ public class DefaultDelegates {
 
 extension DefaultDelegates: ImageSegmentProtocol {
     
-    public func adjustsImage(for state: UIControl.State) -> Bool {
+    public func isAdjustingImage(for state: UIControl.State) -> Bool {
         return false
     }
     
@@ -106,7 +106,7 @@ extension DefaultDelegates: SegnifyDataSourceProtocol {
 
 extension DefaultDelegates: SegnifyProtocol {
     
-    public var equallyFillHorizontalSpace: Bool {
+    public var isEquallyFillingHorizontalSpace: Bool {
         return true
     }
     

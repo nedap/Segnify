@@ -12,7 +12,7 @@ import UIKit
 public protocol ImageSegmentProtocol: SegmentProtocol {
 
     /// Defines if the image of the `ImageSegment` instance should be adjusted for the different states.
-    func adjustsImage(for state: UIControl.State) -> Bool
+    func isAdjustingImage(for state: UIControl.State) -> Bool
     
     /// The edge insets to be applied to the image view of the `ImageSegment` instance.
     var imageViewEdgeInsets: UIEdgeInsets? { get }
