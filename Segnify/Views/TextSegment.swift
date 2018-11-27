@@ -25,7 +25,7 @@ open class TextSegment: Segment {
         didSet {
             if let configuration = configuration as? TextSegmentProtocol {
                 // Apply the text segment configuration.
-                backgroundColor = configuration.segmentBackgroundColor(for: .normal)
+                backgroundColor = configuration.backgroundColor(for: .normal)
                 titleLabel?.font = configuration.font
                 
                 setTitleColor(configuration.textColor(for: .highlighted), for: .highlighted)

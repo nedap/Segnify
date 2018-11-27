@@ -62,7 +62,7 @@ open class Segnify: UIView {
         didSet {
             if let delegate = delegate {
                 // Apply the segnify configuration.
-                backgroundColor = delegate.segnifyBackgroundColor
+                backgroundColor = delegate.backgroundColor
                 scrollView.alwaysBounceHorizontal = delegate.isBouncingHorizontally
                 
                 if !delegate.isEquallyFillingHorizontalSpace {
@@ -145,8 +145,8 @@ open class Segnify: UIView {
     
     // MARK: - Setup
     
-    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                       delegate: SegnifyProtocol? = DefaultDelegates.shared,
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultSegnifyDataSourceDelegate(),
+                       delegate: SegnifyProtocol? = DefaultSegnifyDelegate(),
                        eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate

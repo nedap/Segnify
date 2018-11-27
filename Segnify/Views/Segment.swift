@@ -21,9 +21,9 @@ open class Segment: UIButton {
     override open var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = configuration?.segmentBackgroundColor(for: .highlighted)
+                backgroundColor = configuration?.backgroundColor(for: .highlighted)
             } else {
-                backgroundColor = configuration?.segmentBackgroundColor(for: isSelected ? .selected : .normal)
+                backgroundColor = configuration?.backgroundColor(for: isSelected ? .selected : .normal)
             }
         }
     }
@@ -31,9 +31,9 @@ open class Segment: UIButton {
     override open var isSelected: Bool {
         didSet {
             if isSelected {
-                backgroundColor = configuration?.segmentBackgroundColor(for: .selected)
+                backgroundColor = configuration?.backgroundColor(for: .selected)
             } else {
-                backgroundColor = configuration?.segmentBackgroundColor(for: .normal)
+                backgroundColor = configuration?.backgroundColor(for: .normal)
             }
         }
     }

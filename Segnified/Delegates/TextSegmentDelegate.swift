@@ -13,13 +13,13 @@ struct TextSegmentDelegate: TextSegmentProtocol {
     
     // MARK: - Delegate
     
+    func backgroundColor(for state: UIControl.State) -> UIColor {
+        return .nedapOrange
+    }
+    
     var font: UIFont = .systemFont(ofSize: 17.0)
     
     func textColor(for state: UIControl.State) -> UIColor {
         return .nedapDarkBlue
-    }
-    
-    func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        return .nedapOrange
     }
 }

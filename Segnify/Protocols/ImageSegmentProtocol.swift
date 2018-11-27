@@ -21,11 +21,23 @@ public protocol ImageSegmentProtocol: SegmentProtocol {
     var tintColor: UIColor? { get }
 }
 
-extension ImageSegmentProtocol {
+// MARK: - Defaults
 
-	/// Make `imageViewEdgeInsets` implementation by the conforming object optional by providing a default value
+extension ImageSegmentProtocol {
+    
+    /// Provide a default value.
+    public func isAdjustingImage(for state: UIControl.State) -> Bool {
+        return false
+    }
+
+	/// Provide a default value.
 	public var imageViewEdgeInsets: UIEdgeInsets {
 		return .zero
 	}
+    
+    /// Provide a default value.
+    public var tintColor: UIColor? {
+        return nil
+    }
 }
 

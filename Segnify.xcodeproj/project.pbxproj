@@ -11,6 +11,12 @@
 		201F51F821AD995200BF930B /* Segnify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201FD1852147A48600CF374B /* Segnify.framework */; };
 		201F51FB21ADA0B200BF930B /* SegnifyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F51FA21ADA0B200BF930B /* SegnifyError.swift */; };
 		201F51FD21ADBF1200BF930B /* SegnifyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F51FC21ADBF1200BF930B /* SegnifyColors.swift */; };
+		201F51FF21ADEEC400BF930B /* DefaultImageSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F51FE21ADEEC400BF930B /* DefaultImageSegmentDelegate.swift */; };
+		201F520121ADEF2200BF930B /* DefaultPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F520021ADEF2200BF930B /* DefaultPageViewControllerDelegate.swift */; };
+		201F520321ADEFE400BF930B /* DefaultSegnicatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F520221ADEFE400BF930B /* DefaultSegnicatorDelegate.swift */; };
+		201F520521ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F520421ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift */; };
+		201F520721ADF1AC00BF930B /* DefaultSegnifyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F520621ADF1AC00BF930B /* DefaultSegnifyDelegate.swift */; };
+		201F520921ADF1D200BF930B /* DefaultTextSegmentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201F520821ADF1D200BF930B /* DefaultTextSegmentDelegate.swift */; };
 		201FD18A2147A48600CF374B /* Segnify.h in Headers */ = {isa = PBXBuildFile; fileRef = 201FD1882147A48600CF374B /* Segnify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201FD1922147A7B200CF374B /* Segnify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1912147A7B200CF374B /* Segnify.swift */; };
 		201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FD1932147A7DC00CF374B /* SegnifyProtocol.swift */; };
@@ -19,7 +25,6 @@
 		20430F7E21490CDA00C47CC6 /* SegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */; };
 		20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F81214A5A6200C47CC6 /* ImageSegment.swift */; };
 		20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */; };
-		208E49B521884EC80089F6B9 /* DefaultDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B421884EC80089F6B9 /* DefaultDelegates.swift */; };
 		208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */; };
 		209E3335218719170014115F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E3334218719170014115F /* PageViewController.swift */; };
 		209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E333E21874DA80014115F /* PageViewControllerProtocol.swift */; };
@@ -45,6 +50,12 @@
 		2017E344218C502C0051EC32 /* SegnifyDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyDataSourceProtocol.swift; sourceTree = "<group>"; };
 		201F51FA21ADA0B200BF930B /* SegnifyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyError.swift; sourceTree = "<group>"; };
 		201F51FC21ADBF1200BF930B /* SegnifyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyColors.swift; sourceTree = "<group>"; };
+		201F51FE21ADEEC400BF930B /* DefaultImageSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageSegmentDelegate.swift; sourceTree = "<group>"; };
+		201F520021ADEF2200BF930B /* DefaultPageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		201F520221ADEFE400BF930B /* DefaultSegnicatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSegnicatorDelegate.swift; sourceTree = "<group>"; };
+		201F520421ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSegnifyDataSourceDelegate.swift; sourceTree = "<group>"; };
+		201F520621ADF1AC00BF930B /* DefaultSegnifyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSegnifyDelegate.swift; sourceTree = "<group>"; };
+		201F520821ADF1D200BF930B /* DefaultTextSegmentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextSegmentDelegate.swift; sourceTree = "<group>"; };
 		201FD1852147A48600CF374B /* Segnify.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Segnify.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201FD1882147A48600CF374B /* Segnify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Segnify.h; sourceTree = "<group>"; };
 		201FD1892147A48600CF374B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,7 +66,6 @@
 		20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentProtocol.swift; sourceTree = "<group>"; };
 		20430F81214A5A6200C47CC6 /* ImageSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegment.swift; sourceTree = "<group>"; };
 		20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentProtocol.swift; sourceTree = "<group>"; };
-		208E49B421884EC80089F6B9 /* DefaultDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDelegates.swift; sourceTree = "<group>"; };
 		208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyEventsProtocol.swift; sourceTree = "<group>"; };
 		209E3334218719170014115F /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		209E333E21874DA80014115F /* PageViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -187,7 +197,12 @@
 		209E3340218767640014115F /* Defaults */ = {
 			isa = PBXGroup;
 			children = (
-				208E49B421884EC80089F6B9 /* DefaultDelegates.swift */,
+				201F51FE21ADEEC400BF930B /* DefaultImageSegmentDelegate.swift */,
+				201F520021ADEF2200BF930B /* DefaultPageViewControllerDelegate.swift */,
+				201F520221ADEFE400BF930B /* DefaultSegnicatorDelegate.swift */,
+				201F520421ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift */,
+				201F520621ADF1AC00BF930B /* DefaultSegnifyDelegate.swift */,
+				201F520821ADF1D200BF930B /* DefaultTextSegmentDelegate.swift */,
 			);
 			path = Defaults;
 			sourceTree = "<group>";
@@ -368,16 +383,21 @@
 				20DE97EC216F48190054467F /* SegnifyLayoutConstraint.swift in Sources */,
 				201F51FD21ADBF1200BF930B /* SegnifyColors.swift in Sources */,
 				20430F7E21490CDA00C47CC6 /* SegmentProtocol.swift in Sources */,
+				201F520721ADF1AC00BF930B /* DefaultSegnifyDelegate.swift in Sources */,
 				201F51FB21ADA0B200BF930B /* SegnifyError.swift in Sources */,
 				208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */,
+				201F520921ADF1D200BF930B /* DefaultTextSegmentDelegate.swift in Sources */,
+				201F520321ADEFE400BF930B /* DefaultSegnicatorDelegate.swift in Sources */,
+				201F51FF21ADEEC400BF930B /* DefaultImageSegmentDelegate.swift in Sources */,
 				20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */,
-				208E49B521884EC80089F6B9 /* DefaultDelegates.swift in Sources */,
 				201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */,
 				209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */,
 				209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */,
 				201FD1962147A91800CF374B /* Segment.swift in Sources */,
+				201F520521ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift in Sources */,
 				20430F7C21490ACE00C47CC6 /* TextSegment.swift in Sources */,
 				209E3335218719170014115F /* PageViewController.swift in Sources */,
+				201F520121ADEF2200BF930B /* DefaultPageViewControllerDelegate.swift in Sources */,
 				2017E345218C502C0051EC32 /* SegnifyDataSourceProtocol.swift in Sources */,
 				20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */,
 				209F40B92148184000212277 /* TextSegmentProtocol.swift in Sources */,

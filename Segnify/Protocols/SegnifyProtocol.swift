@@ -10,6 +10,9 @@ import UIKit
 
 /// Customize the `Segnify` appearance by implementing this protocol.
 public protocol SegnifyProtocol {
+    
+    /// The background color of the main `Segnify` component.
+    var backgroundColor: UIColor { get }
 
     /// A Boolean value that determines whether bouncing always occurs when horizontal scrolling reaches the end of the scroll view.
     ///
@@ -32,7 +35,19 @@ public protocol SegnifyProtocol {
     /// The actual width of the segments might reduce, if `isEquallyFillingHorizontalSpace` is set to `true`
     /// and the segments overflow the available width, based on the `segmentWidth` value.
     var segmentWidth: CGFloat { get }
+}
+
+// MARK: - Defaults
+
+extension SegnifyProtocol {
     
-    /// The background color of the main `Segnify` component.
-    var segnifyBackgroundColor: UIColor { get }
+    /// Provide a default value.
+    public var isBouncingHorizontally: Bool {
+        return true
+    }
+    
+    /// Provide a default value.
+    public var isScrollingInfinitely: Bool {
+        return true
+    }
 }

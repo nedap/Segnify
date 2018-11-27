@@ -30,7 +30,7 @@ open class PageViewController: UIViewController {
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
         segnify.eventsDelegate = self
-        segnify.segnicator = Segnicator(configuration: DefaultDelegates.shared)
+        segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
         return segnify
     }()
     
@@ -66,8 +66,8 @@ open class PageViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                       delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultSegnifyDataSourceDelegate(),
+                       delegate: PageViewControllerProtocol? = DefaultPageViewControllerDelegate()) {
         do {
             try setDataSource(dataSource)
             self.delegate = delegate

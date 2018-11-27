@@ -13,7 +13,7 @@ struct SegnicatorDelegate: SegnicatorProtocol {
     
     // MARK: - Delegate
     
-    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? {
+    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
         return { segnicator in
             // Create a white, half-transparent background view.
             let backgroundView = UIView()
