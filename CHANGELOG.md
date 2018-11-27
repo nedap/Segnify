@@ -18,6 +18,7 @@ Released on 2018-11-27.
 - Added `SegnifyEventsProtocol`. The delegate which implements this protocol will be notified about `Segment` selection changes of `Segnify`.
 - Added `DefaultDelegates`, which offers a default implementation of almost all protocols.
 - Added the example app `Segnified` inside the Xcode project, next to the `Segnify` framework, for improved development and testing processes.
+- Added support for infinite scrolling.
   - Added by [Bart Hopster](https://github.com/barthopster).
 
 #### Removed

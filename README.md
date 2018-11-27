@@ -15,6 +15,7 @@ An elegant, performing and fancy segmented component in Swift.
 - [x] Image segments: `ImageSegment`
 - [x] Segment selection indicator: `Segnicator`
 - [x] Modular components, based on `UIButton`, `UIPageViewController`, `UIScrollView` and `UIStackView`
+- [x] Support for infinite scrolling
 - [x] Fully customizable with extensive usage of different, independent protocols
 - [x] Size & positioning based on Auto Layout
 - [x] 100% code, 0% Storyboard / XIB
@@ -186,7 +187,7 @@ Implement `ImageSegmentProtocol` for customizing image segments. In the example 
 ```swift
 extension DefaultDelegates: ImageSegmentProtocol {
     
-    public func adjustsImage(for state: UIControl.State) -> Bool {
+    public func isAdjustingImage(for state: UIControl.State) -> Bool {
         return false
     }
     
@@ -279,12 +280,16 @@ Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In 
 ```swift
 extension DefaultDelegates: SegnifyProtocol {
     
-    public var equallyFillHorizontalSpace: Bool {
+    public var isBouncingHorizontally: Bool {
         return true
     }
     
-    public var isBouncingHorizontally: Bool {
+    public var isEquallyFillingHorizontalSpace: Bool {
         return true
+    }
+    
+    public var isScrollingInfinitely: Bool {
+        return false
     }
     
     public var segmentWidth: CGFloat {

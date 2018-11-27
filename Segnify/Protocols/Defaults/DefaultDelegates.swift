@@ -106,11 +106,11 @@ extension DefaultDelegates: SegnifyDataSourceProtocol {
 
 extension DefaultDelegates: SegnifyProtocol {
     
-    public var isEquallyFillingHorizontalSpace: Bool {
+    public var isBouncingHorizontally: Bool {
         return true
     }
     
-    public var isBouncingHorizontally: Bool {
+    public var isEquallyFillingHorizontalSpace: Bool {
         return true
     }
     
