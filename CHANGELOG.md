@@ -1,11 +1,35 @@
-# Change Log
+# Changelog
 All notable changes to this project will be documented in this file.
 `Segnify` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
+- `1.1.x` Releases - [1.1.0](#110)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+## [1.1.0](https://github.com/nedap/Segnify/releases/tag/1.1.0)
+Released on 2018-11-27.
+
+#### Added
+
+- Added `PageViewController`, which replaces the usage of any content `UIScrollView`. `PageViewController` contains an implementation of `Segnify` and an instance of `UIPageViewController`, which are connected to each other.
+- Added `PageViewControllerProtocol`, which can be used for customizing the UI of the `PageViewController` instance. Currently, the height of the `Segnify` instance inside the `PageViewController` instance and the background color of the `PageViewController` view can be configured.
+- Added `SegnifyDataSourceProtocol`. The delegate which implements this protocol is the data source for the `Segnify` instance and `PageViewController` instance being used.
+- Added `SegnifyEventsProtocol`. The delegate which implements this protocol will be notified about `Segment` selection changes of `Segnify`.
+- Added `DefaultDelegates`, which offers a default implementation of almost all protocols.
+- Added the example app `Segnified` inside the Xcode project, next to the `Segnify` framework, for improved development and testing processes.
+- Added support for infinite scrolling.
+  - Added by [Bart Hopster](https://github.com/barthopster).
+
+#### Removed
+- Removed `BaseView`.
+- Removed the `Example` applications, as they became obsolete because of the `Segnified` application directly next to the `Segnify` framework.
+  - Removed by [Bart Hopster](https://github.com/barthopster).
+
+#### Updated
+- Renamed all `*Configuration` protocols to `*Protocol`.
+  - Updated by [Bart Hopster](https://github.com/barthopster).
+  
 ## [1.0.2](https://github.com/nedap/Segnify/releases/tag/1.0.2)
 Released on 2018-10-25.
 
