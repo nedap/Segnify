@@ -15,5 +15,16 @@ public typealias SegnicatorSubviewsClosure = (Segnicator) -> ()
 public protocol SegnicatorProtocol {
     
     /// Add one or more subviews to the `Segnicator` instance.
-    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? { get }
+    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure { get }
+}
+
+// MARK: - Defaults
+
+extension SegnicatorProtocol {
+    
+    /// Provide a default value.
+    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
+        // Keeps the `Segnicator` instance free of subviews, thus empty.
+        return { _ in }
+    }
 }

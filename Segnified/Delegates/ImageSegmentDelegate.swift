@@ -13,15 +13,13 @@ struct ImageSegmentDelegate: ImageSegmentProtocol {
     
     // MARK: - Delegate
     
-    func adjustsImage(for state: UIControl.State) -> Bool {
-        return false
+    func backgroundColor(for state: UIControl.State) -> UIColor {
+        return .nedapOrange
     }
     
-    var imageViewEdgeInsets: UIEdgeInsets? {
+    var imageViewEdgeInsets: UIEdgeInsets {
         return .init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     }
     
-    func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
-        return .orange
-    }
+    var tintColor: UIColor? = .nedapDarkBlue
 }

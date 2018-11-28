@@ -25,12 +25,13 @@ open class ImageSegment: Segment {
         didSet {
             if let configuration = configuration as? ImageSegmentProtocol {
                 // Apply the image segment configuration.
-                adjustsImageWhenDisabled = configuration.adjustsImage(for: .disabled)
-                adjustsImageWhenHighlighted = configuration.adjustsImage(for: .highlighted)
-                backgroundColor = configuration.segmentBackgroundColor(for: .normal)
-                
-                if let imageViewEdgeInsets = configuration.imageViewEdgeInsets {
-                    imageEdgeInsets = imageViewEdgeInsets
+                adjustsImageWhenDisabled = configuration.isAdjustingImage(for: .disabled)
+                adjustsImageWhenHighlighted = configuration.isAdjustingImage(for: .highlighted)
+                backgroundColor = configuration.backgroundColor(for: .normal)
+                imageEdgeInsets = configuration.imageViewEdgeInsets
+				
+                if let tintColor = configuration.tintColor {
+                    self.tintColor = tintColor
                 }
             }
         }

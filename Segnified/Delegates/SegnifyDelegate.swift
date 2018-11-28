@@ -13,11 +13,9 @@ struct SegnifyDelegate: SegnifyProtocol {
     
     // MARK: - Delegate
     
-    var equallyFillHorizontalSpace: Bool = false
-
-    var isBouncingHorizontally: Bool = true
+    var backgroundColor: UIColor = .white
+    
+    var isEquallyFillingHorizontalSpace: Bool = false
     
     var segmentWidth: CGFloat = 175.0
-    
-    var segnifyBackgroundColor: UIColor = .init(white: 0.2, alpha: 1.0)
 }

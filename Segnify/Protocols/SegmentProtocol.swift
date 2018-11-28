@@ -12,5 +12,5 @@ import UIKit
 public protocol SegmentProtocol {
 
     /// The background color of the `Segment` instance for the different states.
-    func segmentBackgroundColor(for state: UIControl.State) -> UIColor
+    func backgroundColor(for state: UIControl.State) -> UIColor
 }

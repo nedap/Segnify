@@ -62,10 +62,10 @@ open class Segnify: UIView {
         didSet {
             if let delegate = delegate {
                 // Apply the segnify configuration.
-                backgroundColor = delegate.segnifyBackgroundColor
+                backgroundColor = delegate.backgroundColor
                 scrollView.alwaysBounceHorizontal = delegate.isBouncingHorizontally
                 
-                if !delegate.equallyFillHorizontalSpace {
+                if !delegate.isEquallyFillingHorizontalSpace {
                     segmentWidth = delegate.segmentWidth
                 }
             }
@@ -145,8 +145,8 @@ open class Segnify: UIView {
     
     // MARK: - Setup
     
-    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                       delegate: SegnifyProtocol? = DefaultDelegates.shared,
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultSegnifyDataSourceDelegate(),
+                       delegate: SegnifyProtocol? = DefaultSegnifyDelegate(),
                        eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
@@ -158,7 +158,7 @@ open class Segnify: UIView {
     
     private func calculateSegmentWidth(_ superview: UIView?) {
         // (Re)calculate the segment width.
-        if let superview = superview, delegate?.equallyFillHorizontalSpace == true, let contentElements = dataSource?.contentElements {
+        if let superview = superview, delegate?.isEquallyFillingHorizontalSpace == true, let contentElements = dataSource?.contentElements {
             segmentWidth = superview.bounds.maxX / CGFloat(contentElements.count)
         }
     }

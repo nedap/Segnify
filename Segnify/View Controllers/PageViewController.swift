@@ -30,7 +30,7 @@ open class PageViewController: UIViewController {
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
         segnify.eventsDelegate = self
-        segnify.segnicator = Segnicator(configuration: DefaultDelegates.shared)
+        segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
         return segnify
     }()
     
@@ -66,8 +66,8 @@ open class PageViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultDelegates.shared,
-                       delegate: PageViewControllerProtocol? = DefaultDelegates.shared) {
+    private func setup(dataSource: SegnifyDataSourceProtocol? = DefaultSegnifyDataSourceDelegate(),
+                       delegate: PageViewControllerProtocol? = DefaultPageViewControllerDelegate()) {
         do {
             try setDataSource(dataSource)
             self.delegate = delegate
@@ -178,12 +178,19 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step back.
         let previousIndex = currentIndex - 1
         
-        // Sanity check.
-        guard previousIndex >= 0 else {
+        if previousIndex >= 0 {
+            // Just return the previous view controller.
+            return contentElements[previousIndex].viewController
+        }
+        else if segnify.delegate?.isScrollingInfinitely == true {
+            // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
+            // Show the last page.
+            return contentElements.last!.viewController
+        }
+        else {
+            // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
             return nil
         }
-        
-        return contentElements[previousIndex].viewController
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -200,12 +207,20 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step forward.
         let nextIndex = currentIndex + 1
         
-        // Sanity check.
-        guard nextIndex < contentElements.count else {
+        if nextIndex < contentElements.count {
+            // Just return the next view controller.
+            return contentElements[nextIndex].viewController
+        }
+        else if segnify.delegate?.isScrollingInfinitely == true {
+            // When `nextIndex` exceeds the number of available view controllers,
+            // the user wants to scroll forwards from the last page.
+            // Show the first page.
+            return contentElements.first!.viewController
+        }
+        else {
+            // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
             return nil
         }
-        
-        return contentElements[nextIndex].viewController
     }
 }
 
