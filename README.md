@@ -82,9 +82,18 @@ Run `carthage update` to build the framework and drag the built `Segnify.framewo
 
 - A `Segnicator` instance represents a transparant view on top of the `Segnify` instance and can be used for visually indicating the currently selected `Segment` instance. 'Segnicator' is based on 'indicator', hence its name and function. The `Segnicator` instance will always be on top of the currently selected `Segment` instance. By adding one or more subviews of your liking to the `Segnicator` instance and adding Auto Layout constraints accordingly, the visual indicator can be fully customized.
 
-### Default
+### Defaults
 
-The various protocols are by default implemented by [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift). The simplest way to make use of `Segnify` is:
+The various protocols are by default implemented by some default delegates, found in the [Defaults](Segnify/Protocols/Defaults) folder. The following delegates are being used:
+
+- [DefaultImageSegmentDelegate](Segnify/Protocols/Defaults/DefaultImageSegmentDelegate.swift)
+- [DefaultPageViewControllerDelegate](Segnify/Protocols/Defaults/DefaultPageViewControllerDelegate.swift)
+- [DefaultSegnicatorDelegate](Segnify/Protocols/Defaults/DefaultSegnicatorDelegate.swift)
+- [DefaultSegnifyDataSourceDelegate](Segnify/Protocols/Defaults/DefaultSegnifyDataSourceDelegate.swift)
+- [DefaultSegnifyDelegate](Segnify/Protocols/Defaults/DefaultSegnifyDelegate.swift)
+- [DefaultTextSegmentDelegate](Segnify/Protocols/Defaults/DefaultTextSegmentDelegate.swift)
+
+The simplest way to make use of `Segnify` is:
 
 ``` swift
 import Segnify
@@ -182,20 +191,14 @@ For customization purposes, which you'd likely need, implement one or more of th
 
 #### ImageSegmentProtocol
 
-Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implementation in [DefaultImageSegmentDelegate](Segnify/Protocols/Defaults/DefaultImageSegmentDelegate.swift) is being shown.
 
 ```swift
-extension DefaultDelegates: ImageSegmentProtocol {
+public struct DefaultImageSegmentDelegate: ImageSegmentProtocol {
     
-    public func isAdjustingImage(for state: UIControl.State) -> Bool {
-        return false
-    }
+    // MARK: - Delegate
     
-    public var imageViewEdgeInsets: UIEdgeInsets? {
-        return nil
-    }
-    
-    public func segmentBackgroundColor(for state: UIControl.State) -> UIColor {
+    public func backgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
             return .init(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
@@ -208,10 +211,12 @@ extension DefaultDelegates: ImageSegmentProtocol {
 
 #### PageViewControllerProtocol
 
-Implement `PageViewControllerProtocol` for visually customizing the `PageViewController` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `PageViewControllerProtocol` for visually customizing the `PageViewController` instance. In the example below, the default implementation in [DefaultPageViewControllerDelegate](Segnify/Protocols/Defaults/DefaultPageViewControllerDelegate.swift) is being shown.
 
 ```swift
-extension DefaultDelegates: PageViewControllerProtocol {
+public struct DefaultPageViewControllerDelegate: PageViewControllerProtocol {
+    
+    // MARK: - Delegate
     
     public var backgroundColor: UIColor {
         return .black
@@ -225,14 +230,16 @@ extension DefaultDelegates: PageViewControllerProtocol {
 
 #### SegnicatorProtocol
 
-Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instance. In the example below, the default implementation in [DefaultSegnicatorDelegate](Segnify/Protocols/Defaults/DefaultSegnicatorDelegate.swift) is being shown.
 
 A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension. By using the `SegnicatorSubviewsClosure` typealias, subviews and Auto Layout constraints can easily be added, as it takes a reference to a `Segnicator` instance as a parameter.
 
 ```swift
-extension DefaultDelegates: SegnicatorProtocol {
+public struct DefaultSegnicatorDelegate: SegnicatorProtocol {
+
+    // MARK: - Delegate
     
-    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure? {
+    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
         return { segnicator in
             // Create a white, horizontal indicator view.
             let whiteIndicatorView = UIView()
@@ -255,19 +262,38 @@ extension DefaultDelegates: SegnicatorProtocol {
 
 Implement `SegnifyDataSourceProtocol` for defining the data source of the `Segnify` instance and the `UIPageViewController` instance. One or more `SegnifyContentElement` elements should be used, which is a tuple, representing a `Segment` instance and a `UIViewController` instance.
 
- In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+In the example below, the default implementation in [DefaultSegnifyDataSourceDelegate](Segnify/Protocols/Defaults/DefaultSegnifyDataSourceDelegate.swift) is being shown.
 
 ```swift
-extension DefaultDelegates: SegnifyDataSourceProtocol {
+public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
+    
+    // MARK: - Private
+    
+    /// Define an instance of `DefaultTextSegmentDelegate`.
+    private lazy var textSegmentDelegate: TextSegmentProtocol = {
+        return DefaultTextSegmentDelegate()
+    }()
+    
+    /// Generate a new UIViewController instance with a random background color.
+    private func generateViewController() -> UIViewController {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = UIColor(white: .random(in: 0.0 ... 1.0), alpha: 1.0)
+        return viewController
+    }
+    
+    /// The collection of segment-viewcontroller-tuples, used by the `Segnify` instance.
+    private lazy var content: [SegnifyContentElement] = {
+        return [(segment: TextSegment(text: "Segment 1", configuration: textSegmentDelegate),
+                 viewController: generateViewController()),
+                (segment: TextSegment(text: "Segment 2", configuration: textSegmentDelegate),
+                 viewController: generateViewController()),
+                (segment: TextSegment(text: "Segment 3", configuration: textSegmentDelegate),
+                 viewController: generateViewController())]
+    }()
+    
+    // MARK: - Delegate
     
     public var contentElements: [SegnifyContentElement] {
-        if content.isEmpty {
-            // Fill the collection of content tuples.
-            content = [(segment: TextSegment(text: "Segment 1", configuration: self), viewController: generateViewController()),
-                       (segment: TextSegment(text: "Segment 2", configuration: self), viewController: generateViewController()),
-                       (segment: TextSegment(text: "Segment 3", configuration: self), viewController: generateViewController())]
-        }
-        
         return content
     }
 }
@@ -275,39 +301,44 @@ extension DefaultDelegates: SegnifyDataSourceProtocol {
 
 #### SegnifyProtocol
 
-Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In the example below, the default implementation in [DefaultSegnifyDelegate](Segnify/Protocols/Defaults/DefaultSegnifyDelegate.swift) is being shown.
 
 ```swift
-extension DefaultDelegates: SegnifyProtocol {
+public struct DefaultSegnifyDelegate: SegnifyProtocol {
+
+    // MARK: - Delegate
     
-    public var isBouncingHorizontally: Bool {
-        return true
+    public var backgroundColor: UIColor {
+        return .init(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     }
     
     public var isEquallyFillingHorizontalSpace: Bool {
         return true
     }
     
-    public var isScrollingInfinitely: Bool {
-        return false
-    }
-    
     public var segmentWidth: CGFloat {
         return 150.0
-    }
-    
-    public var segnifyBackgroundColor: UIColor {
-        return .init(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     }
 }
 ```
 
 #### TextSegment
 
-Implement `TextSegmentProtocol` for customizing textual segments. In the example below, the default implementation in [DefaultDelegates](https://github.com/nedap/Segnify/blob/master/Segnify/Protocols/Default/DefaultDelegates.swift) is being shown.
+Implement `TextSegmentProtocol` for customizing textual segments. In the example below, the default implementation in [DefaultTextSegmentDelegate](Segnify/Protocols/Defaults/DefaultTextSegmentDelegate.swift) is being shown.
 
 ```swift
-extension DefaultDelegates: TextSegmentProtocol {
+public struct DefaultTextSegmentDelegate: TextSegmentProtocol {
+    
+    // MARK: - Delegate
+    
+    public func backgroundColor(for state: UIControl.State) -> UIColor {
+        switch state {
+        case .highlighted, .selected,  [.selected, .highlighted]:
+            return .init(red: 39.0/255.0, green: 59.0/255.0, blue: 66.0/255.0, alpha: 1.0)
+        default:
+            return .clear
+        }
+    }
     
     public var font: UIFont {
         return .systemFont(ofSize: 17.0)

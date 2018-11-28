@@ -23,8 +23,6 @@ public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
         return viewController
     }
     
-    // MARK: - Delegate
-    
     /// The collection of segment-viewcontroller-tuples, used by the `Segnify` instance.
     private lazy var content: [SegnifyContentElement] = {
         return [(segment: TextSegment(text: "Segment 1", configuration: textSegmentDelegate),
@@ -34,7 +32,9 @@ public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
                 (segment: TextSegment(text: "Segment 3", configuration: textSegmentDelegate),
                  viewController: generateViewController())]
     }()
-
+    
+    // MARK: - Delegate
+    
     public var contentElements: [SegnifyContentElement] {
         return content
     }
