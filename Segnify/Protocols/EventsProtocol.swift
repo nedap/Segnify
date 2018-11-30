@@ -47,7 +47,7 @@ public protocol EventsProtocol {
     /// Sent when the user tapped on a non-selected `Segment` instance of the `Segnify` instance.
     /// This method will not be called when the another `Segment` instance is being selected due to a swipe in
     /// the `UIPageViewController` instance.
-    func segnify(_ segnify: Segnify, receivedTouchInsideSegmentWith index: Int)
+    func segnify(_ segnify: Segnify, receivedTouchInside segment: Segment)
 }
 
 // MARK: - Defaults
@@ -70,5 +70,5 @@ extension EventsProtocol {
                                    previousViewControllers: [UIViewController],
                                    transitionCompleted completed: Bool) {}
     
-    public func segnify(_ segnify: Segnify, receivedTouchInsideSegmentWith index: Int) {}
+    public func segnify(_ segnify: Segnify, receivedTouchInside segment: Segment) {}
 }

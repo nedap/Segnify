@@ -321,7 +321,7 @@ extension Segnify {
                                   of: self,
                                   previousIndex: previousIndex,
                                   currentIndex: currentIndex)
-        eventsDelegate?.segnify(self, receivedTouchInsideSegmentWith: currentIndex)
+        eventsDelegate?.segnify(self, receivedTouchInside: selectedSegment!)
     }
 }
 
