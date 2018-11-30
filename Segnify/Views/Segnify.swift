@@ -72,8 +72,11 @@ open class Segnify: UIView {
         }
     }
     
+    /// The `EventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    public var eventsDelegate: EventsProtocol?
+    
     /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var eventsDelegate: SegnifyEventsProtocol?
+    public var segnifyEventsDelegate: SegnifyEventsProtocol?
     
     // MARK: - Segnicator
     
@@ -150,7 +153,7 @@ open class Segnify: UIView {
                        eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
-        self.eventsDelegate = eventsDelegate
+        self.segnifyEventsDelegate = eventsDelegate
         
         setupSubviews()
         setupAutoLayoutConstraints()
@@ -313,11 +316,12 @@ extension Segnify {
         // Set the current index.
         currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!
         
-        // Notify the events delegate.
-        eventsDelegate?.didSelect(segment: selectedSegment!,
+        // Notify the events delegates.
+        segnifyEventsDelegate?.didSelect(segment: selectedSegment!,
                                   of: self,
                                   previousIndex: previousIndex,
                                   currentIndex: currentIndex)
+        eventsDelegate?.segnify(self, receivedTouchInsideSegmentWith: currentIndex)
     }
 }
 

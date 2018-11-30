@@ -27,7 +27,7 @@
 		20430F85214A92F100C47CC6 /* ImageSegmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */; };
 		208E49B72188AFC10089F6B9 /* SegnifyEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */; };
 		209DD35121ADFBF800862F17 /* Segnify.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 201FD1852147A48600CF374B /* Segnify.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		209DD35F21B138F800862F17 /* PageViewControllerEventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DD35E21B138F800862F17 /* PageViewControllerEventsProtocol.swift */; };
+		209DD35F21B138F800862F17 /* EventsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DD35E21B138F800862F17 /* EventsProtocol.swift */; };
 		209E3335218719170014115F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E3334218719170014115F /* PageViewController.swift */; };
 		209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E333E21874DA80014115F /* PageViewControllerProtocol.swift */; };
 		209F40B6214801D500212277 /* Segnicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F40B5214801D500212277 /* Segnicator.swift */; };
@@ -82,7 +82,7 @@
 		20430F81214A5A6200C47CC6 /* ImageSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegment.swift; sourceTree = "<group>"; };
 		20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSegmentProtocol.swift; sourceTree = "<group>"; };
 		208E49B62188AFC10089F6B9 /* SegnifyEventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnifyEventsProtocol.swift; sourceTree = "<group>"; };
-		209DD35E21B138F800862F17 /* PageViewControllerEventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerEventsProtocol.swift; sourceTree = "<group>"; };
+		209DD35E21B138F800862F17 /* EventsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProtocol.swift; sourceTree = "<group>"; };
 		209E3334218719170014115F /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		209E333E21874DA80014115F /* PageViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllerProtocol.swift; sourceTree = "<group>"; };
 		209F40B5214801D500212277 /* Segnicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segnicator.swift; sourceTree = "<group>"; };
@@ -198,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				209E3340218767640014115F /* Defaults */,
+				209DD35E21B138F800862F17 /* EventsProtocol.swift */,
 				20430F84214A92F100C47CC6 /* ImageSegmentProtocol.swift */,
-				209DD35E21B138F800862F17 /* PageViewControllerEventsProtocol.swift */,
 				209E333E21874DA80014115F /* PageViewControllerProtocol.swift */,
 				20430F7D21490CDA00C47CC6 /* SegmentProtocol.swift */,
 				209F40BA2148185500212277 /* SegnicatorProtocol.swift */,
@@ -410,7 +410,7 @@
 				20430F82214A5A6200C47CC6 /* ImageSegment.swift in Sources */,
 				201FD1942147A7DC00CF374B /* SegnifyProtocol.swift in Sources */,
 				209E333F21874DA80014115F /* PageViewControllerProtocol.swift in Sources */,
-				209DD35F21B138F800862F17 /* PageViewControllerEventsProtocol.swift in Sources */,
+				209DD35F21B138F800862F17 /* EventsProtocol.swift in Sources */,
 				209F40BB2148185500212277 /* SegnicatorProtocol.swift in Sources */,
 				201FD1962147A91800CF374B /* Segment.swift in Sources */,
 				201F520521ADF02800BF930B /* DefaultSegnifyDataSourceDelegate.swift in Sources */,

@@ -29,8 +29,8 @@ open class PageViewController: UIViewController {
     /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
-        segnify.eventsDelegate = self
         segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
+        segnify.segnifyEventsDelegate = self
         return segnify
     }()
     
@@ -52,8 +52,12 @@ open class PageViewController: UIViewController {
         }
     }
     
-    /// The delegate object of `PageViewControllerEventsProtocol` will be notified of certain `UIPageViewController` actions.
-    public var eventsDelegate: PageViewControllerEventsProtocol?
+    /// The delegate object of `EventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
+    public var eventsDelegate: EventsProtocol? {
+        didSet {
+            segnify.eventsDelegate = eventsDelegate
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -179,25 +183,29 @@ extension PageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController, viewControllerBefore: viewController)
-        
         // One step back.
         let previousIndex = currentIndex - 1
         
+        var viewControllerToReturn: UIViewController? = nil
         if previousIndex >= 0 {
             // Just return the previous view controller.
-            return contentElements[previousIndex].viewController
+            viewControllerToReturn = contentElements[previousIndex].viewController
         }
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
             // Show the last page.
-            return contentElements.last!.viewController
+            viewControllerToReturn = contentElements.last!.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
-            return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           requested: viewControllerToReturn,
+                                           before: viewController)
+        
+        return viewControllerToReturn
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController,
@@ -212,26 +220,30 @@ extension PageViewController: UIPageViewControllerDataSource {
             return nil
         }
         
-        // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController, viewControllerAfter: viewController)
-        
         // One step forward.
         let nextIndex = currentIndex + 1
         
+        var viewControllerToReturn: UIViewController? = nil
         if nextIndex < contentElements.count {
             // Just return the next view controller.
-            return contentElements[nextIndex].viewController
+            viewControllerToReturn = contentElements[nextIndex].viewController
         }
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `nextIndex` exceeds the number of available view controllers,
             // the user wants to scroll forwards from the last page.
             // Show the first page.
-            return contentElements.first!.viewController
+            viewControllerToReturn = contentElements.first!.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
-            return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           requested: viewControllerToReturn,
+                                           after: viewController)
+        
+        return viewControllerToReturn
     }
 }
 
