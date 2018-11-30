@@ -54,21 +54,21 @@ public protocol EventsProtocol {
 
 extension EventsProtocol {
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            requested viewController: UIViewController?,
-                            before previousViewController: UIViewController) {}
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   requested viewController: UIViewController?,
+                                   before previousViewController: UIViewController) {}
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            requested viewController: UIViewController?,
-                            after previousViewController: UIViewController) {}
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   requested viewController: UIViewController?,
+                                   after previousViewController: UIViewController) {}
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            willTransitionTo pendingViewControllers: [UIViewController]) {}
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   willTransitionTo pendingViewControllers: [UIViewController]) {}
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            didFinishAnimating finished: Bool,
-                            previousViewControllers: [UIViewController],
-                            transitionCompleted completed: Bool) {}
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   didFinishAnimating finished: Bool,
+                                   previousViewControllers: [UIViewController],
+                                   transitionCompleted completed: Bool) {}
     
-    func segnify(_ segnify: Segnify, receivedTouchInsideSegmentWith index: Int) {}
+    public func segnify(_ segnify: Segnify, receivedTouchInsideSegmentWith index: Int) {}
 }
