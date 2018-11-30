@@ -3,10 +3,18 @@ All notable changes to this project will be documented in this file.
 `Segnify` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
-- `1.1.x` Releases - [1.1.0](#110)
+- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+## [1.1.1](https://github.com/nedap/Segnify/releases/tag/1.1.1)
+Released on 2018-11-30.
+
+#### Added
+
+- Added `EventsProtocol`.
+  - Added by [Bart Hopster](https://github.com/barthopster).
+
 ## [1.1.0](https://github.com/nedap/Segnify/releases/tag/1.1.0)
 Released on 2018-11-28.
 
