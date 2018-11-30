@@ -52,6 +52,9 @@ open class PageViewController: UIViewController {
         }
     }
     
+    /// The delegate object of `PageViewControllerEventsProtocol` will be notified of certain `UIPageViewController` actions.
+    public var eventsDelegate: PageViewControllerEventsProtocol?
+    
     // MARK: - Lifecycle
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -164,7 +167,8 @@ extension PageViewController: SegnifyEventsProtocol {
 
 extension PageViewController: UIPageViewControllerDataSource {
     
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerBefore viewController: UIViewController) -> UIViewController? {
         // We need content elements.
         guard let contentElements = dataSource?.contentElements else {
             return nil
@@ -174,6 +178,9 @@ extension PageViewController: UIPageViewControllerDataSource {
         guard let currentIndex = firstIndexOf(viewController) else {
             return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController, viewControllerBefore: viewController)
         
         // One step back.
         let previousIndex = currentIndex - 1
@@ -193,7 +200,8 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
     }
     
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerAfter viewController: UIViewController) -> UIViewController? {
         // We need content elements.
         guard let contentElements = dataSource?.contentElements else {
             return nil
@@ -203,6 +211,9 @@ extension PageViewController: UIPageViewControllerDataSource {
         guard let currentIndex = firstIndexOf(viewController) else {
             return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController, viewControllerAfter: viewController)
         
         // One step forward.
         let nextIndex = currentIndex + 1
@@ -229,6 +240,12 @@ extension PageViewController: UIPageViewControllerDataSource {
 extension PageViewController: UIPageViewControllerDelegate {
     
     public func pageViewController(_ pageViewController: UIPageViewController,
+                                   willTransitionTo pendingViewControllers: [UIViewController]) {
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
+    }
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
                                    didFinishAnimating finished: Bool,
                                    previousViewControllers: [UIViewController],
                                    transitionCompleted completed: Bool) {
@@ -236,6 +253,12 @@ extension PageViewController: UIPageViewControllerDelegate {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           didFinishAnimating: finished,
+                                           previousViewControllers: previousViewControllers,
+                                           transitionCompleted: completed)
         
         if let indexOfCurrentViewController = firstIndexOf(currentViewController) {
             // Switch segment.
