@@ -35,3 +35,23 @@ public protocol PageViewControllerEventsProtocol {
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool)
 }
+
+// MARK: - Defaults
+
+extension PageViewControllerEventsProtocol {
+    
+    // MARK: - UIPageViewControllerDataSource
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) {}
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) {}
+    
+    // MARK: - UIPageViewControllerDelegate
+    
+    public func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {}
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   didFinishAnimating finished: Bool,
+                                   previousViewControllers: [UIViewController],
+                                   transitionCompleted completed: Bool) {}
+}
