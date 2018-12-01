@@ -38,7 +38,7 @@ public protocol EventsProtocol {
     
     /// Sent when a gesture-initiated transition ends. The 'finished' parameter indicates whether the animation finished,
     /// while the 'completed' parameter indicates whether the transition completed or bailed out (if the user lets go early).
-    ///  Identical to the `UIPageViewControllerDataSource` protocol method.
+    /// Identical to the `UIPageViewControllerDataSource` protocol method.
     func pageViewController(_ pageViewController: UIPageViewController,
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
