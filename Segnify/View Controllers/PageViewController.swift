@@ -13,12 +13,23 @@ open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
+    /// Maintains the height of the `bannerView`.
+    private var bannerViewHeightConstraint: NSLayoutConstraint?
+    
     /// Maintains the height of the `Segnify` instance.
     private var segnifyHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Public variables
     
-    /// A `UIPageViewController` instance will shown the main content, below the `Segnify` instance.
+    /// The `bannerView`, which is just a `UIView` instance, will be shown in between
+    /// the `Segnify` instance and the `PageViewController` instance.
+    public private(set) var bannerView: UIView = {
+        let bannerView = UIView()
+        bannerView.backgroundColor = .clear
+        return bannerView
+    }()
+    
+    /// A `UIPageViewController` instance will show the main content, below the `bannerView`.
     public lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
@@ -26,13 +37,15 @@ open class PageViewController: UIViewController {
         return pageViewController
     }()
     
-    /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
+    /// A `Segnify` instance will be shown above the `bannerView`, showing all `Segment` instances.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
         segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
         segnify.segnifyEventsDelegate = self
         return segnify
     }()
+    
+    // MARK: - Delegates
     
     /// The delegate object of `SegnifyDataSourceProtocol` specifies the content for the `Segnify` instance and this `PageViewController` instance.
     public private(set) var dataSource: SegnifyDataSourceProtocol?
@@ -126,6 +139,18 @@ open class PageViewController: UIViewController {
             segnifyHeightConstraint!
             ], for: segnify)
         
+        // Load up the banner view.
+        view.addSubview(bannerView)
+        
+        // Give it some Auto Layout constraints.
+        bannerViewHeightConstraint = bannerView.heightAnchor.constraint(equalToConstant: delegate?.bannerViewHeight ?? 0.0)
+        NSLayoutConstraint.activate([
+            bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bannerView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
+            bannerViewHeightConstraint!
+            ], for: bannerView)
+        
         // Add the page view controller.
         if let pageView = pageViewController.view {
             addChild(pageViewController)
@@ -136,7 +161,7 @@ open class PageViewController: UIViewController {
             NSLayoutConstraint.activate([
                 pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                pageView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
+                pageView.topAnchor.constraint(equalTo: bannerView.bottomAnchor),
                 pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
                 ], for: pageView)
         }
