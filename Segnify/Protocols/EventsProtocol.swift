@@ -54,21 +54,26 @@ public protocol EventsProtocol {
 
 extension EventsProtocol {
     
+    /// Provide a default implementation.
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    requested viewController: UIViewController?,
                                    before previousViewController: UIViewController) {}
     
+    /// Provide a default implementation.
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    requested viewController: UIViewController?,
                                    after previousViewController: UIViewController) {}
     
+    /// Provide a default implementation.
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    willTransitionTo pendingViewControllers: [UIViewController]) {}
     
+    /// Provide a default implementation.
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    didFinishAnimating finished: Bool,
                                    previousViewControllers: [UIViewController],
                                    transitionCompleted completed: Bool) {}
     
+    /// Provide a default implementation.
     public func segnify(_ segnify: Segnify, receivedTouchInside segment: Segment) {}
 }

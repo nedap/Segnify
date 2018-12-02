@@ -25,7 +25,7 @@ public protocol ImageSegmentProtocol: SegmentProtocol {
 
 extension ImageSegmentProtocol {
     
-    /// Provide a default value.
+    /// Provide a default implementation.
     public func isAdjustingImage(for state: UIControl.State) -> Bool {
         return false
     }
