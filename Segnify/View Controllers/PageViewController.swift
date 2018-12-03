@@ -55,6 +55,9 @@ open class PageViewController: UIViewController {
                 view.backgroundColor = delegate.backgroundColor
                 
                 // Banner view.
+                for subview in bannerView.subviews {
+                    subview.removeFromSuperview()
+                }
                 delegate.bannerViewClosure(bannerView)
                 
                 // Update the height constraint ...
