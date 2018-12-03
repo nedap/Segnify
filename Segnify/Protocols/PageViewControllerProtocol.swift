@@ -38,6 +38,8 @@ extension PageViewControllerProtocol {
             let blankView = UIView()
             blankView.backgroundColor = .clear
             
+            // Add as subview and add Auto Layout constraints.
+            superview.addSubview(blankView)
             NSLayoutConstraint.activate([
                 blankView.topAnchor.constraint(equalTo: superview.topAnchor),
                 blankView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
