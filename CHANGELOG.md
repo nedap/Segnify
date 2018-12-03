@@ -12,6 +12,7 @@ Released on 2018-11-30.
 
 #### Added
 
+- Added `BannerViewClosure`, for adding one or more subviews to the `bannerView` instance of `PageViewController`.
 - Added `EventsProtocol`.
   - Added by [Bart Hopster](https://github.com/barthopster).
 
