@@ -22,9 +22,6 @@ public protocol PageViewControllerProtocol {
     /// Add one or more subviews to the `bannerView` instance of `PageViewController`.
     var bannerViewClosure: BannerViewClosure { get }
     
-    /// Specifies the height of the `bannerView` instance.
-    var bannerViewHeight: CGFloat { get }
-    
     /// Specifies the height of the `Segnify` component in `PageViewController`.
     /// The height will be realised using Auto Layout constraints.
     var segnifyHeight: CGFloat { get }
@@ -37,10 +34,5 @@ extension PageViewControllerProtocol {
     /// Provide a default value.
     public var bannerViewClosure: BannerViewClosure {
         return { _ in }
-    }
-    
-    /// Provide a default value.
-    public var bannerViewHeight: CGFloat {
-        return 0.0
     }
 }

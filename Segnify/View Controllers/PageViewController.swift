@@ -54,8 +54,18 @@ open class PageViewController: UIViewController {
     public var delegate: PageViewControllerProtocol? {
         didSet {
             if let delegate = delegate {
-                // Set the background color.
+                // Background color.
                 view.backgroundColor = delegate.backgroundColor
+                
+                // Banner view.
+                delegate.bannerViewClosure(bannerView)
+                
+                // Deactivate the banner view's height constraint.
+                // It's up to the user's `bannerViewClosure` to prevent Auto Layout warnings.
+                if let bannerViewHeightConstraint = bannerViewHeightConstraint {
+                    NSLayoutConstraint.deactivate([bannerViewHeightConstraint])
+                    self.bannerViewHeightConstraint = nil
+                }
                 
                 // Update the height constraint ...
                 segnifyHeightConstraint?.constant = delegate.segnifyHeight
@@ -143,7 +153,7 @@ open class PageViewController: UIViewController {
         view.addSubview(bannerView)
         
         // Give it some Auto Layout constraints.
-        bannerViewHeightConstraint = bannerView.heightAnchor.constraint(equalToConstant: delegate?.bannerViewHeight ?? 0.0)
+        bannerViewHeightConstraint = bannerView.heightAnchor.constraint(equalToConstant: 0.0)
         NSLayoutConstraint.activate([
             bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
