@@ -8,9 +8,9 @@
 
 import UIKit
 
-/// A closure for adding one or more subviews to the `bannerView` instance of `PageViewController`
-/// and adding Auto Layout constraints to them.
-public typealias BannerViewClosure = () -> ()
+/// A closure with a reference to a `bannerView`, a `UIView` instance, for adding one or more subviews
+/// to that `bannerView` instance of `PageViewController` and adding Auto Layout constraints to them.
+public typealias BannerViewClosure = (UIView) -> ()
 
 /// Configure a `PageViewController` instance by implementing this protocol.
 /// The background color of the view and the height of its `Segnify` instance can be configured.
@@ -36,7 +36,7 @@ extension PageViewControllerProtocol {
     
     /// Provide a default value.
     public var bannerViewClosure: BannerViewClosure {
-        return {}
+        return { _ in }
     }
     
     /// Provide a default value.
