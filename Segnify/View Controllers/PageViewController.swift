@@ -13,9 +13,6 @@ open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
-    /// Maintains the height of the `bannerView`.
-    private var bannerViewHeightConstraint: NSLayoutConstraint?
-    
     /// Maintains the height of the `Segnify` instance.
     private var segnifyHeightConstraint: NSLayoutConstraint?
     
@@ -59,13 +56,6 @@ open class PageViewController: UIViewController {
                 
                 // Banner view.
                 delegate.bannerViewClosure(bannerView)
-                
-                // Deactivate the banner view's height constraint.
-                // It's up to the user's `bannerViewClosure` to prevent Auto Layout warnings.
-                if let bannerViewHeightConstraint = bannerViewHeightConstraint {
-                    NSLayoutConstraint.deactivate([bannerViewHeightConstraint])
-                    self.bannerViewHeightConstraint = nil
-                }
                 
                 // Update the height constraint ...
                 segnifyHeightConstraint?.constant = delegate.segnifyHeight
@@ -153,12 +143,10 @@ open class PageViewController: UIViewController {
         view.addSubview(bannerView)
         
         // Give it some Auto Layout constraints.
-        bannerViewHeightConstraint = bannerView.heightAnchor.constraint(equalToConstant: 0.0)
         NSLayoutConstraint.activate([
             bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bannerView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
-            bannerViewHeightConstraint!
             ], for: bannerView)
         
         // Add the page view controller.
