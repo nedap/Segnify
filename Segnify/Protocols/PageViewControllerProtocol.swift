@@ -33,20 +33,6 @@ extension PageViewControllerProtocol {
     
     /// Provide a default value.
     public var bannerViewClosure: BannerViewClosure {
-        return { superview in
-            // Create a blank view with a height of 0.0.
-            let blankView = UIView()
-            blankView.backgroundColor = .clear
-            
-            // Add as subview and add Auto Layout constraints.
-            superview.addSubview(blankView)
-            NSLayoutConstraint.activate([
-                blankView.topAnchor.constraint(equalTo: superview.topAnchor),
-                blankView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-                blankView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
-                blankView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
-                blankView.heightAnchor.constraint(equalToConstant: 0.0)
-                ], for: blankView)
-        }
+        return { _ in }
     }
 }
