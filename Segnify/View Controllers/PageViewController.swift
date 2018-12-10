@@ -37,8 +37,8 @@ open class PageViewController: UIViewController {
     /// A `Segnify` instance will be shown above the `bannerView`, showing all `Segment` instances.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
+        segnify.eventsDelegate = self
         segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
-        segnify.segnifyEventsDelegate = self
         return segnify
     }()
     
@@ -68,10 +68,10 @@ open class PageViewController: UIViewController {
         }
     }
     
-    /// The delegate object of `EventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
-    public var eventsDelegate: EventsProtocol? {
+    /// The delegate object of `ForwardedEventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
+    public var forwardedEventsDelegate: ForwardedEventsProtocol? {
         didSet {
-            segnify.eventsDelegate = eventsDelegate
+            segnify.forwardedEventsDelegate = forwardedEventsDelegate
         }
     }
     
@@ -227,9 +227,9 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           requested: viewControllerToReturn,
-                                           before: viewController)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    requested: viewControllerToReturn,
+                                                    before: viewController)
         
         return viewControllerToReturn
     }
@@ -265,9 +265,9 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           requested: viewControllerToReturn,
-                                           after: viewController)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    requested: viewControllerToReturn,
+                                                    after: viewController)
         
         return viewControllerToReturn
     }
@@ -280,7 +280,7 @@ extension PageViewController: UIPageViewControllerDelegate {
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    willTransitionTo pendingViewControllers: [UIViewController]) {
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
+        forwardedEventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController,
@@ -293,10 +293,10 @@ extension PageViewController: UIPageViewControllerDelegate {
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           didFinishAnimating: finished,
-                                           previousViewControllers: previousViewControllers,
-                                           transitionCompleted: completed)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    didFinishAnimating: finished,
+                                                    previousViewControllers: previousViewControllers,
+                                                    transitionCompleted: completed)
         
         if let indexOfCurrentViewController = firstIndexOf(currentViewController) {
             // Switch segment.

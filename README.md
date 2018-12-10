@@ -189,9 +189,9 @@ Take a look at the [Segnified](https://github.com/nedap/Segnify/blob/master/Segn
 
 For customization purposes, which you'd likely need, implement one or more of the following protocols.
 
-### EventsProtocol
+### ForwardedEventsProtocol
 
-Implement `EventsProtocol` for the ability to be informed about several events, caused by either the `Segnify` instance or the `UIPageViewController` instance:
+Implement `ForwardedEventsProtocol ` for the ability to be informed about several events, caused by either the `Segnify` instance or the `UIPageViewController` instance:
 
 - Getting the view controller before the currently displayed one
 - Getting the view controller after the currently displayed one

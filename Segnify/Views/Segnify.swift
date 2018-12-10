@@ -52,7 +52,12 @@ open class Segnify: UIView {
         return stackView
     }()
     
-    // MARK: - Delegates
+    // MARK: - Internal delegates
+    
+    /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    internal var eventsDelegate: SegnifyEventsProtocol?
+    
+    // MARK: - Public delegates
     
     /// The `SegnifyDataSourceProtocol` implementing delegate will define the titles for the `Segment` instances of `Segnify`.
     public var dataSource: SegnifyDataSourceProtocol?
@@ -72,11 +77,8 @@ open class Segnify: UIView {
         }
     }
     
-    /// The `EventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var eventsDelegate: EventsProtocol?
-    
-    /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var segnifyEventsDelegate: SegnifyEventsProtocol?
+    /// The `ForwardedEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    public var forwardedEventsDelegate: ForwardedEventsProtocol?
     
     // MARK: - Segnicator
     
@@ -153,7 +155,7 @@ open class Segnify: UIView {
                        eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
-        self.segnifyEventsDelegate = eventsDelegate
+        self.eventsDelegate = eventsDelegate
         
         setupSubviews()
         setupAutoLayoutConstraints()
@@ -319,11 +321,11 @@ extension Segnify {
             currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment)!
             
             // Notify the events delegates.
-            segnifyEventsDelegate?.didSelect(segment: selectedSegment,
-                                             of: self,
-                                             previousIndex: previousIndex,
-                                             currentIndex: currentIndex)
-            eventsDelegate?.segnify(self, receivedTouchInside: selectedSegment)
+            eventsDelegate?.didSelect(segment: selectedSegment,
+                                      of: self,
+                                      previousIndex: previousIndex,
+                                      currentIndex: currentIndex)
+            forwardedEventsDelegate?.segnify(self, receivedTouchInside: selectedSegment)
         }
     }
 }
