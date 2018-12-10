@@ -312,16 +312,19 @@ extension Segnify {
         
         // The segment wants to be selected.
         handleSegmentSelection(with: segment)
-
-        // Set the current index.
-        currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!
         
-        // Notify the events delegates.
-        segnifyEventsDelegate?.didSelect(segment: selectedSegment!,
-                                  of: self,
-                                  previousIndex: previousIndex,
-                                  currentIndex: currentIndex)
-        eventsDelegate?.segnify(self, receivedTouchInside: selectedSegment!)
+        // Sanity check.
+        if let selectedSegment = selectedSegment {
+            // Set the current index.
+            currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment)!
+            
+            // Notify the events delegates.
+            segnifyEventsDelegate?.didSelect(segment: selectedSegment,
+                                             of: self,
+                                             previousIndex: previousIndex,
+                                             currentIndex: currentIndex)
+            eventsDelegate?.segnify(self, receivedTouchInside: selectedSegment)
+        }
     }
 }
 

@@ -220,7 +220,7 @@ extension PageViewController: UIPageViewControllerDataSource {
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
             // Show the last page.
-            viewControllerToReturn = contentElements.last!.viewController
+            viewControllerToReturn = contentElements.last?.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
@@ -258,7 +258,7 @@ extension PageViewController: UIPageViewControllerDataSource {
             // When `nextIndex` exceeds the number of available view controllers,
             // the user wants to scroll forwards from the last page.
             // Show the first page.
-            viewControllerToReturn = contentElements.first!.viewController
+            viewControllerToReturn = contentElements.first?.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
