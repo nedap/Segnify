@@ -13,20 +13,15 @@ open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
+    /// References the footer view below the `Segnify` instance.
+    private var footerView: UIView?
+    
     /// Maintains the height of the `Segnify` instance.
     private var segnifyHeightConstraint: NSLayoutConstraint?
     
     // MARK: - Public variables
     
-    /// The `bannerView`, which is just a `UIView` instance, will be shown in between
-    /// the `Segnify` instance and the `PageViewController` instance.
-    public private(set) var bannerView: UIView = {
-        let bannerView = UIView()
-        bannerView.backgroundColor = .clear
-        return bannerView
-    }()
-    
-    /// A `UIPageViewController` instance will show the main content, below the `bannerView`.
+    /// A `UIPageViewController` instance will show the main content, below the `Segnify` instance and, optionally, its footer view.
     public lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
@@ -34,7 +29,7 @@ open class PageViewController: UIViewController {
         return pageViewController
     }()
     
-    /// A `Segnify` instance will be shown above the `bannerView`, showing all `Segment` instances.
+    /// A `Segnify` instance will be shown above the `Segnify` instance and, optionally, its footer view.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
         segnify.eventsDelegate = self
@@ -54,11 +49,25 @@ open class PageViewController: UIViewController {
                 // Background color.
                 view.backgroundColor = delegate.backgroundColor
                 
-                // Banner view.
-                for subview in bannerView.subviews {
-                    subview.removeFromSuperview()
+                // Delete the current footer view.
+                if let footerView = footerView {
+                    footerView.removeFromSuperview()
                 }
-                delegate.bannerViewClosure(bannerView)
+                
+                // Add the new footer view.
+                footerView = delegate.footerView
+                view.addSubview(footerView!)
+                
+                // Add constraints.
+                if let pageView = pageViewController.view {
+                    NSLayoutConstraint.activate([
+                        footerView!.topAnchor.constraint(equalTo: segnify.bottomAnchor),
+                        footerView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                        footerView!.bottomAnchor.constraint(equalTo: pageView.topAnchor),
+                        footerView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                        footerView!.heightAnchor.constraint(equalToConstant: delegate.footerViewHeight)
+                        ], for: footerView!)
+                }
                 
                 // Update the height constraint ...
                 segnifyHeightConstraint?.constant = delegate.segnifyHeight
@@ -142,16 +151,6 @@ open class PageViewController: UIViewController {
             segnifyHeightConstraint!
             ], for: segnify)
         
-        // Load up the banner view.
-        view.addSubview(bannerView)
-        
-        // Give it some Auto Layout constraints.
-        NSLayoutConstraint.activate([
-            bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bannerView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
-            ], for: bannerView)
-        
         // Add the page view controller.
         if let pageView = pageViewController.view {
             addChild(pageViewController)
@@ -162,7 +161,6 @@ open class PageViewController: UIViewController {
             NSLayoutConstraint.activate([
                 pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                pageView.topAnchor.constraint(equalTo: bannerView.bottomAnchor),
                 pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
                 ], for: pageView)
         }

@@ -15,36 +15,29 @@ struct PageViewControllerDelegate: PageViewControllerProtocol {
     
     var backgroundColor: UIColor = .white
     
-    var bannerViewClosure: BannerViewClosure {
-        return { superview in
-            // Create a banner view ...
-            let bannerView = UIView()
-            bannerView.backgroundColor = .lightGray
-            
-            // ... with a text label.
-            let textLabel = UILabel()
-            textLabel.text = "Gorgeous banner view!"
-            textLabel.textAlignment = .center
-            
-            // Add them as subviews and add Auto Layout constraints.
-            bannerView.addSubview(textLabel)
-            NSLayoutConstraint.activate([
-                textLabel.topAnchor.constraint(equalTo: bannerView.topAnchor),
-                textLabel.leadingAnchor.constraint(equalTo: bannerView.leadingAnchor),
-                textLabel.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor),
-                textLabel.trailingAnchor.constraint(equalTo: bannerView.trailingAnchor),
-                ], for: textLabel)
-            
-            superview.addSubview(bannerView)
-            NSLayoutConstraint.activate([
-                bannerView.topAnchor.constraint(equalTo: superview.topAnchor),
-                bannerView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-                bannerView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
-                bannerView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
-                bannerView.heightAnchor.constraint(equalToConstant: 35.0)
-                ], for: bannerView)
-        }
+    var footerView: UIView {
+        // Create a footer view ...
+        let footerView = UIView()
+        footerView.backgroundColor = .lightGray
+        
+        // ... with a text label.
+        let textLabel = UILabel()
+        textLabel.text = "Gorgeous banner view!"
+        textLabel.textAlignment = .center
+        
+        // Add them as subviews and add Auto Layout constraints.
+        footerView.addSubview(textLabel)
+        NSLayoutConstraint.activate([
+            textLabel.topAnchor.constraint(equalTo: footerView.topAnchor),
+            textLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
+            textLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor),
+            textLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
+            ], for: textLabel)
+        
+        return footerView
     }
+    
+    var footerViewHeight: CGFloat = 44.0
     
     var segnifyHeight: CGFloat = 100.0
 }

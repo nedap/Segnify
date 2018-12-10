@@ -8,19 +8,19 @@
 
 import UIKit
 
-/// A closure with a reference to a `bannerView`, a `UIView` instance, for adding one or more subviews
-/// to that `bannerView` instance of `PageViewController` and adding Auto Layout constraints to them.
-public typealias BannerViewClosure = (UIView) -> ()
-
 /// Configure a `PageViewController` instance by implementing this protocol.
 /// The background color of the view and the height of its `Segnify` instance can be configured.
+/// A footer view can be configured as well.
 public protocol PageViewControllerProtocol {
     
     /// Specifies the background color of the main view.
     var backgroundColor: UIColor { get }
     
-    /// Add one or more subviews to the `bannerView` instance of `PageViewController`.
-    var bannerViewClosure: BannerViewClosure { get }
+    /// Specifies an optional footer view below the `Segnify` instance.
+    var footerView: UIView { get }
+    
+    /// Specifies the height of the footer view below the `Segnify` instance.
+    var footerViewHeight: CGFloat { get }
     
     /// Specifies the height of the `Segnify` component in `PageViewController`.
     /// The height will be realised using Auto Layout constraints.
@@ -32,7 +32,11 @@ public protocol PageViewControllerProtocol {
 extension PageViewControllerProtocol {
     
     /// Provide a default value.
-    public var bannerViewClosure: BannerViewClosure {
-        return { _ in }
+    public var footerView: UIView {
+        return UIView()
+    }
+    
+    public var footerViewHeight: CGFloat {
+        return 0.0
     }
 }
