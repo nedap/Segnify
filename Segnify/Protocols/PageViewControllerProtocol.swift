@@ -17,5 +17,7 @@ public protocol PageViewControllerProtocol {
     
     /// Specifies the height of the `Segnify` component in `PageViewController`.
     /// The height will be realised using Auto Layout constraints.
+    ///
+    /// Please note that this property specifies the height of the `Segnify` component including its footer view.
     var segnifyHeight: CGFloat { get }
 }
