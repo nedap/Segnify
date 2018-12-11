@@ -13,33 +13,24 @@ struct SegnicatorDelegate: SegnicatorProtocol {
     
     // MARK: - Delegate
     
-    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
-        return { segnicator in
-            // Create a white, half-transparent background view.
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .init(white: 1.0, alpha: 0.4)
-            
-            // Add it to the segnicator and give it the correct layout.
-            segnicator.addSubview(backgroundView)
-            NSLayoutConstraint.activate([
-                backgroundView.topAnchor.constraint(equalTo: segnicator.topAnchor),
-                backgroundView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
-                backgroundView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
-                backgroundView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor)
-                ], for: backgroundView)
-            
-            // Create a white, horizontal indicator view.
-            let whiteIndicatorView = UIView()
-            whiteIndicatorView.backgroundColor = .white
-            
-            // Add it to the segnicator and give it the correct layout.
-            segnicator.addSubview(whiteIndicatorView)
-            NSLayoutConstraint.activate([
-                whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
-                whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
-                whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
-                whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-                ], for: whiteIndicatorView)
-        }
+    var segnicatorView: UIView {
+        // Create a white, half-transparent background view.
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .init(white: 1.0, alpha: 0.4)
+        
+        // Create a white, horizontal indicator view.
+        let whiteIndicatorView = UIView()
+        whiteIndicatorView.backgroundColor = .white
+        
+        // Add it to the segnicator and give it the correct layout.
+        backgroundView.addSubview(whiteIndicatorView)
+        NSLayoutConstraint.activate([
+            whiteIndicatorView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            whiteIndicatorView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            whiteIndicatorView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
+            ], for: whiteIndicatorView)
+        
+        return backgroundView
     }
 }

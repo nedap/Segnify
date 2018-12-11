@@ -11,20 +11,24 @@ public struct DefaultSegnicatorDelegate: SegnicatorProtocol {
 
     // MARK: - Delegate
     
-    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
-        return { segnicator in
-            // Create a white, horizontal indicator view.
-            let whiteIndicatorView = UIView()
-            whiteIndicatorView.backgroundColor = .white
-            
-            // Add it to the segnicator and give it the correct layout.
-            segnicator.addSubview(whiteIndicatorView)
-            NSLayoutConstraint.activate([
-                whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
-                whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
-                whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
-                whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-                ], for: whiteIndicatorView)
-        }
+    public var segnicatorView: UIView {
+        // Create a white, half-transparent background view.
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        
+        // Create a white, horizontal indicator view.
+        let whiteIndicatorView = UIView()
+        whiteIndicatorView.backgroundColor = .white
+        
+        // Add it to the segnicator and give it the correct layout.
+        backgroundView.addSubview(whiteIndicatorView)
+        NSLayoutConstraint.activate([
+            whiteIndicatorView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            whiteIndicatorView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            whiteIndicatorView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
+            ], for: whiteIndicatorView)
+        
+        return backgroundView
     }
 }

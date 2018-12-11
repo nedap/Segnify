@@ -18,7 +18,15 @@ open class Segnicator: UIView {
         didSet {
             if let configuration = configuration {
                 // Apply the segnicator configuration.
-                configuration.segnicatorSubviewsClosure(self)
+                let segnicatorView = configuration.segnicatorView
+                addSubview(segnicatorView)
+                // Apply Auto Layout constraints.
+                NSLayoutConstraint.activate([
+                    segnicatorView.topAnchor.constraint(equalTo: topAnchor),
+                    segnicatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                    segnicatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                    segnicatorView.trailingAnchor.constraint(equalTo: trailingAnchor)
+                    ], for: segnicatorView)
             }
         }
     }

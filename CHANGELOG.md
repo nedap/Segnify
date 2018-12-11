@@ -8,13 +8,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 ## [1.1.1](https://github.com/nedap/Segnify/releases/tag/1.1.1)
-Released on 2018-11-30.
+Released on 2018-12-XX.
 
 #### Added
 
-- Added `ForwardedEventsProtocol`.
-- Added support for a footer view below `Segnify`.
+- Added `ForwardedEventsProtocol` ([#8](https://github.com/nedap/Segnify/issues/8))
+- Added support for a [banner view](https://github.com/nedap/Segnify/issues/11).
   - Added by [Bart Hopster](https://github.com/barthopster).
+
+#### Updated
+
+- Extended the ['UIPageViewController' protocol implementations](https://github.com/nedap/Segnify/issues/8).
+	- Added by [Bart Hopster](https://github.com/barthopster).
 
 ## [1.1.0](https://github.com/nedap/Segnify/releases/tag/1.1.0)
 Released on 2018-11-28.
@@ -27,7 +32,7 @@ Released on 2018-11-28.
 - Added `SegnifyEventsProtocol`. The delegate which implements this protocol will be notified about `Segment` selection changes of `Segnify`.
 - Added `DefaultDelegates`, which offers a default implementation of almost all protocols.
 - Added the example app `Segnified` inside the Xcode project, next to the `Segnify` framework, for improved development and testing processes.
-- Added support for infinite scrolling.
+- Added support for [infinite scrolling](https://github.com/nedap/Segnify/issues/3).
   - Added by [Bart Hopster](https://github.com/barthopster).
 
 #### Removed
