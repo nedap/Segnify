@@ -189,6 +189,17 @@ Take a look at the [Segnified](https://github.com/nedap/Segnify/blob/master/Segn
 
 For customization purposes, which you'd likely need, implement one or more of the following protocols.
 
+### EventsProtocol
+
+Implement `EventsProtocol` for the ability to be informed about several events, caused by either the `Segnify` instance or the `UIPageViewController` instance:
+
+- Getting the view controller before the currently displayed one
+- Getting the view controller after the currently displayed one
+- Gesture-initiated transition triggers
+- Segment selection trigger
+
+The protocol partly relies on the `UIPageViewControllerDataSource` and `UIPageViewControllerDelegate` protocols. All protocol methods are optional.
+
 #### ImageSegmentProtocol
 
 Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implementation in [DefaultImageSegmentDelegate](Segnify/Protocols/Defaults/DefaultImageSegmentDelegate.swift) is being shown.
@@ -354,7 +365,6 @@ public struct DefaultTextSegmentDelegate: TextSegmentProtocol {
     }
 }
 ```
-Note that `segmentBackgroundColor(for:)` is already implemented for `ImageSegmentProtocol`.
 
 ## License
 

@@ -29,8 +29,8 @@ open class PageViewController: UIViewController {
     /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
-        segnify.eventsDelegate = self
         segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
+        segnify.segnifyEventsDelegate = self
         return segnify
     }()
     
@@ -49,6 +49,13 @@ open class PageViewController: UIViewController {
                 // ... and trigger a layout update.
                 view.setNeedsLayout()
             }
+        }
+    }
+    
+    /// The delegate object of `EventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
+    public var eventsDelegate: EventsProtocol? {
+        didSet {
+            segnify.eventsDelegate = eventsDelegate
         }
     }
     
@@ -164,7 +171,8 @@ extension PageViewController: SegnifyEventsProtocol {
 
 extension PageViewController: UIPageViewControllerDataSource {
     
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerBefore viewController: UIViewController) -> UIViewController? {
         // We need content elements.
         guard let contentElements = dataSource?.contentElements else {
             return nil
@@ -178,22 +186,30 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step back.
         let previousIndex = currentIndex - 1
         
+        var viewControllerToReturn: UIViewController? = nil
         if previousIndex >= 0 {
             // Just return the previous view controller.
-            return contentElements[previousIndex].viewController
+            viewControllerToReturn = contentElements[previousIndex].viewController
         }
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
             // Show the last page.
-            return contentElements.last!.viewController
+            viewControllerToReturn = contentElements.last!.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
-            return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           requested: viewControllerToReturn,
+                                           before: viewController)
+        
+        return viewControllerToReturn
     }
     
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   viewControllerAfter viewController: UIViewController) -> UIViewController? {
         // We need content elements.
         guard let contentElements = dataSource?.contentElements else {
             return nil
@@ -207,26 +223,39 @@ extension PageViewController: UIPageViewControllerDataSource {
         // One step forward.
         let nextIndex = currentIndex + 1
         
+        var viewControllerToReturn: UIViewController? = nil
         if nextIndex < contentElements.count {
             // Just return the next view controller.
-            return contentElements[nextIndex].viewController
+            viewControllerToReturn = contentElements[nextIndex].viewController
         }
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `nextIndex` exceeds the number of available view controllers,
             // the user wants to scroll forwards from the last page.
             // Show the first page.
-            return contentElements.first!.viewController
+            viewControllerToReturn = contentElements.first!.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
-            return nil
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           requested: viewControllerToReturn,
+                                           after: viewController)
+        
+        return viewControllerToReturn
     }
 }
 
 // MARK: - UIPageViewControllerDelegate
 
 extension PageViewController: UIPageViewControllerDelegate {
+    
+    public func pageViewController(_ pageViewController: UIPageViewController,
+                                   willTransitionTo pendingViewControllers: [UIViewController]) {
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
+    }
     
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    didFinishAnimating finished: Bool,
@@ -236,6 +265,12 @@ extension PageViewController: UIPageViewControllerDelegate {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return
         }
+        
+        // Notify our 'custom' delegate.
+        eventsDelegate?.pageViewController(pageViewController,
+                                           didFinishAnimating: finished,
+                                           previousViewControllers: previousViewControllers,
+                                           transitionCompleted: completed)
         
         if let indexOfCurrentViewController = firstIndexOf(currentViewController) {
             // Switch segment.
