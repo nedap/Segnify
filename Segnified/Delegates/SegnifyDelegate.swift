@@ -32,12 +32,11 @@ struct SegnifyDelegate: SegnifyProtocol {
             textLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
             textLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor),
             textLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
+            textLabel.heightAnchor.constraint(equalToConstant: 35.0)
             ], for: textLabel)
         
         return footerView
     }
-    
-    var footerViewHeight: CGFloat = 44.0
     
     var isEquallyFillingHorizontalSpace: Bool = false
     

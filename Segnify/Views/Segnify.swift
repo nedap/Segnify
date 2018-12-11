@@ -247,7 +247,6 @@ open class Segnify: UIView {
             currentFooterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             currentFooterView.bottomAnchor.constraint(equalTo: bottomAnchor),
             currentFooterView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            currentFooterView.heightAnchor.constraint(equalToConstant: delegate.footerViewHeight)
             ], for: currentFooterView)
     }
 }
