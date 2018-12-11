@@ -13,6 +13,9 @@ open class Segnify: UIView {
 
     // MARK: - Private variables
     
+    /// References the footer view below the `Segnify` instance.
+    private var footerView: UIView?
+    
     /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 0.0
     
@@ -73,6 +76,9 @@ open class Segnify: UIView {
                 if !delegate.isEquallyFillingHorizontalSpace {
                     segmentWidth = delegate.segmentWidth
                 }
+                
+                // Footer view.
+                setupFooterViewIfNeeded()
             }
         }
     }
@@ -159,6 +165,7 @@ open class Segnify: UIView {
         
         setupSubviews()
         setupAutoLayoutConstraints()
+        setupFooterViewIfNeeded()
     }
     
     private func calculateSegmentWidth(_ superview: UIView?) {
@@ -184,7 +191,6 @@ open class Segnify: UIView {
             NSLayoutConstraint.activate([
                 scrollView.topAnchor.constraint(equalTo: superview.topAnchor),
                 scrollView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
                 scrollView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
                 ], for: scrollView)
         }
@@ -203,6 +209,46 @@ open class Segnify: UIView {
                 stackViewWidthConstraint!
                 ], for: stackView)
         }
+    }
+    
+    private func setupFooterViewIfNeeded() {
+        // We need a delegate
+        guard let delegate = delegate else {
+            return
+        }
+        
+        // No need to add it again.
+        guard delegate.footerView.superview == nil else {
+            return
+        }
+        
+        // Delete the current footer view.
+        footerView?.removeFromSuperview()
+        
+        // Assign the new footer view.
+        footerView = delegate.footerView
+        
+        // Sanity check.
+        guard let currentFooterView = footerView else {
+            return
+        }
+        
+        // Footer view will be connected to the scroll view.
+        guard scrollView.superview != nil else {
+            return
+        }
+        
+        // Add the new footer view.
+        addSubview(currentFooterView)
+        
+        // Add constraints.
+        NSLayoutConstraint.activate([
+            currentFooterView.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            currentFooterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            currentFooterView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            currentFooterView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            currentFooterView.heightAnchor.constraint(equalToConstant: delegate.footerViewHeight)
+            ], for: currentFooterView)
     }
 }
 

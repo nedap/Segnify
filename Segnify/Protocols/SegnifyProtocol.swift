@@ -13,6 +13,12 @@ public protocol SegnifyProtocol {
     
     /// The background color of the main `Segnify` component.
     var backgroundColor: UIColor { get }
+    
+    /// Specifies an optional footer view below the `Segnify` instance.
+    var footerView: UIView { get }
+    
+    /// Specifies the height of the footer view below the `Segnify` instance.
+    var footerViewHeight: CGFloat { get }
 
     /// A Boolean value that determines whether bouncing always occurs when horizontal scrolling reaches the end of the scroll view.
     ///
@@ -40,6 +46,16 @@ public protocol SegnifyProtocol {
 // MARK: - Defaults
 
 extension SegnifyProtocol {
+    
+    /// Provide a default value.
+    public var footerView: UIView {
+        return UIView()
+    }
+    
+    /// Provide a default value.
+    public var footerViewHeight: CGFloat {
+        return 0.0
+    }
     
     /// Provide a default value.
     public var isBouncingHorizontally: Bool {

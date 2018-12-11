@@ -13,9 +13,6 @@ open class PageViewController: UIViewController {
     
     // MARK: - Private variables
     
-    /// References the footer view below the `Segnify` instance.
-    private var footerView: UIView?
-    
     /// Maintains the height of the `Segnify` instance.
     private var segnifyHeightConstraint: NSLayoutConstraint?
     
@@ -48,26 +45,6 @@ open class PageViewController: UIViewController {
             if let delegate = delegate {
                 // Background color.
                 view.backgroundColor = delegate.backgroundColor
-                
-                // Delete the current footer view.
-                if let footerView = footerView {
-                    footerView.removeFromSuperview()
-                }
-                
-                // Add the new footer view.
-                footerView = delegate.footerView
-                view.addSubview(footerView!)
-                
-                // Add constraints.
-                if let pageView = pageViewController.view {
-                    NSLayoutConstraint.activate([
-                        footerView!.topAnchor.constraint(equalTo: segnify.bottomAnchor),
-                        footerView!.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                        footerView!.bottomAnchor.constraint(equalTo: pageView.topAnchor),
-                        footerView!.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                        footerView!.heightAnchor.constraint(equalToConstant: delegate.footerViewHeight)
-                        ], for: footerView!)
-                }
                 
                 // Update the height constraint ...
                 segnifyHeightConstraint?.constant = delegate.segnifyHeight
@@ -145,9 +122,9 @@ open class PageViewController: UIViewController {
         // Give it some Auto Layout constraints.
         segnifyHeightConstraint = segnify.heightAnchor.constraint(equalToConstant: delegate?.segnifyHeight ?? 0.0)
         NSLayoutConstraint.activate([
+            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             segnifyHeightConstraint!
             ], for: segnify)
         
@@ -159,9 +136,10 @@ open class PageViewController: UIViewController {
             
             // Give it some Auto Layout constraints.
             NSLayoutConstraint.activate([
+                pageView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
                 pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
                 pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
                 ], for: pageView)
         }
     }
