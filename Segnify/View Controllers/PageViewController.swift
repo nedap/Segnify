@@ -11,11 +11,6 @@ import UIKit
 /// The `PageViewController` controls and maintains both `Segnify` and `PageViewController` instances.
 open class PageViewController: UIViewController {
     
-    // MARK: - Private variables
-    
-    /// Maintains the height of the `Segnify` instance.
-    private var segnifyHeightConstraint: NSLayoutConstraint?
-    
     // MARK: - Public variables
     
     /// A `UIPageViewController` instance will show the main content, below the `Segnify` instance and, optionally, its footer view.
@@ -46,8 +41,8 @@ open class PageViewController: UIViewController {
                 // Background color.
                 view.backgroundColor = delegate.backgroundColor
                 
-                // Update the height constraint ...
-                segnifyHeightConstraint?.constant = delegate.segnifyHeight
+                // Update the height ...
+                segnify.height = delegate.segnifyHeight
                 // ... and trigger a layout update.
                 view.setNeedsLayout()
             }
@@ -120,12 +115,10 @@ open class PageViewController: UIViewController {
         view.addSubview(segnify)
         
         // Give it some Auto Layout constraints.
-        segnifyHeightConstraint = segnify.heightAnchor.constraint(equalToConstant: delegate?.segnifyHeight ?? 0.0)
         NSLayoutConstraint.activate([
             segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            segnifyHeightConstraint!
             ], for: segnify)
         
         // Add the page view controller.

@@ -16,6 +16,10 @@ open class Segnify: UIView {
     /// References the footer view below the `Segnify` instance.
     private var footerView: UIView?
     
+    /// Maintains the actual height of the `scrollView` instance.
+    /// It specifies the height of the `Segnify` instance without bothering any footer view.
+    private var heightConstraint: NSLayoutConstraint?
+    
     /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 0.0
     
@@ -33,6 +37,29 @@ open class Segnify: UIView {
     private var stackViewWidthConstraint: NSLayoutConstraint?
     
     // MARK: - Public variables
+    
+    /// Maintains the height of the `Segnify` instance, without taking the footer view into account.
+    ///
+    /// When the `Segnify` instance has a height of X, and the footer view a height of Y,
+    /// the total height of the `Segnify` view will be X + Y.
+    public var height: CGFloat? {
+        didSet {
+            // Deactivate the old one.
+            if let heightConstraint = heightConstraint {
+                NSLayoutConstraint.deactivate([heightConstraint])
+            }
+            
+            // Set the new height (constraint).
+            if let height = height {
+                heightConstraint = scrollView.heightAnchor.constraint(equalToConstant: height)
+            }
+            
+            // Activate.
+            if let heightConstraint = heightConstraint {
+                NSLayoutConstraint.activate([heightConstraint], for: scrollView)
+            }
+        }
+    }
     
     /// The top level scroll view, which makes Segnify horizontally scroll.
     public private(set) lazy var scrollView: UIScrollView = {
@@ -165,7 +192,6 @@ open class Segnify: UIView {
         
         setupSubviews()
         setupAutoLayoutConstraints()
-        setupFooterViewIfNeeded()
     }
     
     private func calculateSegmentWidth(_ superview: UIView?) {
