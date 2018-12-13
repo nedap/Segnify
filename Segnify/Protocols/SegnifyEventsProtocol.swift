@@ -9,7 +9,7 @@
 import UIKit
 
 /// Get informed by `Segnify` events, i.e. segment selection, by implementing this protocol.
-public protocol SegnifyEventsProtocol {
+internal protocol SegnifyEventsProtocol {
 
     /// Inform the delegate about `Segment` selection changes.
     func didSelect(segment: Segment, of segnify: Segnify, previousIndex: Int?, currentIndex: Int)

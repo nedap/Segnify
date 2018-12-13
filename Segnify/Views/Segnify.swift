@@ -13,6 +13,13 @@ open class Segnify: UIView {
 
     // MARK: - Private variables
     
+    /// References the footer view below the `Segnify` instance.
+    private var footerView: UIView?
+    
+    /// Maintains the actual height of the `scrollView` instance.
+    /// It specifies the height of the `Segnify` instance without bothering any footer view.
+    private var heightConstraint: NSLayoutConstraint?
+    
     /// The width of every `Segment` instance.
     private var segmentWidth: CGFloat = 0.0
     
@@ -30,6 +37,29 @@ open class Segnify: UIView {
     private var stackViewWidthConstraint: NSLayoutConstraint?
     
     // MARK: - Public variables
+    
+    /// Maintains the height of the `Segnify` instance, without taking the footer view into account.
+    ///
+    /// When the `Segnify` instance has a height of X, and the footer view a height of Y,
+    /// the total height of the `Segnify` view will be X + Y.
+    public var height: CGFloat? {
+        didSet {
+            // Deactivate the old one.
+            if let heightConstraint = heightConstraint {
+                NSLayoutConstraint.deactivate([heightConstraint])
+            }
+            
+            // Set the new height (constraint).
+            if let height = height {
+                heightConstraint = scrollView.heightAnchor.constraint(equalToConstant: height)
+            }
+            
+            // Activate.
+            if let heightConstraint = heightConstraint {
+                NSLayoutConstraint.activate([heightConstraint], for: scrollView)
+            }
+        }
+    }
     
     /// The top level scroll view, which makes Segnify horizontally scroll.
     public private(set) lazy var scrollView: UIScrollView = {
@@ -52,7 +82,12 @@ open class Segnify: UIView {
         return stackView
     }()
     
-    // MARK: - Delegates
+    // MARK: - Internal delegates
+    
+    /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    internal var eventsDelegate: SegnifyEventsProtocol?
+    
+    // MARK: - Public delegates
     
     /// The `SegnifyDataSourceProtocol` implementing delegate will define the titles for the `Segment` instances of `Segnify`.
     public var dataSource: SegnifyDataSourceProtocol?
@@ -68,15 +103,15 @@ open class Segnify: UIView {
                 if !delegate.isEquallyFillingHorizontalSpace {
                     segmentWidth = delegate.segmentWidth
                 }
+                
+                // Footer view.
+                setupFooterViewIfNeeded()
             }
         }
     }
     
-    /// The `EventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var eventsDelegate: EventsProtocol?
-    
-    /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var segnifyEventsDelegate: SegnifyEventsProtocol?
+    /// The `ForwardedEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
+    public var forwardedEventsDelegate: ForwardedEventsProtocol?
     
     // MARK: - Segnicator
     
@@ -153,7 +188,7 @@ open class Segnify: UIView {
                        eventsDelegate: SegnifyEventsProtocol? = nil) {
         self.dataSource = dataSource
         self.delegate = delegate
-        self.segnifyEventsDelegate = eventsDelegate
+        self.eventsDelegate = eventsDelegate
         
         setupSubviews()
         setupAutoLayoutConstraints()
@@ -182,7 +217,6 @@ open class Segnify: UIView {
             NSLayoutConstraint.activate([
                 scrollView.topAnchor.constraint(equalTo: superview.topAnchor),
                 scrollView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
                 scrollView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
                 ], for: scrollView)
         }
@@ -201,6 +235,45 @@ open class Segnify: UIView {
                 stackViewWidthConstraint!
                 ], for: stackView)
         }
+    }
+    
+    private func setupFooterViewIfNeeded() {
+        // We need a delegate
+        guard let delegate = delegate else {
+            return
+        }
+        
+        // No need to add it again.
+        guard delegate.footerView.superview == nil else {
+            return
+        }
+        
+        // Delete the current footer view.
+        footerView?.removeFromSuperview()
+        
+        // Assign the new footer view.
+        footerView = delegate.footerView
+        
+        // Sanity check.
+        guard let currentFooterView = footerView else {
+            return
+        }
+        
+        // Footer view will be connected to the scroll view.
+        guard scrollView.superview != nil else {
+            return
+        }
+        
+        // Add the new footer view.
+        addSubview(currentFooterView)
+        
+        // Add constraints.
+        NSLayoutConstraint.activate([
+            currentFooterView.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            currentFooterView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            currentFooterView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            currentFooterView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            ], for: currentFooterView)
     }
 }
 
@@ -312,16 +385,19 @@ extension Segnify {
         
         // The segment wants to be selected.
         handleSegmentSelection(with: segment)
-
-        // Set the current index.
-        currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment!)!
         
-        // Notify the events delegates.
-        segnifyEventsDelegate?.didSelect(segment: selectedSegment!,
-                                  of: self,
-                                  previousIndex: previousIndex,
-                                  currentIndex: currentIndex)
-        eventsDelegate?.segnify(self, receivedTouchInside: selectedSegment!)
+        // Sanity check.
+        if let selectedSegment = selectedSegment {
+            // Set the current index.
+            currentIndex = stackView.arrangedSubviews.firstIndex(of: selectedSegment)!
+            
+            // Notify the events delegates.
+            eventsDelegate?.didSelect(segment: selectedSegment,
+                                      of: self,
+                                      previousIndex: previousIndex,
+                                      currentIndex: currentIndex)
+            forwardedEventsDelegate?.segnify(self, receivedTouchInside: selectedSegment)
+        }
     }
 }
 

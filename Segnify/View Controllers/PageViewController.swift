@@ -11,14 +11,9 @@ import UIKit
 /// The `PageViewController` controls and maintains both `Segnify` and `PageViewController` instances.
 open class PageViewController: UIViewController {
     
-    // MARK: - Private variables
-    
-    /// Maintains the height of the `Segnify` instance.
-    private var segnifyHeightConstraint: NSLayoutConstraint?
-    
     // MARK: - Public variables
     
-    /// A `UIPageViewController` instance will shown the main content, below the `Segnify` instance.
+    /// A `UIPageViewController` instance will show the main content, below the `Segnify` instance and, optionally, its footer view.
     public lazy var pageViewController: UIPageViewController = {
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         pageViewController.dataSource = self
@@ -26,13 +21,15 @@ open class PageViewController: UIViewController {
         return pageViewController
     }()
     
-    /// A `Segnify` instance will be shown above the `PageViewController` instance, showing all `Segment` instances.
+    /// A `Segnify` instance will be shown above the `Segnify` instance and, optionally, its footer view.
     public lazy var segnify: Segnify = {
         let segnify = Segnify()
+        segnify.eventsDelegate = self
         segnify.segnicator = Segnicator(configuration: DefaultSegnicatorDelegate())
-        segnify.segnifyEventsDelegate = self
         return segnify
     }()
+    
+    // MARK: - Delegates
     
     /// The delegate object of `SegnifyDataSourceProtocol` specifies the content for the `Segnify` instance and this `PageViewController` instance.
     public private(set) var dataSource: SegnifyDataSourceProtocol?
@@ -41,21 +38,21 @@ open class PageViewController: UIViewController {
     public var delegate: PageViewControllerProtocol? {
         didSet {
             if let delegate = delegate {
-                // Set the background color.
+                // Background color.
                 view.backgroundColor = delegate.backgroundColor
                 
-                // Update the height constraint ...
-                segnifyHeightConstraint?.constant = delegate.segnifyHeight
+                // Update the height ...
+                segnify.height = delegate.segnifyHeight
                 // ... and trigger a layout update.
                 view.setNeedsLayout()
             }
         }
     }
     
-    /// The delegate object of `EventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
-    public var eventsDelegate: EventsProtocol? {
+    /// The delegate object of `ForwardedEventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
+    public var forwardedEventsDelegate: ForwardedEventsProtocol? {
         didSet {
-            segnify.eventsDelegate = eventsDelegate
+            segnify.forwardedEventsDelegate = forwardedEventsDelegate
         }
     }
     
@@ -118,12 +115,10 @@ open class PageViewController: UIViewController {
         view.addSubview(segnify)
         
         // Give it some Auto Layout constraints.
-        segnifyHeightConstraint = segnify.heightAnchor.constraint(equalToConstant: delegate?.segnifyHeight ?? 0.0)
         NSLayoutConstraint.activate([
+            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
             segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            segnifyHeightConstraint!
             ], for: segnify)
         
         // Add the page view controller.
@@ -134,10 +129,10 @@ open class PageViewController: UIViewController {
             
             // Give it some Auto Layout constraints.
             NSLayoutConstraint.activate([
-                pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 pageView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
-                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+                pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+                pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 ], for: pageView)
         }
     }
@@ -194,16 +189,16 @@ extension PageViewController: UIPageViewControllerDataSource {
         else if segnify.delegate?.isScrollingInfinitely == true {
             // When `previousIndex` becomes negative, the user wants to scroll backwards from the first page.
             // Show the last page.
-            viewControllerToReturn = contentElements.last!.viewController
+            viewControllerToReturn = contentElements.last?.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           requested: viewControllerToReturn,
-                                           before: viewController)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    requested: viewControllerToReturn,
+                                                    before: viewController)
         
         return viewControllerToReturn
     }
@@ -232,16 +227,16 @@ extension PageViewController: UIPageViewControllerDataSource {
             // When `nextIndex` exceeds the number of available view controllers,
             // the user wants to scroll forwards from the last page.
             // Show the first page.
-            viewControllerToReturn = contentElements.first!.viewController
+            viewControllerToReturn = contentElements.first?.viewController
         }
         else {
             // Nothing to return in this case, when `isScrollingInfinitely` is `false`.
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           requested: viewControllerToReturn,
-                                           after: viewController)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    requested: viewControllerToReturn,
+                                                    after: viewController)
         
         return viewControllerToReturn
     }
@@ -254,7 +249,7 @@ extension PageViewController: UIPageViewControllerDelegate {
     public func pageViewController(_ pageViewController: UIPageViewController,
                                    willTransitionTo pendingViewControllers: [UIViewController]) {
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
+        forwardedEventsDelegate?.pageViewController(pageViewController, willTransitionTo: pendingViewControllers)
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController,
@@ -267,10 +262,10 @@ extension PageViewController: UIPageViewControllerDelegate {
         }
         
         // Notify our 'custom' delegate.
-        eventsDelegate?.pageViewController(pageViewController,
-                                           didFinishAnimating: finished,
-                                           previousViewControllers: previousViewControllers,
-                                           transitionCompleted: completed)
+        forwardedEventsDelegate?.pageViewController(pageViewController,
+                                                    didFinishAnimating: finished,
+                                                    previousViewControllers: previousViewControllers,
+                                                    transitionCompleted: completed)
         
         if let indexOfCurrentViewController = firstIndexOf(currentViewController) {
             // Switch segment.

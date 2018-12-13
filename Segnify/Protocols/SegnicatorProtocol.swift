@@ -8,14 +8,11 @@
 
 import UIKit
 
-/// A closure with a reference to a `Segnicator` instance, in order to add one or more subviews to that `Segnicator` instance.
-public typealias SegnicatorSubviewsClosure = (Segnicator) -> ()
-
 /// Customize the `Segnicator` appearance by implementing this protocol.
 public protocol SegnicatorProtocol {
     
-    /// Add one or more subviews to the `Segnicator` instance.
-    var segnicatorSubviewsClosure: SegnicatorSubviewsClosure { get }
+    /// Specifies the appearance of the `Segnicator` instance.
+    var segnicatorView: UIView { get }
 }
 
 // MARK: - Defaults
@@ -23,8 +20,7 @@ public protocol SegnicatorProtocol {
 extension SegnicatorProtocol {
     
     /// Provide a default value.
-    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
-        // Keeps the `Segnicator` instance free of subviews, thus empty.
-        return { _ in }
+    public var segnicatorView: UIView {
+        return UIView()
     }
 }

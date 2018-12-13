@@ -189,9 +189,9 @@ Take a look at the [Segnified](https://github.com/nedap/Segnify/blob/master/Segn
 
 For customization purposes, which you'd likely need, implement one or more of the following protocols.
 
-### EventsProtocol
+### ForwardedEventsProtocol
 
-Implement `EventsProtocol` for the ability to be informed about several events, caused by either the `Segnify` instance or the `UIPageViewController` instance:
+Implement `ForwardedEventsProtocol ` for the ability to be informed about several events, caused by either the `Segnify` instance or the `UIPageViewController` instance:
 
 - Getting the view controller before the currently displayed one
 - Getting the view controller after the currently displayed one
@@ -243,28 +243,32 @@ public struct DefaultPageViewControllerDelegate: PageViewControllerProtocol {
 
 Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instance. In the example below, the default implementation in [DefaultSegnicatorDelegate](Segnify/Protocols/Defaults/DefaultSegnicatorDelegate.swift) is being shown.
 
-A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension. By using the `SegnicatorSubviewsClosure` typealias, subviews and Auto Layout constraints can easily be added, as it takes a reference to a `Segnicator` instance as a parameter.
+A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension.
 
 ```swift
 public struct DefaultSegnicatorDelegate: SegnicatorProtocol {
 
     // MARK: - Delegate
     
-    public var segnicatorSubviewsClosure: SegnicatorSubviewsClosure {
-        return { segnicator in
-            // Create a white, horizontal indicator view.
-            let whiteIndicatorView = UIView()
-            whiteIndicatorView.backgroundColor = .white
-            
-            // Add it to the segnicator and give it the correct layout.
-            segnicator.addSubview(whiteIndicatorView)
-            NSLayoutConstraint.activate([
-                whiteIndicatorView.leadingAnchor.constraint(equalTo: segnicator.leadingAnchor),
-                whiteIndicatorView.trailingAnchor.constraint(equalTo: segnicator.trailingAnchor),
-                whiteIndicatorView.bottomAnchor.constraint(equalTo: segnicator.bottomAnchor),
-                whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-                ], for: whiteIndicatorView)
-        }
+    public var segnicatorView: UIView {
+        // Create a white, half-transparent background view.
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        
+        // Create a white, horizontal indicator view.
+        let whiteIndicatorView = UIView()
+        whiteIndicatorView.backgroundColor = .white
+        
+        // Add it to the segnicator and give it the correct layout.
+        backgroundView.addSubview(whiteIndicatorView)
+        NSLayoutConstraint.activate([
+            whiteIndicatorView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            whiteIndicatorView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            whiteIndicatorView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
+            ], for: whiteIndicatorView)
+        
+        return backgroundView
     }
 }
 ```

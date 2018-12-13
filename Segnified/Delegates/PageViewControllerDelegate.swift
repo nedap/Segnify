@@ -15,5 +15,5 @@ struct PageViewControllerDelegate: PageViewControllerProtocol {
     
     var backgroundColor: UIColor = .white
     
-    var segnifyHeight: CGFloat = 100.0
+    var segnifyHeight: CGFloat = 75.0
 }
