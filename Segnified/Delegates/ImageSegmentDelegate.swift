@@ -9,17 +9,17 @@
 import Segnify
 
 /// Implements `ImageSegmentProtocol`.
-struct ImageSegmentDelegate: ImageSegmentProtocol {
+public class ImageSegmentDelegate: ImageSegmentProtocol {
     
     // MARK: - Delegate
     
-    func backgroundColor(for state: UIControl.State) -> UIColor {
+    public func backgroundColor(for state: UIControl.State) -> UIColor {
         return .nedapOrange
     }
     
-    var imageViewEdgeInsets: UIEdgeInsets {
+    public var imageViewEdgeInsets: UIEdgeInsets {
         return .init(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     }
     
-    var tintColor: UIColor? = .nedapDarkBlue
+    public var tintColor: UIColor? = .nedapDarkBlue
 }

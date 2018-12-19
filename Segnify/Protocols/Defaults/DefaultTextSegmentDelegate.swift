@@ -7,7 +7,7 @@
 //
 
 /// Provides a default implementation for `TextSegmentProtocol`.
-public struct DefaultTextSegmentDelegate: TextSegmentProtocol {
+public class DefaultTextSegmentDelegate: TextSegmentProtocol {
     
     // MARK: - Delegate
     

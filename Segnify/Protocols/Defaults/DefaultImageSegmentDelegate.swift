@@ -7,7 +7,7 @@
 //
 
 /// Provides a default implementation for `ImageSegmentProtocol`.
-public struct DefaultImageSegmentDelegate: ImageSegmentProtocol {
+public class DefaultImageSegmentDelegate: ImageSegmentProtocol {
     
     // MARK: - Delegate
     

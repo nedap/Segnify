@@ -32,10 +32,10 @@ open class PageViewController: UIViewController {
     // MARK: - Delegates
     
     /// The delegate object of `SegnifyDataSourceProtocol` specifies the content for the `Segnify` instance and this `PageViewController` instance.
-    public private(set) var dataSource: SegnifyDataSourceProtocol?
+    public private(set) weak var dataSource: SegnifyDataSourceProtocol?
     
     /// The delegate object of `PageViewControllerProtocol` offers customization possibilities for this `PageViewController` instance.
-    public var delegate: PageViewControllerProtocol? {
+    public weak var delegate: PageViewControllerProtocol? {
         didSet {
             if let delegate = delegate {
                 // Background color.
@@ -50,7 +50,7 @@ open class PageViewController: UIViewController {
     }
     
     /// The delegate object of `ForwardedEventsProtocol` will be notified of various `Segnify` and `UIPageViewController` events.
-    public var forwardedEventsDelegate: ForwardedEventsProtocol? {
+    public weak var forwardedEventsDelegate: ForwardedEventsProtocol? {
         didSet {
             segnify.forwardedEventsDelegate = forwardedEventsDelegate
         }

@@ -14,7 +14,7 @@ open class Segnicator: UIView {
 
     // MARK: - Public variables
     
-    open var configuration: SegnicatorProtocol? {
+    open weak var configuration: SegnicatorProtocol? {
         didSet {
             if let configuration = configuration {
                 // Apply the segnicator configuration.

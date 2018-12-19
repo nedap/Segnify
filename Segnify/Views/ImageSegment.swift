@@ -21,7 +21,7 @@ open class ImageSegment: Segment {
     }
     
     /// Sets the `ImageSegmentConfiguration` to configure the segment's appearance.
-    override open var configuration: SegmentProtocol? {
+    override open weak var configuration: SegmentProtocol? {
         didSet {
             if let configuration = configuration as? ImageSegmentProtocol {
                 // Apply the image segment configuration.

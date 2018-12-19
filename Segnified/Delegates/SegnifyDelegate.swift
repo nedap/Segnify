@@ -9,13 +9,13 @@
 import Segnify
 
 /// Implements `SegnifyProtocol`.
-struct SegnifyDelegate: SegnifyProtocol {
+public class SegnifyDelegate: SegnifyProtocol {
     
     // MARK: - Delegate
     
-    var backgroundColor: UIColor = .white
+    public var backgroundColor: UIColor = .white
     
-    var footerView: UIView {
+    public var footerView: UIView {
         // Create a footer view ...
         let footerView = UIView()
         footerView.backgroundColor = .lightGray
@@ -38,7 +38,7 @@ struct SegnifyDelegate: SegnifyProtocol {
         return footerView
     }
     
-    var isEquallyFillingHorizontalSpace: Bool = false
+    public var isEquallyFillingHorizontalSpace: Bool = false
     
-    var segmentWidth: CGFloat = 175.0
+    public var segmentWidth: CGFloat = 175.0
 }

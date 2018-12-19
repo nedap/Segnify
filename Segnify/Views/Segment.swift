@@ -14,7 +14,7 @@ open class Segment: UIButton {
     
     // MARK: - Public variables
     
-    open var configuration: SegmentProtocol?
+    open weak var configuration: SegmentProtocol?
     
     // MARK: - UIButton methods
     

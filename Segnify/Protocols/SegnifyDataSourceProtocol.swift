@@ -12,7 +12,7 @@ import UIKit
 public typealias SegnifyContentElement = (segment: Segment, viewController: UIViewController)
 
 /// Define the data source objects for your `Segnify` instance.
-public protocol SegnifyDataSourceProtocol {
+public protocol SegnifyDataSourceProtocol: class {
     
     /// The `SegnifyContentElement` instances to be shown.
     /// This array shouldn't be empty in order to have a functional `Segnify` instance.

@@ -7,7 +7,7 @@
 //
 
 /// Provides a default implementation for `SegnicatorProtocol`.
-public struct DefaultSegnicatorDelegate: SegnicatorProtocol {
+public class DefaultSegnicatorDelegate: SegnicatorProtocol {
 
     // MARK: - Delegate
     

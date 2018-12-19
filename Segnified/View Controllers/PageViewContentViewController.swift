@@ -8,7 +8,7 @@
 
 import Segnify
 
-class PageViewContentViewController: UIViewController {
+public class PageViewContentViewController: UIViewController {
     
     // MARK: - Private variables
     
@@ -31,7 +31,7 @@ class PageViewContentViewController: UIViewController {
 
     // MARK: - View lifecycle
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Background color.

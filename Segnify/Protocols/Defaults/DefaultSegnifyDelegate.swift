@@ -7,7 +7,7 @@
 //
 
 /// Provides a default implementation for `SegnifyProtocol`.
-public struct DefaultSegnifyDelegate: SegnifyProtocol {
+public class DefaultSegnifyDelegate: SegnifyProtocol {
 
     // MARK: - Delegate
     
