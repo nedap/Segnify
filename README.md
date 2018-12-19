@@ -205,7 +205,7 @@ The protocol partly relies on the `UIPageViewControllerDataSource` and `UIPageVi
 Implement `ImageSegmentProtocol` for customizing image segments. In the example below, the default implementation in [DefaultImageSegmentDelegate](Segnify/Protocols/Defaults/DefaultImageSegmentDelegate.swift) is being shown.
 
 ```swift
-public struct DefaultImageSegmentDelegate: ImageSegmentProtocol {
+public class DefaultImageSegmentDelegate: ImageSegmentProtocol {
     
     // MARK: - Delegate
     
@@ -225,7 +225,7 @@ public struct DefaultImageSegmentDelegate: ImageSegmentProtocol {
 Implement `PageViewControllerProtocol` for visually customizing the `PageViewController` instance. In the example below, the default implementation in [DefaultPageViewControllerDelegate](Segnify/Protocols/Defaults/DefaultPageViewControllerDelegate.swift) is being shown.
 
 ```swift
-public struct DefaultPageViewControllerDelegate: PageViewControllerProtocol {
+public class DefaultPageViewControllerDelegate: PageViewControllerProtocol {
     
     // MARK: - Delegate
     
@@ -246,7 +246,7 @@ Implement `SegnicatorProtocol` for visually customizing the `Segnicator` instanc
 A white, horizontal line is created and added as a subview. Auto Layout constraints have been applied using the `SegnifyLayoutConstraint` extension.
 
 ```swift
-public struct DefaultSegnicatorDelegate: SegnicatorProtocol {
+public class DefaultSegnicatorDelegate: SegnicatorProtocol {
 
     // MARK: - Delegate
     
@@ -319,7 +319,7 @@ public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
 Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In the example below, the default implementation in [DefaultSegnifyDelegate](Segnify/Protocols/Defaults/DefaultSegnifyDelegate.swift) is being shown.
 
 ```swift
-public struct DefaultSegnifyDelegate: SegnifyProtocol {
+public class DefaultSegnifyDelegate: SegnifyProtocol {
 
     // MARK: - Delegate
     
@@ -342,7 +342,7 @@ public struct DefaultSegnifyDelegate: SegnifyProtocol {
 Implement `TextSegmentProtocol` for customizing textual segments. In the example below, the default implementation in [DefaultTextSegmentDelegate](Segnify/Protocols/Defaults/DefaultTextSegmentDelegate.swift) is being shown.
 
 ```swift
-public struct DefaultTextSegmentDelegate: TextSegmentProtocol {
+public class DefaultTextSegmentDelegate: TextSegmentProtocol {
     
     // MARK: - Delegate
     

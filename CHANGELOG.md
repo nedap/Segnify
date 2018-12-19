@@ -3,10 +3,18 @@ All notable changes to this project will be documented in this file.
 `Segnify` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
-- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111)
+- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+## [1.1.2](https://github.com/nedap/Segnify/releases/tag/1.1.2)
+Released on 2018-12-XX.
+
+#### Fixed
+
+- Fixed weak references to unowned objects ([#14](https://github.com/nedap/Segnify/issues/14))
+  - Fixed by [Bart Hopster](https://github.com/barthopster).
+
 ## [1.1.1](https://github.com/nedap/Segnify/releases/tag/1.1.1)
 Released on 2018-12-13.
 
