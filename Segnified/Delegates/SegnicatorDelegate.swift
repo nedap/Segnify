@@ -9,11 +9,11 @@
 import Segnify
 
 /// Implements `SegnicatorProtocol`.
-struct SegnicatorDelegate: SegnicatorProtocol {
+public class SegnicatorDelegate: SegnicatorProtocol {
     
     // MARK: - Delegate
     
-    var segnicatorView: UIView {
+    public var segnicatorView: UIView {
         // Create a white, half-transparent background view.
         let backgroundView = UIView()
         backgroundView.backgroundColor = .init(white: 1.0, alpha: 0.4)

@@ -9,7 +9,7 @@
 import UIKit
 
 /// Customize the `Segnify` appearance by implementing this protocol.
-public protocol SegnifyProtocol {
+public protocol SegnifyProtocol: class {
     
     /// The background color of the main `Segnify` component.
     var backgroundColor: UIColor { get }

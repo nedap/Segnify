@@ -9,17 +9,17 @@
 import Segnify
 
 /// Implements `TextSegmentProtocol`.
-struct TextSegmentDelegate: TextSegmentProtocol {
+public class TextSegmentDelegate: TextSegmentProtocol {
     
     // MARK: - Delegate
     
-    func backgroundColor(for state: UIControl.State) -> UIColor {
+    public func backgroundColor(for state: UIControl.State) -> UIColor {
         return .nedapOrange
     }
     
-    var font: UIFont = .systemFont(ofSize: 17.0)
+    public var font: UIFont = .systemFont(ofSize: 17.0)
     
-    func textColor(for state: UIControl.State) -> UIColor {
+    public func textColor(for state: UIControl.State) -> UIColor {
         return .nedapDarkBlue
     }
 }

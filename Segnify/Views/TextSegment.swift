@@ -21,7 +21,7 @@ open class TextSegment: Segment {
     }
     
     /// Sets the `TextSegmentConfiguration` to configure the segment's appearance.
-    override open var configuration: SegmentProtocol? {
+    override open weak var configuration: SegmentProtocol? {
         didSet {
             if let configuration = configuration as? TextSegmentProtocol {
                 // Apply the text segment configuration.

@@ -9,11 +9,11 @@
 import Segnify
 
 /// Implements `PageViewControllerProtocol`.
-struct PageViewControllerDelegate: PageViewControllerProtocol {
+public class PageViewControllerDelegate: PageViewControllerProtocol {
     
     // MARK: - Delegate
     
-    var backgroundColor: UIColor = .white
+    public var backgroundColor: UIColor = .white
     
-    var segnifyHeight: CGFloat = 75.0
+    public var segnifyHeight: CGFloat = 75.0
 }

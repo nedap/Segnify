@@ -9,13 +9,13 @@
 import Segnify
 
 /// Implements `SegnifyProtocol`.
-struct SegnifyDelegate: SegnifyProtocol {
+public class SegnifyDelegate: SegnifyProtocol {
     
     // MARK: - Delegate
     
-    var backgroundColor: UIColor = .white
+    public var backgroundColor: UIColor = .white
     
-    var footerView: UIView {
+    public var footerView: UIView {
         // Create a footer view ...
         let footerView = UIView()
         footerView.backgroundColor = .lightGray
@@ -38,7 +38,14 @@ struct SegnifyDelegate: SegnifyProtocol {
         return footerView
     }
     
-    var isEquallyFillingHorizontalSpace: Bool = false
+    public var isEquallyFillingHorizontalSpace: Bool {
+        // Show all segments at once on iPad.
+        return UIDevice.current.userInterfaceIdiom == .pad ? true : false
+    }
     
-    var segmentWidth: CGFloat = 175.0
+    public var segmentWidth: CGFloat {
+        // Show three segments and a bit of the fourth on iPhone.
+        // For iPad, this value will be ignored, because of `isEquallyFillingHorizontalSpace`.
+        return (UIScreen.main.bounds.width / 3) * 0.80
+    }
 }

@@ -7,7 +7,7 @@
 //
 
 /// Provides a default implementation for `PageViewControllerProtocol`.
-public struct DefaultPageViewControllerDelegate: PageViewControllerProtocol {
+public class DefaultPageViewControllerDelegate: PageViewControllerProtocol {
     
     // MARK: - Delegate
     

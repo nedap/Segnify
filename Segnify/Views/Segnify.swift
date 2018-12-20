@@ -85,15 +85,15 @@ open class Segnify: UIView {
     // MARK: - Internal delegates
     
     /// The `SegnifyEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    internal var eventsDelegate: SegnifyEventsProtocol?
+    internal weak var eventsDelegate: SegnifyEventsProtocol?
     
     // MARK: - Public delegates
     
     /// The `SegnifyDataSourceProtocol` implementing delegate will define the titles for the `Segment` instances of `Segnify`.
-    public var dataSource: SegnifyDataSourceProtocol?
+    public weak var dataSource: SegnifyDataSourceProtocol?
     
     /// The `SegnifyProtocol` implementing delegate will configure some properties of the `Segnify` instance.
-    public var delegate: SegnifyProtocol? {
+    public weak var delegate: SegnifyProtocol? {
         didSet {
             if let delegate = delegate {
                 // Apply the segnify configuration.
@@ -111,7 +111,7 @@ open class Segnify: UIView {
     }
     
     /// The `ForwardedEventsProtocol` implementing delegate will be notified if a `Segment` instance has been selected.
-    public var forwardedEventsDelegate: ForwardedEventsProtocol?
+    public weak var forwardedEventsDelegate: ForwardedEventsProtocol?
     
     // MARK: - Segnicator
     
@@ -198,6 +198,9 @@ open class Segnify: UIView {
         // (Re)calculate the segment width.
         if let superview = superview, delegate?.isEquallyFillingHorizontalSpace == true, let contentElements = dataSource?.contentElements {
             segmentWidth = superview.bounds.maxX / CGFloat(contentElements.count)
+        }
+        else if delegate?.isEquallyFillingHorizontalSpace == false, let newSegmentWidth = delegate?.segmentWidth {
+            segmentWidth = newSegmentWidth
         }
     }
     
