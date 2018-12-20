@@ -38,7 +38,14 @@ public class SegnifyDelegate: SegnifyProtocol {
         return footerView
     }
     
-    public var isEquallyFillingHorizontalSpace: Bool = false
+    public var isEquallyFillingHorizontalSpace: Bool {
+        // Show all segments at once on iPad.
+        return UIDevice.current.userInterfaceIdiom == .pad ? true : false
+    }
     
-    public var segmentWidth: CGFloat = 175.0
+    public var segmentWidth: CGFloat {
+        // Show three segments and a bit of the fourth on iPhone.
+        // For iPad, this value will be ignored, because of `isEquallyFillingHorizontalSpace`.
+        return (UIScreen.main.bounds.width / 3) * 0.80
+    }
 }
