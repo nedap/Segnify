@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = 'Segnify'
-  s.version       = '1.1.1'
+  s.version       = '1.1.2'
   s.summary       = 'An elegant, performing and fancy segmented component in Swift.'
   s.homepage      = 'https://github.com/nedap/Segnify'
   s.license       = { :type => 'MIT', :file => 'LICENSE' }

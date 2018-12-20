@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 ## [1.1.2](https://github.com/nedap/Segnify/releases/tag/1.1.2)
-Released on 2018-12-XX.
+Released on 2018-12-20.
 
 #### Fixed
 
