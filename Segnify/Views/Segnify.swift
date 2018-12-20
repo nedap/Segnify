@@ -199,6 +199,9 @@ open class Segnify: UIView {
         if let superview = superview, delegate?.isEquallyFillingHorizontalSpace == true, let contentElements = dataSource?.contentElements {
             segmentWidth = superview.bounds.maxX / CGFloat(contentElements.count)
         }
+        else if delegate?.isEquallyFillingHorizontalSpace == false, let newSegmentWidth = delegate?.segmentWidth {
+            segmentWidth = newSegmentWidth
+        }
     }
     
     // MARK: - Subviews & constraints
