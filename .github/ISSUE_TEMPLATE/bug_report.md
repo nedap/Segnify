@@ -13,11 +13,11 @@ bug description
 **To Reproduce**
 Steps to reproduce the behavior:
 1. ...
-2. 
-
-**Expected behavior**
+2.
 
 **Actual behavior**
+
+**Expected behavior**
 
 **Screenshots/Videos**
 If applicable, add screenshots or videos to help explain your problem.
@@ -26,7 +26,7 @@ If applicable, add screenshots or videos to help explain your problem.
  - Device: [e.g. iPhone6]
  - OS: [e.g. iOS8.1]
  - App Version: [e.g. 1.0.0(22)]
- - Environment: [development/production]
+ - Environment: [development/vvt/production]
 
 **Additional context**
 Add any other context about the problem here.
