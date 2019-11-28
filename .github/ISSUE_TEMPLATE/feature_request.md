@@ -1,6 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
+title: "[Firebase] [Support] [FeedBep] ..."
+labels: new-feature
+assignees: ''
 
 ---
 

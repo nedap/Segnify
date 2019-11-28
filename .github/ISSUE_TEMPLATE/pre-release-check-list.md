@@ -1,6 +1,9 @@
 ---
 name: Pre-Release check list
 about: Things to test and check before releasing a new version of the app
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
