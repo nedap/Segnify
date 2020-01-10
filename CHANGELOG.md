@@ -1,35 +1,41 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-`Segnify` adheres to [Semantic Versioning](https://semver.org/).
+`segnify-ios` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
 - `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
-## [1.1.2](https://github.com/nedap/Segnify/releases/tag/1.1.2)
+## [Unreleased]
+
+#### Updated
+- Renamed the repository to [`segnify-ios`](https://github.com/nedap/segnify-ios/issues/17).
+	- Updated by [Bart Hopster](https://github.com/barthopster).
+
+## [1.1.2](https://github.com/nedap/segnify-ios/releases/tag/1.1.2)
 Released on 2018-12-20.
 
 #### Fixed
 
-- Fixed weak references to unowned objects ([#14](https://github.com/nedap/Segnify/issues/14))
+- Fixed weak references to unowned objects ([#14](https://github.com/nedap/segnify-ios/issues/14))
   - Fixed by [Bart Hopster](https://github.com/barthopster).
 
-## [1.1.1](https://github.com/nedap/Segnify/releases/tag/1.1.1)
+## [1.1.1](https://github.com/nedap/segnify-ios/releases/tag/1.1.1)
 Released on 2018-12-13.
 
 #### Added
 
-- Added `ForwardedEventsProtocol` ([#8](https://github.com/nedap/Segnify/issues/8))
-- Added support for a [banner view](https://github.com/nedap/Segnify/issues/11).
+- Added `ForwardedEventsProtocol` ([#8](https://github.com/nedap/segnify-ios/issues/8))
+- Added support for a [banner view](https://github.com/nedap/segnify-ios/issues/11).
   - Added by [Bart Hopster](https://github.com/barthopster).
 
 #### Updated
 
-- Extended the ['UIPageViewController' protocol implementations](https://github.com/nedap/Segnify/issues/8).
+- Extended the ['UIPageViewController' protocol implementations](https://github.com/nedap/segnify-ios/issues/8).
 	- Added by [Bart Hopster](https://github.com/barthopster).
 
-## [1.1.0](https://github.com/nedap/Segnify/releases/tag/1.1.0)
+## [1.1.0](https://github.com/nedap/segnify-ios/releases/tag/1.1.0)
 Released on 2018-11-28.
 
 #### Added
@@ -40,7 +46,7 @@ Released on 2018-11-28.
 - Added `SegnifyEventsProtocol`. The delegate which implements this protocol will be notified about `Segment` selection changes of `Segnify`.
 - Added `DefaultDelegates`, which offers a default implementation of almost all protocols.
 - Added the example app `Segnified` inside the Xcode project, next to the `Segnify` framework, for improved development and testing processes.
-- Added support for [infinite scrolling](https://github.com/nedap/Segnify/issues/3).
+- Added support for [infinite scrolling](https://github.com/nedap/segnify-ios/issues/3).
   - Added by [Bart Hopster](https://github.com/barthopster).
 
 #### Removed
@@ -52,7 +58,7 @@ Released on 2018-11-28.
 - Renamed all `*Configuration` protocols to `*Protocol`.
   - Updated by [Bart Hopster](https://github.com/barthopster).
   
-## [1.0.2](https://github.com/nedap/Segnify/releases/tag/1.0.2)
+## [1.0.2](https://github.com/nedap/segnify-ios/releases/tag/1.0.2)
 Released on 2018-10-25.
 
 #### Added
@@ -69,7 +75,7 @@ Released on 2018-10-25.
 - Renamed `maximumSegmentWidth` to `segmentWidth`, so it better reflects its functionality.
   - Updated by [Bart Hopster](https://github.com/barthopster).
 
-## [1.0.1](https://github.com/nedap/Segnify/releases/tag/1.0.1)
+## [1.0.1](https://github.com/nedap/segnify-ios/releases/tag/1.0.1)
 Released on 2018-10-11.
 
 #### Removed
@@ -81,7 +87,7 @@ Released on 2018-10-11.
 - Replaced usage of [SnapKit](https://snapkit.io) with the native `NSLayoutConstraint` API.
   - Updated by [Bart Hopster](https://github.com/barthopster).
 
-## [1.0.0](https://github.com/nedap/Segnify/releases/tag/1.0.0)
+## [1.0.0](https://github.com/nedap/segnify-ios/releases/tag/1.0.0)
 Released on 2018-10-02.
 
 #### Added

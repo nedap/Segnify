@@ -1,8 +1,8 @@
-# Segnify
+# Segnify for iOS
 
 [![Swift version](https://img.shields.io/badge/swift-4.2-brightgreen.svg)](https://img.shields.io/badge/swift-4.2-brightgreen.svg)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Segnify.svg)](https://img.shields.io/cocoapods/v/Segnify.svg)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/Segnify)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/segnify-ios)
 [![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
 
 An elegant, performing and fancy segmented component in Swift.
@@ -67,10 +67,10 @@ $ brew install carthage
 To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nedap/Segnify" ~> 1.1.1
+github "nedap/segnify-ios" ~> 1.1.1
 ```
 
-Run `carthage update` to build the framework and drag the built `Segnify.framework` into your Xcode project.
+Run `carthage bootstrap` to build the framework and drag the built `Segnify.framework` into your Xcode project.
 
 ## Usage
 
@@ -183,7 +183,7 @@ extension MainViewController: SegnifyDataSourceProtocol {
 }
 ```
 
-Take a look at the [Segnified](https://github.com/nedap/Segnify/blob/master/Segnified) folder for all the details.
+Take a look at the [Segnified](https://github.com/nedap/segnify-ios/blob/master/Segnified) folder for all the details.
 
 ### Protocols
 
@@ -372,7 +372,7 @@ public class DefaultTextSegmentDelegate: TextSegmentProtocol {
 
 ## License
 
-Copyright © 2018 Nederlandsche Apparatenfabriek (Nedap) N.V.. All rights reserved.
+Copyright © 2020 Nederlandsche Apparatenfabriek (Nedap) N.V.. All rights reserved.
 
 See the [LICENSE](LICENSE) file for more info.
 
