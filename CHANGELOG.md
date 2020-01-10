@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 ## [1.1.3](https://github.com/nedap/segnify-ios/releases/tag/1.1.3)
+Released on 2020-01-10.
 
 #### Updated
 - Renamed the repository to [`segnify-ios`](https://github.com/nedap/segnify-ios/issues/17).
