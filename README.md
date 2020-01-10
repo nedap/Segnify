@@ -67,7 +67,7 @@ $ brew install carthage
 To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nedap/segnify-ios" ~> 1.1.1
+github "nedap/segnify-ios" ~> 1.1.3
 ```
 
 Run `carthage bootstrap` to build the framework and drag the built `Segnify.framework` into your Xcode project.
