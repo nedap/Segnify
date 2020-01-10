@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+## [Unreleased]
+
+#### Updated
+- Renamed the repository to [`segnify-ios`](https://github.com/nedap/segnify-ios/issues/17).
+	- Updated by [Bart Hopster](https://github.com/barthopster).
+
 ## [1.1.2](https://github.com/nedap/segnify-ios/releases/tag/1.1.2)
 Released on 2018-12-20.
 
