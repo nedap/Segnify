@@ -2,7 +2,7 @@
 - Why do we want it?
 
 ***Relevant issues***
-- Reference issue here: ...
+- Closes ...
 
 ***Changes***
 - What does it do?
