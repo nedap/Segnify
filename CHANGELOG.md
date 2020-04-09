@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 #### Fixed
 - Fixed broken init in Xcode 11.4 ([#21](https://github.com/nedap/segnify-ios/issues/21))
+- Fixed wrong safe area bottom constraint for `PageViewController` ([#22](https://github.com/nedap/segnify-ios/issues/22))
   - Fixed by [Yuliia Mykhailova](https://github.com/ymykhailova-nedap).
 
 ## [1.1.3](https://github.com/nedap/segnify-ios/releases/tag/1.1.3)
