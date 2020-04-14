@@ -52,7 +52,7 @@ open class TextSegment: Segment {
     }
     
     @available(*, unavailable, message: "Use init(text:configuration:) instead.")
-    private override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     

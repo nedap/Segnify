@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+## [Unreleased]
+
+#### Fixed
+- Fixed broken init in Xcode 11.4 ([#21](https://github.com/nedap/segnify-ios/issues/21))
+  - Fixed by [Yuliia Mykhailova](https://github.com/ymykhailova-nedap).
+
 ## [1.1.3](https://github.com/nedap/segnify-ios/releases/tag/1.1.3)
 Released on 2020-01-10.
 
