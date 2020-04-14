@@ -131,7 +131,7 @@ open class PageViewController: UIViewController {
             NSLayoutConstraint.activate([
                 pageView.topAnchor.constraint(equalTo: segnify.bottomAnchor),
                 pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                pageView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+                pageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 ], for: pageView)
         }
