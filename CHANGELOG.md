@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 `segnify-ios` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
-- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112) | [1.1.3](#113)| [1.1.4](#114)
+- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112) | [1.1.3](#113) | [1.1.4](#114)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
