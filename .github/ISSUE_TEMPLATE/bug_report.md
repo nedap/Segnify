@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a bug report to help us improve
 title: "[Firebase] [Support] [FeedBep] ..."
 labels: bug
 assignees: ''
@@ -8,25 +8,27 @@ assignees: ''
 ---
 
 **Describe the bug**
-bug description
+Describe the issue here.
 
-**To Reproduce**
-Steps to reproduce the behavior:
+**How to Reproduce**
+Steps to reproduce the issue:
 1. ...
-2.
+2. 
 
 **Actual behavior**
+Describe the current behaviour here.
 
 **Expected behavior**
+Describe the desired behaviour here.
 
 **Screenshots/Videos**
-If applicable, add screenshots or videos to help explain your problem.
+If applicable, add screenshots or videos to help explain the issue.
 
 **Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - App Version: [e.g. 1.0.0(22)]
- - Environment: [development/vvt/production]
+ - Device: [e.g. iPhone X]
+ - OS: [e.g. iOS 13.4]
+ - App Version: [e.g. 1.0.0]
+ - Environment: [development/staging/production]
 
 **Additional context**
-Add any other context about the problem here.
+Add any other information about the issue here.
