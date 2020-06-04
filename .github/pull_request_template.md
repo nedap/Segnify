@@ -1,23 +1,32 @@
-***Context***
-- Why do we want it?
+**Context**
+- Why do we want/need it?
 
-***Relevant issues***
+**Relevant issue**
 - Closes ...
 
-***Changes***
+**Changes**
 - What does it do?
 - In summary, what changes are made to the code?
 
-***Known problems***
+**Known problems**
 - What problems do still arise or are anticipated?
-- With what part of the solution do you need help with?
+- Which part of the solution do you need help with?
 
-***Extra attention***
+**Extra attention**
 - What do I need to pay extra attention to as a reviewer?
 
-***Check-list***
-- [ ] Acceptance criteria in issue satisfied or Bug fixed
-- [ ] Documentation present (relevant information is properly documented)
-- [ ] Written tests for test suite (optional for the moment)
-- [ ] Tested on devices
-- [ ] CHANGELOG updated
+**Check-list**
+- [ ] Acceptance criteria described in the issue are satisfied, or the bug(s) is/are fixed.
+- [ ] Documentation present (relevant information is properly documented).
+- [ ] Written tests for test suite (optional).
+- [ ] CHANGELOG updated.
+
+**Tested on devices**
+- [ ] Minimum supported iOS version.
+- [ ] Maximum supported iOS version.
+- [ ] Lowest resolution supported.
+- [ ] Highest resolution supported.
+- [ ] Device with a notch.
+
+**Is this issue considered as Done?**
+- [ ] It meets our [DoD](https://github.com/nedap/healthcare-mobile/wiki/DoD).
