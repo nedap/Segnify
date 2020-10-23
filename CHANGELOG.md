@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 ---
 ## [Unreleased]
 
+#### Updated
+- Support for Xcode 12.1 and iOS 14 ([#25](https://github.com/nedap/segnify-ios/issues/25))
+
 ## [1.1.4](https://github.com/nedap/segnify-ios/releases/tag/1.1.4)
 Released on 2020-04-14.
 
