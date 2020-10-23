@@ -1,6 +1,6 @@
 # Segnify for iOS
 
-[![Swift version](https://img.shields.io/badge/swift-4.2-brightgreen.svg)](https://img.shields.io/badge/swift-4.2-brightgreen.svg)
+[![Swift version](https://img.shields.io/badge/swift-5-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Segnify.svg)](https://img.shields.io/cocoapods/v/Segnify.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/segnify-ios)
 [![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
@@ -22,9 +22,9 @@ An elegant, performing and fancy segmented component in Swift.
 
 ## Requirements
 
-- iOS 9.3+
-- Xcode 9.3+
-- Swift 4.2+
+- iOS 10.3+
+- Xcode 11.4+
+- Swift 5.0+
 
 ## Installation
 
@@ -39,7 +39,7 @@ $ gem install cocoapods
 To integrate Segnify into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-platform :ios, '9.3'
+platform :ios, '10.3'
 use_frameworks!
 
 target '<Your Target Name>' do
@@ -76,7 +76,7 @@ Run `carthage bootstrap` to build the framework and drag the built `Segnify.fram
 
 ### General
 
-- Usage of `Segnify` starts with an instance of `PageViewController`. `PageViewController` is the main class and represents a view controller, which contains an instance of `Segnify` and an instance of `UIPageViewController`. 
+- Usage of `Segnify` starts with an instance of `PageViewController`. `PageViewController` is the main class and represents a view controller, which contains an instance of `Segnify` and an instance of `UIPageViewController`.
 
 - The `Segnify` instance represents the different `Segment` instances which can independently be selected by the user. Selecting a `Segment` instance will trigger the `UIPageViewController` instance, which will in turn show the corresponding content. When the user swipes the content shown by the `UIPageViewController` instance to the left or right, the `Segnify` instance will react accordingly as well.
 
@@ -113,40 +113,40 @@ The `MainViewController` of the example app looks like this:
 import Segnify
 
 public class MainViewController: PageViewController {
-    
+
     // MARK: - Private delegates
-    
+
     private var content = [SegnifyContentElement]()
-    
+
     private lazy var imageSegmentDelegate = ImageSegmentDelegate()
-    
+
     private lazy var pageViewControllerDelegate = PageViewControllerDelegate()
-    
+
     private lazy var segnicatorDelegate = SegnicatorDelegate()
-    
+
     private lazy var segnifyDelegate = SegnifyDelegate()
-    
+
     private lazy var textSegmentDelegate = TextSegmentDelegate()
-    
+
     // MARK: - Lifecycle
-    
+
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         // Customize.
         do {
             try setDataSource(self)
-            
+
             delegate = pageViewControllerDelegate
             segnify.delegate = segnifyDelegate
             segnify.segnicator = Segnicator(configuration: segnicatorDelegate)
@@ -161,7 +161,7 @@ public class MainViewController: PageViewController {
 // MARK: - SegnifyDataSourceProtocol
 
 extension MainViewController: SegnifyDataSourceProtocol {
-    
+
     public var contentElements: [SegnifyContentElement] {
         if content.isEmpty {
             content = [
@@ -177,7 +177,7 @@ extension MainViewController: SegnifyDataSourceProtocol {
                  viewController: PageViewContentViewController(text: "Number 5 is being shown."))
             ]
         }
-        
+
         return content
     }
 }
@@ -206,9 +206,9 @@ Implement `ImageSegmentProtocol` for customizing image segments. In the example 
 
 ```swift
 public class DefaultImageSegmentDelegate: ImageSegmentProtocol {
-    
+
     // MARK: - Delegate
-    
+
     public func backgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
@@ -226,13 +226,13 @@ Implement `PageViewControllerProtocol` for visually customizing the `PageViewCon
 
 ```swift
 public class DefaultPageViewControllerDelegate: PageViewControllerProtocol {
-    
+
     // MARK: - Delegate
-    
+
     public var backgroundColor: UIColor {
         return .black
     }
-    
+
     public var segnifyHeight: CGFloat {
         return 75.0
     }
@@ -249,16 +249,16 @@ A white, horizontal line is created and added as a subview. Auto Layout constrai
 public class DefaultSegnicatorDelegate: SegnicatorProtocol {
 
     // MARK: - Delegate
-    
+
     public var segnicatorView: UIView {
         // Create a white, half-transparent background view.
         let backgroundView = UIView()
         backgroundView.backgroundColor = .clear
-        
+
         // Create a white, horizontal indicator view.
         let whiteIndicatorView = UIView()
         whiteIndicatorView.backgroundColor = .white
-        
+
         // Add it to the segnicator and give it the correct layout.
         backgroundView.addSubview(whiteIndicatorView)
         NSLayoutConstraint.activate([
@@ -267,7 +267,7 @@ public class DefaultSegnicatorDelegate: SegnicatorProtocol {
             whiteIndicatorView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
             whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
             ], for: whiteIndicatorView)
-        
+
         return backgroundView
     }
 }
@@ -281,21 +281,21 @@ In the example below, the default implementation in [DefaultSegnifyDataSourceDel
 
 ```swift
 public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
-    
+
     // MARK: - Private
-    
+
     /// Define an instance of `DefaultTextSegmentDelegate`.
     private lazy var textSegmentDelegate: TextSegmentProtocol = {
         return DefaultTextSegmentDelegate()
     }()
-    
+
     /// Generate a new UIViewController instance with a random background color.
     private func generateViewController() -> UIViewController {
         let viewController = UIViewController()
         viewController.view.backgroundColor = UIColor(white: .random(in: 0.0 ... 1.0), alpha: 1.0)
         return viewController
     }
-    
+
     /// The collection of segment-viewcontroller-tuples, used by the `Segnify` instance.
     private lazy var content: [SegnifyContentElement] = {
         return [(segment: TextSegment(text: "Segment 1", configuration: textSegmentDelegate),
@@ -305,9 +305,9 @@ public class DefaultSegnifyDataSourceDelegate: SegnifyDataSourceProtocol {
                 (segment: TextSegment(text: "Segment 3", configuration: textSegmentDelegate),
                  viewController: generateViewController())]
     }()
-    
+
     // MARK: - Delegate
-    
+
     public var contentElements: [SegnifyContentElement] {
         return content
     }
@@ -322,15 +322,15 @@ Implement `SegnifyProtocol` for visually customizing the `Segnify` instance. In 
 public class DefaultSegnifyDelegate: SegnifyProtocol {
 
     // MARK: - Delegate
-    
+
     public var backgroundColor: UIColor {
         return .init(red: 76.0/255.0, green: 114.0/255.0, blue: 128.0/255.0, alpha: 1.0)
     }
-    
+
     public var isEquallyFillingHorizontalSpace: Bool {
         return true
     }
-    
+
     public var segmentWidth: CGFloat {
         return 150.0
     }
@@ -343,9 +343,9 @@ Implement `TextSegmentProtocol` for customizing textual segments. In the example
 
 ```swift
 public class DefaultTextSegmentDelegate: TextSegmentProtocol {
-    
+
     // MARK: - Delegate
-    
+
     public func backgroundColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected,  [.selected, .highlighted]:
@@ -354,11 +354,11 @@ public class DefaultTextSegmentDelegate: TextSegmentProtocol {
             return .clear
         }
     }
-    
+
     public var font: UIFont {
         return .systemFont(ofSize: 17.0)
     }
-    
+
     public func textColor(for state: UIControl.State) -> UIColor {
         switch state {
         case .highlighted, .selected:
@@ -379,6 +379,3 @@ See the [LICENSE](LICENSE) file for more info.
 ## Changelog
 
 See the [CHANGELOG](CHANGELOG.md) file.
-
-
-
