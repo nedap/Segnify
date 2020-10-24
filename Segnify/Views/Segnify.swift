@@ -420,7 +420,7 @@ extension Segnify {
             // Make sure the scroll view scrolls according to the currently selected segment.
             
             // Grab the index of the selected segment in the stack view.
-            let indexOfSelectedSegmentInStackView = stackView.arrangedSubviews.index(of: selectedSegment)!
+            let indexOfSelectedSegmentInStackView = stackView.arrangedSubviews.firstIndex(of: selectedSegment)!
             let segmentHeight = selectedSegment.frame.height
             
             switch indexOfSelectedSegmentInStackView {
