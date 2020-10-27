@@ -3,14 +3,25 @@ All notable changes to this project will be documented in this file.
 `segnify-ios` adheres to [Semantic Versioning](https://semver.org/).
 
 #### 1.x Releases
-- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112) | [1.1.3](#113) | [1.1.4](#114)
+- `1.1.x` Releases - [1.1.0](#110) | [1.1.1](#111) | [1.1.2](#112) | [1.1.3](#113) | [1.1.4](#114) | [1.1.5](#115)
 - `1.0.x` Releases - [1.0.0](#100) | [1.0.1](#101) | [1.0.2](#102)
 
 ---
+
 ## [Unreleased]
+
+#### Added
+
+#### Updated
+
+#### Fixed
+
+## [1.1.5](https://github.com/nedap/segnify-ios/releases/tag/1.1.5)
+Released on 2020-10-27.
 
 #### Updated
 - Support for Xcode 12.1 and iOS 14 ([#25](https://github.com/nedap/segnify-ios/issues/25))
+  - Updated by [Bart Hopster](https://github.com/barthopster).
 
 ## [1.1.4](https://github.com/nedap/segnify-ios/releases/tag/1.1.4)
 Released on 2020-04-14.
@@ -18,7 +29,7 @@ Released on 2020-04-14.
 #### Fixed
 - Fixed broken init in Xcode 11.4 ([#21](https://github.com/nedap/segnify-ios/issues/21))
 - Fixed wrong safe area bottom constraint for `PageViewController` ([#22](https://github.com/nedap/segnify-ios/issues/22))
-  - Fixed by [Yuliia Mykhailova](https://github.com/ymykhailova-nedap).
+  - Fixed by [Yulia Mykhailova](https://github.com/ymykhailova-nedap).
 
 ## [1.1.3](https://github.com/nedap/segnify-ios/releases/tag/1.1.3)
 Released on 2020-01-10.
