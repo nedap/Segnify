@@ -6,6 +6,8 @@
 //  Copyright © 2018 Bart Hopster. All rights reserved.
 //
 
+import UIKit
+
 /// Provides a default implementation for `SegnicatorProtocol`.
 public class DefaultSegnicatorDelegate: SegnicatorProtocol {
 
