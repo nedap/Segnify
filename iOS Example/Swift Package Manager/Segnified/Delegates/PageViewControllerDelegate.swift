@@ -6,6 +6,7 @@
 //  Copyright © 2018 Bart Hopster. All rights reserved.
 //
 
+import UIKit
 import Segnify
 
 /// Implements `PageViewControllerProtocol`.
