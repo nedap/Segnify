@@ -1,9 +1,10 @@
 # Segnify for iOS
 
-[![Swift version](https://img.shields.io/badge/swift-5-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
+[![Swift version](https://img.shields.io/badge/swift-5.3-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
+[![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
+![Swift Package Manager](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Segnify.svg)](https://img.shields.io/cocoapods/v/Segnify.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/segnify-ios)
-[![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
 
 An elegant, performing and fancy segmented component in Swift.
 
@@ -23,10 +24,22 @@ An elegant, performing and fancy segmented component in Swift.
 ## Requirements
 
 - iOS 10.3+
-- Xcode 11.4+
-- Swift 5.0+
+- Xcode 12.2+
+- Swift 5.3+
 
 ## Installation
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development and, even if we have some issues (like for instance, that automated testing needs to be temporarily disabled), we prefer SPM instead of Carthage because is native and speeds up our workflow. 
+
+Once you have your Swift package set up, adding Version Control as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+.package(url: "https://github.com/nedap/segnify-ios.git", .exact("1.1.6"))
+]
+```
 
 ### CocoaPods
 
@@ -67,7 +80,7 @@ $ brew install carthage
 To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nedap/segnify-ios" ~> 1.1.5
+github "nedap/segnify-ios" ~> 1.1.6
 ```
 
 Run `carthage bootstrap` to build the framework and drag the built `Segnify.framework` into your Xcode project.
