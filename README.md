@@ -2,7 +2,7 @@
 
 [![Swift version](https://img.shields.io/badge/swift-5.3-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
-![Swift Package Manager](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)
+![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Segnify.svg)](https://img.shields.io/cocoapods/v/Segnify.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/segnify-ios)
 
