@@ -33,7 +33,7 @@ An elegant, performing and fancy segmented component in Swift.
 
 The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development and, even if we have some issues (like for instance, that automated testing needs to be temporarily disabled), we prefer SPM instead of Carthage because is native and speeds up our workflow. 
 
-Once you have your Swift package set up, adding Version Control as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+Once you have your Swift package set up, adding Segnify as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
