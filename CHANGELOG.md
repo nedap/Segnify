@@ -12,9 +12,10 @@ All notable changes to this project will be documented in this file.
 
 #### Added
 
-#### Updated
-
 #### Fixed
+
+#### Changed
+- SEG-26: [SPM] Add Support for Swift Package Manager
 
 ## [1.1.5](https://github.com/nedap/segnify-ios/releases/tag/1.1.5)
 Released on 2020-10-27.
