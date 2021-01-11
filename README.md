@@ -3,8 +3,6 @@
 [![Swift version](https://img.shields.io/badge/swift-5.3-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
 ![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Segnify.svg)](https://img.shields.io/cocoapods/v/Segnify.svg)
-[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/nedap/segnify-ios)
 
 An elegant, performing and fancy segmented component in Swift.
 
@@ -40,50 +38,6 @@ dependencies: [
 .package(url: "https://github.com/nedap/segnify-ios.git", .exact("1.1.6"))
 ]
 ```
-
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate Segnify into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-platform :ios, '10.3'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Segnify'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](https://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate Segnify into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "nedap/segnify-ios" ~> 1.1.6
-```
-
-Run `carthage bootstrap` to build the framework and drag the built `Segnify.framework` into your Xcode project.
 
 ## Usage
 
