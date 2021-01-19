@@ -3,7 +3,7 @@
 //  Segnified
 //
 //  Created by Bart Hopster on 23/11/2018.
-//  Copyright © 2018 Bart Hopster. All rights reserved.
+//  Copyright © 2021 Bart Hopster. All rights reserved.
 //
 
 import UIKit
@@ -34,7 +34,7 @@ public class SegnifyDelegate: SegnifyProtocol {
             textLabel.bottomAnchor.constraint(equalTo: footerView.bottomAnchor),
             textLabel.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
             textLabel.heightAnchor.constraint(equalToConstant: 35.0)
-            ], for: textLabel)
+        ], for: textLabel)
         
         return footerView
     }

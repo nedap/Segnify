@@ -339,7 +339,7 @@ public class DefaultTextSegmentDelegate: TextSegmentProtocol {
 
 ## License
 
-Copyright © 2020 Nederlandsche Apparatenfabriek (Nedap) N.V.. All rights reserved.
+Copyright © 2021 Nederlandsche Apparatenfabriek (Nedap) N.V.. All rights reserved.
 
 See the [LICENSE](LICENSE) file for more info.
 

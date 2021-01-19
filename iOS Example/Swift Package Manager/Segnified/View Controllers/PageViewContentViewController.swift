@@ -3,7 +3,7 @@
 //  Segnified
 //
 //  Created by Bart Hopster on 22/11/2018.
-//  Copyright © 2018 Bart Hopster. All rights reserved.
+//  Copyright © 2021 Bart Hopster. All rights reserved.
 //
 
 import UIKit
@@ -29,12 +29,12 @@ public class PageViewContentViewController: UIViewController {
         
         textLabel.text = text
     }
-
+    
     // MARK: - View lifecycle
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Background color.
         view.backgroundColor = .white
         

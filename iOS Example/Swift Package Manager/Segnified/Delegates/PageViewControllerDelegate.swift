@@ -3,7 +3,7 @@
 //  Segnified
 //
 //  Created by Bart Hopster on 23/11/2018.
-//  Copyright © 2018 Bart Hopster. All rights reserved.
+//  Copyright © 2021 Bart Hopster. All rights reserved.
 //
 
 import UIKit

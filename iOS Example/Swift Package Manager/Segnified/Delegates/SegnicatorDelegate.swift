@@ -3,7 +3,7 @@
 //  Segnified
 //
 //  Created by Bart Hopster on 23/11/2018.
-//  Copyright © 2018 Bart Hopster. All rights reserved.
+//  Copyright © 2021 Bart Hopster. All rights reserved.
 //
 
 import UIKit
@@ -30,7 +30,7 @@ public class SegnicatorDelegate: SegnicatorProtocol {
             whiteIndicatorView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
             whiteIndicatorView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
             whiteIndicatorView.heightAnchor.constraint(equalToConstant: 2.0)
-            ], for: whiteIndicatorView)
+        ], for: whiteIndicatorView)
         
         return backgroundView
     }
