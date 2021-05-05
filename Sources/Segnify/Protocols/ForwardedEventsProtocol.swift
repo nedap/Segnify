@@ -18,7 +18,7 @@ import UIKit
 ///
 /// The protocol partly relies on the `UIPageViewControllerDataSource` and `UIPageViewControllerDelegate` protocols.
 /// In this way, the implementations in `PageViewController` aren't at risk.
-public protocol ForwardedEventsProtocol: class {
+public protocol ForwardedEventsProtocol: AnyObject {
     
     /// Based on the corresponding `UIPageViewControllerDataSource` protocol, this method returns both the view controller
     /// before the currently viewed view controller, where the user navigated away from, and the latter view controller.
