@@ -9,7 +9,7 @@
 import UIKit
 
 /// Customize the `Segnicator` appearance by implementing this protocol.
-public protocol SegnicatorProtocol: class {
+public protocol SegnicatorProtocol: AnyObject {
     
     /// Specifies the appearance of the `Segnicator` instance.
     var segnicatorView: UIView { get }

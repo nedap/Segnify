@@ -9,7 +9,7 @@
 import UIKit
 
 /// Customize any `Segment` appearance by implementing this protocol.
-public protocol SegmentProtocol: class {
+public protocol SegmentProtocol: AnyObject {
 
     /// The background color of the `Segment` instance for the different states.
     func backgroundColor(for state: UIControl.State) -> UIColor

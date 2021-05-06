@@ -10,7 +10,7 @@ import UIKit
 
 /// Configure a `PageViewController` instance by implementing this protocol.
 /// The background color of the view and the height of its `Segnify` instance can be configured.
-public protocol PageViewControllerProtocol: class {
+public protocol PageViewControllerProtocol: AnyObject {
     
     /// Specifies the background color of the main view.
     var backgroundColor: UIColor { get }

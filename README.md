@@ -1,6 +1,6 @@
 # Segnify for iOS
 
-[![Swift version](https://img.shields.io/badge/swift-5.3-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
+[![Swift version](https://img.shields.io/badge/swift-5.4-brightgreen.svg)](https://img.shields.io/badge/swift-5-brightgreen.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Segnify.svg)](https://img.shields.io/cocoapods/p/Segnify.svg)
 ![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)
 
@@ -22,8 +22,8 @@ An elegant, performing and fancy segmented component in Swift.
 ## Requirements
 
 - iOS 10.3+
-- Xcode 12.2+
-- Swift 5.3+
+- Xcode 12.5+
+- Swift 5.4+
 
 ## Installation
 
