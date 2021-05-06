@@ -108,15 +108,12 @@ open class PageViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        // Adjusting the scroll view insets will result in a weird UI on iOS 10 and earlier.
-        automaticallyAdjustsScrollViewInsets = false
-        
         // Load up the Segnify instance.
         view.addSubview(segnify)
-        
+  
         // Give it some Auto Layout constraints.
         NSLayoutConstraint.activate([
-            segnify.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            segnify.topAnchor.constraint(equalTo:  view.safeAreaLayoutGuide.topAnchor),
             segnify.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             segnify.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ], for: segnify)
