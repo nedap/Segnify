@@ -21,7 +21,7 @@ An elegant, performing and fancy segmented component in Swift.
 
 ## Requirements
 
-- iOS 10.3+
+- iOS 12+
 - Xcode 12.5+
 - Swift 5.4+
 

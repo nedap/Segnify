@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 #### Changed
 - SEG-34: Upgrade package to Swift 5.4
-- SEG-33: Drop suppoert for iOS 10 and 11
+- SEG-33: Drop support for iOS 10 and 11
 
 ## [1.1.6](https://github.com/nedap/segnify-ios/releases/tag/1.1.6)
 Released on 2021-01-11.
