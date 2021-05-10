@@ -1,0 +1,172 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# Skip the creation of the fastlane/README.md file when running fastlane
+skip_docs
+
+default_platform(:ios)
+
+platform :ios do
+
+############################## PRE ##############################
+
+  before_all do
+
+    echo(message: "Building Tag #{last_git_tag}")
+
+    # Configure the environment variables
+    ENV['OWNER'] = "nedap"
+    ENV['REPO'] = "segnify-ios"
+    ENV['PROJECT'] = "Segnify"
+    ENV['SCHEME'] = "Segnify"
+
+    # Add the local personal keys in enviroment variables
+    if File.exist?("./local.config")
+      ENV['GH_USER_EMAIL'] = sh("sed '1q;d' local.config | tr -d '\n'") # First line of file
+      ENV['GH_USER_TOKEN'] = sh("sed '2q;d' local.config | tr -d '\n'") # Second line of file
+      ENV['SLACK_TOKEN'] = sh("sed '3q;d' local.config | tr -d '\n'") # Third line of file
+    end
+
+    # Add Webhook URL created in Slack
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_TOKEN"]}" # Webhook URL created in Slack
+
+  end
+
+######################### PUBLIC LANES ##########################
+
+  desc "Run Unit Tests"
+  lane :run_unit_tests do
+
+      # Pre-start the iPhone simulator.
+      #sh("xcrun instruments -w \"iPhone 8 (14.1) [\" || true")
+
+      spm(
+        command: "clean",
+      )
+
+      # spm(
+      #   command: "test",
+      #   verbose: true
+      # )
+
+  end
+
+  desc "Release a new version on GitHub from your LOCAL machine"
+  lane :release_version do
+
+    # Check if repo in master branch
+    ensure_git_branch
+
+    # Check if Changelog contains Unreleased string
+    sh("./check_changelog.sh")
+
+    # Run unit tests
+    run_unit_tests
+
+    # Create release
+    sh "bash ./release.sh owner=#{ENV["OWNER"]} repo=#{ENV["REPO"]} tag=#{last_git_tag} github_api_token=#{ENV['GH_USER_TOKEN']}"
+
+  end
+
+  desc "Release a new version on GitHub using GitHub Actions (CI)"
+  lane :trigger_gh_action_release do
+
+    # Check if repo in master branch
+    ensure_git_branch
+
+    # Check if Changelog contains Unreleased string
+    sh("./check_changelog.sh")
+
+    github_token = ENV['GH_USER_TOKEN']
+
+    if !github_token || github_token==""
+      echo(message:"ERROR: No GitHub Token available. Define a token in local.config file")
+    else
+      # Trigger GitHub Action on repository_dispatch
+      sh("curl -H \"Accept: application/vnd.github.everest-preview+json\" \
+          -H \"Authorization: token #{ENV["GH_USER_TOKEN"]}\" \
+          --request POST \
+          --data '{\"event_type\": \"trigger-build\", \"client_payload\": { \"text\": \"Release version using fastlane\"}}' \
+          https://api.github.com/repos/#{ENV["OWNER"]}/#{ENV["REPO"]}/dispatches"
+      )
+
+      echo(message: "Building Tag #{last_git_tag}")
+    end
+
+  end
+
+######################### PRIVATE LANES #########################
+
+  # Not used yet since this framework is not really tested :(
+  desc "Code coverage report on Slack"
+  private_lane :code_coverage_report do
+
+      xcov(
+        project: "#{ENV["PROJECT"]}.xcodeproj",
+        scheme: "#{ENV["SCHEME"]}",
+        ignore_file_path: "fastlane/#{ENV["REPO"]}.xcovignore",
+        output_directory: "fastlane/xcov_output"
+      )
+
+  end
+
+############################# POST ##############################
+
+  # This lane is called, only if the executed lane was successful
+  after_all do |lane|
+
+    notification(message: "Fastlane finished '#{lane}' successfully") # Mac OS X Notification
+
+    # Only notify failure for release line.
+    if lane == :release_version
+
+      slack(
+        message: "New framework version has been released to *GitHub* 🚀",
+        success: true,
+        payload: {
+          "Project:" => "#{ENV["OWNER"]}/#{ENV["REPO"]}",
+          "Version:" => "#{last_git_tag}",
+          "Released by:" => "#{ENV["GH_USER_EMAIL"]}"
+        }
+      )
+
+    end
+
+  end
+
+  # This lane is called if there was an error in the execution of the scripts
+  error do |lane, exception|
+
+    notification(message: "Fastlane '#{lane}' errored")  # Mac OS X Notification
+
+    # Only notify failure for release line.
+    if lane == :release_version
+
+      slack(
+        message: "Failed to release a new framework version",
+        success: false,
+        payload: {
+          "Project:" => "#{ENV["OWNER"]}/#{ENV["REPO"]}",
+          "Version:" => "#{last_git_tag}",
+          "Released by:" => "#{ENV["GH_USER_EMAIL"]}"
+        }
+      )
+
+    end
+
+  end
+
+
+end
