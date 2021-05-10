@@ -35,7 +35,7 @@ Once you have your Swift package set up, adding Segnify as a dependency is as ea
 
 ```swift
 dependencies: [
-.package(url: "https://github.com/nedap/segnify-ios.git", .exact("1.1.6"))
+.package(url: "https://github.com/nedap/segnify-ios.git", .exact("1.1.7"))
 ]
 ```
 
