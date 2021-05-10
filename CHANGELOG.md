@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+#### Added
+
+#### Fixed
+
+#### Changed
+
 ## [1.1.7] - 2021-05-10
 #### Added
 
@@ -82,6 +89,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Added
 - Initial release of Segnify.
 
+[Unreleased]: https://github.com/nedap/segnify-ios/compare/1.1.7...HEAD
 [1.1.7]: https://github.com/nedap/segnify-ios/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/nedap/segnify-ios/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/nedap/segnify-ios/compare/1.1.4...1.1.5
